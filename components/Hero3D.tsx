@@ -43,7 +43,7 @@ export default function Hero3D() {
     const pointsGeo = new THREE.BufferGeometry().setFromPoints(nodes);
     const points = new THREE.Points(
       pointsGeo,
-      new THREE.PointsMaterial({ color: 0xc4b5fd, size: 0.055, transparent: true, opacity: 0.95 }),
+      new THREE.PointsMaterial({ color: 0x6d28d9, size: 0.05, transparent: true, opacity: 0.9 }),
     );
     group.add(points);
 
@@ -60,19 +60,19 @@ export default function Hero3D() {
     edgeGeo.setAttribute("position", new THREE.Float32BufferAttribute(edgeVerts, 3));
     const edges = new THREE.LineSegments(
       edgeGeo,
-      new THREE.LineBasicMaterial({ color: 0x7c3aed, transparent: true, opacity: 0.22 }),
+      new THREE.LineBasicMaterial({ color: 0x7c3aed, transparent: true, opacity: 0.18 }),
     );
     group.add(edges);
 
     // Verification core
     const core = new THREE.Mesh(
       new THREE.IcosahedronGeometry(0.95, 1),
-      new THREE.MeshBasicMaterial({ color: 0xa855f7, wireframe: true, transparent: true, opacity: 0.9 }),
+      new THREE.MeshBasicMaterial({ color: 0x7c3aed, wireframe: true, transparent: true, opacity: 0.8 }),
     );
     group.add(core);
     const coreGlow = new THREE.Mesh(
       new THREE.IcosahedronGeometry(0.62, 0),
-      new THREE.MeshBasicMaterial({ color: 0x22d3ee, transparent: true, opacity: 0.55 }),
+      new THREE.MeshBasicMaterial({ color: 0xc026d3, transparent: true, opacity: 0.4 }),
     );
     group.add(coreGlow);
 

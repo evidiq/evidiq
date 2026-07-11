@@ -51,6 +51,9 @@ const FRAMEWORKS = ["LangChain", "AutoGen", "CrewAI", "LlamaIndex", "Haystack", 
 const WORKS_WITH = ["OKX AI Marketplace", "Other AI Marketplaces", "DeFi & dApps", "Enterprises"];
 const PARTNERS = ["0G Labs", "OKX Chain", "OpenClaw / Hermes", "x402 Protocol"];
 
+const CARD = "rounded-2xl border border-[#e7dcc7] bg-[#fbf8f1]";
+const CHIP = "rounded-lg border border-[#e7dcc7] bg-white/70 text-[#201810]/75";
+
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   return (
     <motion.div
@@ -66,19 +69,19 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-[#05040a] text-white">
+    <main className="relative min-h-screen overflow-x-hidden bg-[#f4efe4] text-[#201810]">
       {/* NAV */}
-      <nav className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-6 py-4 backdrop-blur-md md:px-10">
+      <nav className="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-[#e7dcc7]/70 bg-[#f4efe4]/80 px-6 py-4 backdrop-blur-md md:px-10">
         <div className="flex items-center gap-2.5">
           <Image src="/logo.png" alt="EVIDIQ" width={34} height={34} className="rounded-md" />
           <span className="text-lg font-extrabold tracking-tight">EVIDIQ</span>
         </div>
-        <div className="hidden items-center gap-8 text-sm text-white/75 md:flex">
-          <a href="#stack" className="hover:text-white">Stack</a>
-          <a href="#how" className="hover:text-white">How it works</a>
-          <a href="#partners" className="hover:text-white">Partners</a>
+        <div className="hidden items-center gap-8 text-sm text-[#201810]/70 md:flex">
+          <a href="#stack" className="hover:text-[#201810]">Stack</a>
+          <a href="#how" className="hover:text-[#201810]">How it works</a>
+          <a href="#partners" className="hover:text-[#201810]">Partners</a>
         </div>
-        <a href="#how" className="rounded-lg bg-gradient-to-r from-violet-300 to-violet-500 px-4 py-2 text-sm font-bold text-[#1a0b2e]">
+        <a href="#how" className="rounded-lg bg-violet-600 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-violet-700">
           Get a Trust Score
         </a>
       </nav>
@@ -86,34 +89,34 @@ export default function Home() {
       {/* HERO */}
       <section className="relative flex min-h-screen items-center">
         <div className="absolute inset-0"><Hero3D /></div>
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_70%_at_20%_50%,rgba(5,4,10,0.9),rgba(5,4,10,0.35)_55%,transparent)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_70%_at_18%_50%,rgba(244,239,228,0.96),rgba(244,239,228,0.55)_55%,transparent)]" />
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10">
           <Reveal>
-            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-500/40 bg-violet-500/10 px-4 py-1.5 text-xs uppercase tracking-[0.28em] text-violet-200">
+            <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-300 bg-violet-100/70 px-4 py-1.5 text-xs uppercase tracking-[0.28em] text-violet-700">
               <ShieldCheck size={14} /> Trust Layer · AI Agent Economy
             </span>
           </Reveal>
           <Reveal delay={0.05}>
-            <h1 className="max-w-3xl text-5xl font-extrabold leading-[1.02] tracking-tight md:text-7xl">
+            <h1 className="max-w-3xl text-5xl font-extrabold leading-[1.02] tracking-tight text-[#1a130a] md:text-7xl">
               Verify. Score. Trust.
               <br />
-              <span className="bg-gradient-to-r from-violet-300 via-fuchsia-300 to-cyan-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent">
                 Before every AI transaction.
               </span>
             </h1>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="mt-6 max-w-xl text-lg text-white/75">
+            <p className="mt-6 max-w-xl text-lg text-[#201810]/70">
               EVIDIQ is the universal trust layer that verifies AI agents&apos; capabilities, tracks
               performance, and builds on-chain reputation — so users and agents can transact with confidence.
             </p>
           </Reveal>
           <Reveal delay={0.15}>
             <div className="mt-9 flex flex-wrap gap-3">
-              <a href="#how" className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-300 to-violet-500 px-6 py-3.5 font-bold text-[#1a0b2e]">
+              <a href="#how" className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3.5 font-bold text-white transition-colors hover:bg-violet-700">
                 Build a trusted agent <ArrowRight size={18} />
               </a>
-              <a href="#stack" className="rounded-xl border border-white/20 px-6 py-3.5 font-semibold text-white/90 hover:bg-white/5">
+              <a href="#stack" className="rounded-xl border border-[#201810]/20 px-6 py-3.5 font-semibold text-[#201810] hover:bg-[#201810]/5">
                 Explore the stack
               </a>
             </div>
@@ -122,10 +125,10 @@ export default function Home() {
           <div className="mt-16 grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4">
             {PILLARS.map((p, i) => (
               <Reveal key={p.title} delay={0.2 + i * 0.06}>
-                <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-sm">
-                  <p.icon className="text-violet-300" size={22} />
-                  <div className="mt-3 text-sm font-bold">{p.title}</div>
-                  <div className="mt-1 text-xs leading-relaxed text-white/60">{p.desc}</div>
+                <div className={`h-full ${CARD} p-4`}>
+                  <p.icon className="text-violet-600" size={22} />
+                  <div className="mt-3 text-sm font-bold text-[#1a130a]">{p.title}</div>
+                  <div className="mt-1 text-xs leading-relaxed text-[#201810]/60">{p.desc}</div>
                 </div>
               </Reveal>
             ))}
@@ -136,10 +139,10 @@ export default function Home() {
       {/* STACK */}
       <section id="stack" className="relative mx-auto max-w-6xl px-6 py-28 md:px-10">
         <Reveal>
-          <h2 className="text-center text-4xl font-extrabold tracking-tight md:text-5xl">
+          <h2 className="text-center text-4xl font-extrabold tracking-tight text-[#1a130a] md:text-5xl">
             One stack. Seven layers of trust.
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-[#201810]/65">
             From secure compute and on-chain settlement to attestation, scoring, and the developer
             surface — every layer works together to make agents verifiable.
           </p>
@@ -147,21 +150,21 @@ export default function Home() {
         <div className="mt-14 space-y-3">
           {LAYERS.map((l, i) => (
             <Reveal key={l.n} delay={i * 0.04}>
-              <div className="group flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-5 transition-colors hover:border-violet-500/40 hover:bg-violet-500/[0.05] md:flex-row md:items-center">
+              <div className="group flex flex-col gap-4 rounded-2xl border border-[#e7dcc7] bg-[#fbf8f1] p-5 transition-colors hover:border-violet-300 hover:bg-violet-50/60 md:flex-row md:items-center">
                 <div className="flex items-center gap-4 md:w-72 md:shrink-0">
-                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-violet-500/30 to-fuchsia-500/10 text-lg font-extrabold text-violet-200">
+                  <span className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-violet-200 to-fuchsia-100 text-lg font-extrabold text-violet-700">
                     {l.n}
                   </span>
                   <div>
-                    <div className="flex items-center gap-2 font-bold">
-                      <l.icon size={16} className="text-violet-300" /> {l.name}
+                    <div className="flex items-center gap-2 font-bold text-[#1a130a]">
+                      <l.icon size={16} className="text-violet-600" /> {l.name}
                     </div>
-                    <div className="text-xs uppercase tracking-widest text-white/45">{l.sub}</div>
+                    <div className="text-xs uppercase tracking-widest text-[#201810]/45">{l.sub}</div>
                   </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {l.items.map((it) => (
-                    <span key={it} className="rounded-lg border border-white/10 bg-black/30 px-3 py-1.5 text-xs text-white/75">
+                    <span key={it} className={`${CHIP} px-3 py-1.5 text-xs`}>
                       {it}
                     </span>
                   ))}
@@ -175,31 +178,31 @@ export default function Home() {
       {/* HOW IT WORKS */}
       <section id="how" className="relative mx-auto max-w-6xl px-6 py-24 md:px-10">
         <Reveal>
-          <h2 className="text-center text-4xl font-extrabold tracking-tight md:text-5xl">
+          <h2 className="text-center text-4xl font-extrabold tracking-tight text-[#1a130a] md:text-5xl">
             How to build a trusted agent
           </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/65">
+          <p className="mx-auto mt-4 max-w-2xl text-center text-[#201810]/65">
             Six steps from any framework to a verifiable, discoverable agent ready for the economy.
           </p>
         </Reveal>
         <div className="mt-14 grid gap-4 md:grid-cols-3">
           {STEPS.map((s, i) => (
             <Reveal key={s.t} delay={i * 0.05}>
-              <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-                <div className="mb-4 grid h-9 w-9 place-items-center rounded-full border border-violet-500/40 bg-violet-500/10 text-sm font-bold text-violet-200">
+              <div className={`h-full ${CARD} p-6`}>
+                <div className="mb-4 grid h-9 w-9 place-items-center rounded-full border border-violet-300 bg-violet-100 text-sm font-bold text-violet-700">
                   {i + 1}
                 </div>
-                <div className="font-bold">{s.t}</div>
-                <div className="mt-2 text-sm leading-relaxed text-white/60">{s.d}</div>
+                <div className="font-bold text-[#1a130a]">{s.t}</div>
+                <div className="mt-2 text-sm leading-relaxed text-[#201810]/60">{s.d}</div>
               </div>
             </Reveal>
           ))}
         </div>
         <Reveal delay={0.1}>
-          <div className="mt-8 flex items-center justify-center gap-3 rounded-2xl border border-emerald-500/30 bg-emerald-500/[0.06] px-6 py-5 text-center">
-            <CheckCircle2 className="text-emerald-400" size={22} />
-            <p className="text-sm text-white/80">
-              <span className="font-bold text-white">Result: a Trusted Agent.</span> Verifiable, discoverable, and
+          <div className="mt-8 flex items-center justify-center gap-3 rounded-2xl border border-emerald-500/40 bg-emerald-100/50 px-6 py-5 text-center">
+            <CheckCircle2 className="text-emerald-600" size={22} />
+            <p className="text-sm text-[#201810]/80">
+              <span className="font-bold text-[#1a130a]">Result: a Trusted Agent.</span> Verifiable, discoverable, and
               ready for the AI Agent Economy.
             </p>
           </div>
@@ -215,13 +218,13 @@ export default function Home() {
             { title: "Technology partners", items: PARTNERS, icon: Blocks },
           ].map((col, i) => (
             <Reveal key={col.title} delay={i * 0.06}>
-              <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6">
-                <div className="mb-4 flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-white/50">
-                  <col.icon size={15} className="text-violet-300" /> {col.title}
+              <div className={`h-full ${CARD} p-6`}>
+                <div className="mb-4 flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-[#201810]/50">
+                  <col.icon size={15} className="text-violet-600" /> {col.title}
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {col.items.map((it) => (
-                    <span key={it} className="rounded-lg border border-white/10 bg-black/30 px-3 py-2 text-sm text-white/85">
+                    <span key={it} className={`${CHIP} px-3 py-2 text-sm`}>
                       {it}
                     </span>
                   ))}
@@ -232,15 +235,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SKILL / CTA */}
+      {/* SKILL / CTA — dark contrast block */}
       <section className="relative mx-auto max-w-6xl px-6 pb-28 md:px-10">
         <Reveal>
-          <div className="overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-violet-500/[0.12] to-transparent p-8 md:p-12">
-            <h3 className="text-3xl font-extrabold tracking-tight md:text-4xl">Give your agent the trust skill.</h3>
+          <div className="overflow-hidden rounded-3xl border border-[#2b2140] bg-[#171021] p-8 md:p-12">
+            <h3 className="text-3xl font-extrabold tracking-tight text-white md:text-4xl">Give your agent the trust skill.</h3>
             <p className="mt-3 max-w-xl text-white/70">
               One open skill your agent installs to verify counterparties, score risk, and settle disputes.
             </p>
-            <div className="mt-6 inline-flex items-center gap-3 rounded-xl border border-white/15 bg-black/50 px-4 py-3 font-mono text-sm text-cyan-200">
+            <div className="mt-6 inline-flex items-center gap-3 rounded-xl border border-white/15 bg-black/40 px-4 py-3 font-mono text-sm text-cyan-300">
               <Terminal size={16} className="text-violet-300" />
               curl -s https://evidiq.dev/skill.md
             </div>
@@ -249,8 +252,8 @@ export default function Home() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-white/10 px-6 py-10 md:px-10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-white/50 md:flex-row">
+      <footer className="border-t border-[#e7dcc7] px-6 py-10 md:px-10">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-[#201810]/55 md:flex-row">
           <div className="flex items-center gap-2">
             <Image src="/logo.png" alt="EVIDIQ" width={22} height={22} className="rounded" />
             <span>EVIDIQ — make every AI agent verifiable, trustworthy, and accountable.</span>
