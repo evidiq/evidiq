@@ -17,7 +17,14 @@ export default function Hero3D() {
     let w = el.clientWidth;
     let h = el.clientHeight;
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    const renderer = (() => {
+      try {
+        return new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      } catch {
+        return null; // WebGL unavailable — skip the 3D backdrop, keep the cream bg
+      }
+    })();
+    if (!renderer) return;
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.setSize(w, h);
     el.appendChild(renderer.domElement);

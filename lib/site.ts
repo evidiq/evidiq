@@ -22,7 +22,8 @@ export const SOCIALS = {
 };
 
 // The protocols, chains, and frameworks EVIDIQ builds on / interoperates with.
-// Rendered as the "founding partners" text grid.
+// Rendered as the "founding ecosystem" grid (real logo where we have one,
+// otherwise a monogram mark).
 export const ECOSYSTEM: string[] = [
   "0G",
   "OKX Chain",
@@ -32,11 +33,10 @@ export const ECOSYSTEM: string[] = [
   "ERC-8004",
   "EIP-3009",
   "MCP",
-  "TEE + ZK",
-  "Internet Court",
   "GenLayer",
   "MetaMask",
-  "OpenClaw / Hermes",
+  "OpenClaw",
+  "Hermes",
   "LangChain",
   "AutoGen",
   "CrewAI",
@@ -61,3 +61,28 @@ export const BRAND_LOGOS: Brand[] = [
   { name: "CrewAI", src: "/logos/crewai.svg" },
   { name: "Next.js", src: "/logos/nextdotjs.svg" },
 ];
+
+// Which ecosystem entries have a real brand logo (used by the partners grid).
+// A logo is attached only where the entry genuinely is / rides on that brand.
+export const ECOSYSTEM_LOGOS: Record<string, string> = {
+  "0G": "/logos/0g.png",
+  "OKX Chain": "/logos/okx.svg",
+  "OKX AI": "/logos/okx.svg",
+  "X Layer": "/logos/xlayer.svg",
+  x402: "/logos/coinbase.svg",
+  "ERC-8004": "/logos/ethereum.svg",
+  "EIP-3009": "/logos/ethereum.svg",
+  MCP: "/logos/anthropic.svg",
+  GenLayer: "/logos/genlayer.png",
+  MetaMask: "/logos/metamask.svg",
+  OpenClaw: "/logos/openclaw.svg",
+  Hermes: "/logos/hermes.svg",
+  LangChain: "/logos/langchain.svg",
+  AutoGen: "/logos/autogen.png",
+  CrewAI: "/logos/crewai.svg",
+  LlamaIndex: "/logos/llamaindex.png",
+  Haystack: "/logos/haystack.png",
+  "GLM-5.2": "/logos/glm.svg",
+  viem: "/logos/viem.png",
+  "Next.js": "/logos/nextdotjs.svg",
+};

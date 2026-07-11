@@ -1,6 +1,6 @@
-import { ECOSYSTEM } from "@/lib/site";
+import { ECOSYSTEM, ECOSYSTEM_LOGOS } from "@/lib/site";
 
-/** Static "founding partners" grid, mirrors the marquee ecosystem. */
+/** Static ecosystem grid — real brand logos where available, name otherwise. */
 export default function PartnersGrid() {
   return (
     <section id="partners" className="mx-auto max-w-6xl px-6 py-24 md:px-10">
@@ -18,14 +18,32 @@ export default function PartnersGrid() {
       </div>
 
       <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-        {ECOSYSTEM.map((name) => (
-          <div
-            key={name}
-            className="flex items-center justify-center rounded-xl border border-[#e7dcc7] bg-[#fbf8f1] px-3 py-5 text-center text-sm font-semibold tracking-tight text-[#201810]/60 transition-colors hover:border-violet-300 hover:bg-violet-50/50 hover:text-violet-700"
-          >
-            {name}
-          </div>
-        ))}
+        {ECOSYSTEM.map((name) => {
+          const logo = ECOSYSTEM_LOGOS[name];
+          return (
+            <div
+              key={name}
+              className="flex h-[86px] flex-col items-center justify-center gap-2 rounded-xl border border-[#e7dcc7] bg-[#fbf8f1] px-3 text-center transition-colors hover:border-violet-300 hover:bg-violet-50/50"
+            >
+              {logo ? (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                  src={logo}
+                  alt={name}
+                  loading="lazy"
+                  className="h-7 w-auto max-w-[92px] object-contain"
+                />
+              ) : (
+                <span className="grid h-7 w-7 place-items-center rounded-lg bg-gradient-to-br from-violet-200 to-fuchsia-100 text-xs font-extrabold text-violet-700">
+                  {name.charAt(0)}
+                </span>
+              )}
+              <span className="text-xs font-semibold tracking-tight text-[#201810]/55">
+                {name}
+              </span>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

@@ -62,11 +62,11 @@ body {
 }
 
 .evidiq-row-left {
-  animation: evidiq-marquee-left 48s linear infinite;
+  animation: evidiq-marquee-left 60s linear infinite;
 }
 
 .evidiq-row-right {
-  animation: evidiq-marquee-right 48s linear infinite;
+  animation: evidiq-marquee-right 60s linear infinite;
 }
 
 .evidiq-marquee-wrap:hover .evidiq-row {

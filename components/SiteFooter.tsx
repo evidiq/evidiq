@@ -81,7 +81,9 @@ export default function SiteFooter() {
 
       <div className="mx-auto mt-12 flex max-w-6xl flex-col items-center justify-between gap-3 border-t border-[#e0d4bd] pt-6 text-xs text-[#201810]/50 md:flex-row">
         <span>© {new Date().getFullYear()} EVIDIQ — make every AI agent verifiable, trustworthy, and accountable.</span>
-        <span>Built for the OKX AI Genesis Hackathon · powered by 0G</span>
+        <a href="/skill.md" className="font-medium text-[#201810]/60 transition-colors hover:text-violet-700">
+          curl -s evidiq.dev/skill.md
+        </a>
       </div>
     </footer>
   );
