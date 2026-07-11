@@ -34,3 +34,28 @@ body {
 ::selection {
   background: rgba(124, 58, 237, 0.22);
 }
+
+/* Top-ticker marquee (content is duplicated in the DOM for a seamless loop). */
+@keyframes evidiq-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.evidiq-marquee {
+  animation: evidiq-marquee 34s linear infinite;
+  will-change: transform;
+}
+
+.evidiq-ticker:hover .evidiq-marquee {
+  animation-play-state: paused;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .evidiq-marquee {
+    animation: none;
+  }
+}

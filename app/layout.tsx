@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   title: "EVIDIQ — The Trust Layer for the AI Agent Economy",
   description:
     "Verify capability, score risk, and build on-chain reputation before every AI transaction. EVIDIQ is the trust layer for the AI agent economy.",
-  icons: { icon: "/logo.png", apple: "/logo.png" },
   openGraph: {
     title: "EVIDIQ — The Trust Layer for the AI Agent Economy",
     description: "Verify. Score. Trust. Before every AI transaction.",

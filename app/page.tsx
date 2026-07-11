@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
 import {
   ShieldCheck,
   BarChart3,
@@ -19,6 +18,8 @@ import {
   CheckCircle2,
 } from "lucide-react";
 import Hero3D from "@/components/Hero3D";
+import SiteHeader from "@/components/SiteHeader";
+import SiteFooter from "@/components/SiteFooter";
 
 const PILLARS = [
   { icon: ShieldCheck, title: "Verify Capability", desc: "Prove what an agent can actually do — skills, benchmarks, identity." },
@@ -69,25 +70,11 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen overflow-x-hidden bg-[#f4efe4] text-[#201810]">
-      {/* NAV */}
-      <nav className="fixed inset-x-0 top-0 z-50 flex items-center justify-between border-b border-[#e7dcc7]/70 bg-[#f4efe4]/80 px-6 py-4 backdrop-blur-md md:px-10">
-        <div className="flex items-center gap-2.5">
-          <Image src="/logo.png" alt="EVIDIQ" width={34} height={34} className="rounded-md" />
-          <span className="text-lg font-extrabold tracking-tight">EVIDIQ</span>
-        </div>
-        <div className="hidden items-center gap-8 text-sm text-[#201810]/70 md:flex">
-          <a href="#stack" className="hover:text-[#201810]">Stack</a>
-          <a href="#how" className="hover:text-[#201810]">How it works</a>
-          <a href="#partners" className="hover:text-[#201810]">Partners</a>
-        </div>
-        <a href="#how" className="rounded-lg bg-violet-600 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-violet-700">
-          Get a Trust Score
-        </a>
-      </nav>
-
-      {/* HERO */}
-      <section className="relative flex min-h-screen items-center">
+    <>
+      <SiteHeader />
+      <main className="relative min-h-screen overflow-x-hidden bg-[#f4efe4] text-[#201810]">
+        {/* HERO */}
+      <section className="relative flex min-h-screen items-center pt-24">
         <div className="absolute inset-0"><Hero3D /></div>
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_70%_at_18%_50%,rgba(244,239,228,0.96),rgba(244,239,228,0.55)_55%,transparent)]" />
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10">
@@ -250,17 +237,8 @@ export default function Home() {
           </div>
         </Reveal>
       </section>
-
-      {/* FOOTER */}
-      <footer className="border-t border-[#e7dcc7] px-6 py-10 md:px-10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-[#201810]/55 md:flex-row">
-          <div className="flex items-center gap-2">
-            <Image src="/logo.png" alt="EVIDIQ" width={22} height={22} className="rounded" />
-            <span>EVIDIQ — make every AI agent verifiable, trustworthy, and accountable.</span>
-          </div>
-          <div>© {new Date().getFullYear()} EVIDIQ</div>
-        </div>
-      </footer>
-    </main>
+      </main>
+      <SiteFooter />
+    </>
   );
 }
