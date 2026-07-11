@@ -35,8 +35,9 @@ body {
   background: rgba(124, 58, 237, 0.22);
 }
 
-/* Top-ticker marquee (content is duplicated in the DOM for a seamless loop). */
-@keyframes evidiq-marquee {
+/* Ecosystem logo marquee — two rows scrolling in opposite directions.
+   Each row's content is duplicated in the DOM for a seamless -50% loop. */
+@keyframes evidiq-marquee-left {
   from {
     transform: translateX(0);
   }
@@ -45,17 +46,35 @@ body {
   }
 }
 
-.evidiq-marquee {
-  animation: evidiq-marquee 34s linear infinite;
+@keyframes evidiq-marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.evidiq-row {
+  display: flex;
+  width: max-content;
   will-change: transform;
 }
 
-.evidiq-ticker:hover .evidiq-marquee {
+.evidiq-row-left {
+  animation: evidiq-marquee-left 48s linear infinite;
+}
+
+.evidiq-row-right {
+  animation: evidiq-marquee-right 48s linear infinite;
+}
+
+.evidiq-marquee-wrap:hover .evidiq-row {
   animation-play-state: paused;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .evidiq-marquee {
+  .evidiq-row {
     animation: none;
   }
 }

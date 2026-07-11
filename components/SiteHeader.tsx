@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { Logo, LogoMark } from "@/components/Logo";
+import { Logo } from "@/components/Logo";
 import { GitHubIcon, TelegramIcon, XIcon } from "@/components/icons";
-import { NAV, SOCIALS, TICKER } from "@/lib/site";
+import { NAV, SOCIALS } from "@/lib/site";
 
 function Socials({ className = "" }: { className?: string }) {
   return (
@@ -41,45 +41,11 @@ function Socials({ className = "" }: { className?: string }) {
   );
 }
 
-function Ticker() {
-  const items = [...TICKER, ...TICKER];
-  return (
-    <div className="flex h-9 items-center gap-4 bg-[#171021] px-3 text-white md:px-6">
-      <Link href="/" className="flex shrink-0 items-center gap-1.5" aria-label="EVIDIQ home">
-        <LogoMark size={18} gradId="ticker-grad" />
-        <span className="hidden text-xs font-bold tracking-tight sm:inline">EVIDIQ</span>
-        <span className="ml-1 flex items-center gap-1 text-[10px] font-semibold uppercase tracking-widest text-emerald-300">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Live
-        </span>
-      </Link>
-
-      <div className="evidiq-ticker relative flex-1 overflow-hidden">
-        <div className="evidiq-marquee flex w-max items-center gap-6 whitespace-nowrap">
-          {items.map((t, i) => (
-            <span key={i} className="flex items-center gap-6 text-xs text-white/65">
-              <span className="font-mono">{t}</span>
-              <span className="text-violet-400">◆</span>
-            </span>
-          ))}
-        </div>
-      </div>
-
-      <Link
-        href="/docs"
-        className="shrink-0 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white ring-1 ring-white/15 transition-colors hover:bg-white/20"
-      >
-        Install skill
-      </Link>
-    </div>
-  );
-}
-
 export default function SiteHeader() {
   const [open, setOpen] = useState(false);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <Ticker />
       <nav className="flex items-center justify-between border-b border-[#e7dcc7]/70 bg-[#f4efe4]/85 px-6 py-3 backdrop-blur-md md:px-10">
         <Link href="/" aria-label="EVIDIQ home">
           <Logo size={28} wordClassName="text-lg text-[#1a130a]" />
@@ -95,6 +61,12 @@ export default function SiteHeader() {
 
         <div className="hidden items-center gap-3 md:flex">
           <Socials />
+          <Link
+            href="/docs"
+            className="hidden rounded-lg border border-[#201810]/20 px-4 py-2 text-sm font-semibold text-[#201810] transition-colors hover:bg-[#201810]/5 lg:inline-flex"
+          >
+            Install skill
+          </Link>
           <Link
             href="/#how"
             className="inline-flex items-center gap-1.5 rounded-lg bg-violet-600 px-4 py-2 text-sm font-bold text-white transition-colors hover:bg-violet-700"

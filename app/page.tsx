@@ -8,7 +8,6 @@ import {
   Lock,
   Layers,
   Boxes,
-  Cpu,
   Database,
   FileCheck2,
   Blocks,
@@ -20,6 +19,8 @@ import {
 import Hero3D from "@/components/Hero3D";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+import LogoMarquee from "@/components/LogoMarquee";
+import PartnersGrid from "@/components/PartnersGrid";
 
 const PILLARS = [
   { icon: ShieldCheck, title: "Verify Capability", desc: "Prove what an agent can actually do — skills, benchmarks, identity." },
@@ -48,10 +49,6 @@ const STEPS = [
   { t: "Build reputation", d: "Performance is tracked, reputation grows, opportunities expand." },
 ];
 
-const FRAMEWORKS = ["LangChain", "AutoGen", "CrewAI", "LlamaIndex", "Haystack", "Custom"];
-const WORKS_WITH = ["OKX AI Marketplace", "Other AI Marketplaces", "DeFi & dApps", "Enterprises"];
-const PARTNERS = ["0G Labs", "OKX Chain", "OpenClaw / Hermes", "x402 Protocol"];
-
 const CARD = "rounded-2xl border border-[#e7dcc7] bg-[#fbf8f1]";
 const CHIP = "rounded-lg border border-[#e7dcc7] bg-white/70 text-[#201810]/75";
 
@@ -74,7 +71,7 @@ export default function Home() {
       <SiteHeader />
       <main className="relative min-h-screen overflow-x-hidden bg-[#f4efe4] text-[#201810]">
         {/* HERO */}
-      <section className="relative flex min-h-screen items-center pt-24">
+      <section className="relative flex min-h-screen items-center">
         <div className="absolute inset-0"><Hero3D /></div>
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_70%_at_18%_50%,rgba(244,239,228,0.96),rgba(244,239,228,0.55)_55%,transparent)]" />
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10">
@@ -122,6 +119,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <LogoMarquee />
 
       {/* STACK */}
       <section id="stack" className="relative mx-auto max-w-6xl px-6 py-28 md:px-10">
@@ -196,31 +195,7 @@ export default function Home() {
         </Reveal>
       </section>
 
-      {/* FRAMEWORKS + WORKS WITH + PARTNERS */}
-      <section id="partners" className="relative mx-auto max-w-6xl px-6 py-24 md:px-10">
-        <div className="grid gap-6 md:grid-cols-3">
-          {[
-            { title: "Supported frameworks", items: FRAMEWORKS, icon: Cpu },
-            { title: "Works with", items: WORKS_WITH, icon: Boxes },
-            { title: "Technology partners", items: PARTNERS, icon: Blocks },
-          ].map((col, i) => (
-            <Reveal key={col.title} delay={i * 0.06}>
-              <div className={`h-full ${CARD} p-6`}>
-                <div className="mb-4 flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-[#201810]/50">
-                  <col.icon size={15} className="text-violet-600" /> {col.title}
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {col.items.map((it) => (
-                    <span key={it} className={`${CHIP} px-3 py-2 text-sm`}>
-                      {it}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      <PartnersGrid />
 
       {/* SKILL / CTA — dark contrast block */}
       <section className="relative mx-auto max-w-6xl px-6 pb-28 md:px-10">

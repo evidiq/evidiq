@@ -1,4 +1,4 @@
-// Single source of truth for site chrome: nav, socials, ticker.
+// Single source of truth for site chrome: nav, socials, ecosystem.
 
 export const SITE = {
   name: "EVIDIQ",
@@ -21,13 +21,28 @@ export const SOCIALS = {
   telegram: "https://t.me/evidiq",
 };
 
-// Short phrases that scroll in the top ticker.
-export const TICKER: string[] = [
-  "Live on 0G mainnet",
-  "curl -s https://evidiq.dev/skill.md",
-  "GLM-5.2 · TEE-verified trust reports",
-  "Connect MCP → evidiq.dev/mcp",
-  "Verify · Score · Trust — before every AI transaction",
-  "x402 pay-per-call ready",
-  "Evidence anchored on 0G Storage",
+// The protocols, chains, and frameworks EVIDIQ builds on / interoperates with.
+// Rendered both as the scrolling logo marquee and the "founding partners" grid.
+export const ECOSYSTEM: string[] = [
+  "0G",
+  "OKX Chain",
+  "OKX AI",
+  "X Layer",
+  "x402",
+  "ERC-8004",
+  "EIP-3009",
+  "MCP",
+  "TEE + ZK",
+  "Internet Court",
+  "GenLayer",
+  "MetaMask",
+  "OpenClaw / Hermes",
+  "LangChain",
+  "AutoGen",
+  "CrewAI",
+  "LlamaIndex",
+  "Haystack",
+  "GLM-5.2",
+  "viem",
+  "Next.js",
 ];
