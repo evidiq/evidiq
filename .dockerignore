@@ -1,0 +1,16 @@
+node_modules
+.next
+.git
+.gitignore
+npm-debug.log
+Dockerfile
+.dockerignore
+README.md
+EVIDIQ-RUNBOOK.md
+Akses Gitignore
+.env
+.env.*
+!.env.example
+.vscode
+.kiro
+*.log
