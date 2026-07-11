@@ -22,7 +22,7 @@ export const SOCIALS = {
 };
 
 // The protocols, chains, and frameworks EVIDIQ builds on / interoperates with.
-// Rendered both as the scrolling logo marquee and the "founding partners" grid.
+// Rendered as the "founding partners" text grid.
 export const ECOSYSTEM: string[] = [
   "0G",
   "OKX Chain",
@@ -45,4 +45,19 @@ export const ECOSYSTEM: string[] = [
   "GLM-5.2",
   "viem",
   "Next.js",
+];
+
+// Real brand logos for the scrolling marquee (stored in /public/logos).
+// Kept to the brands EVIDIQ genuinely builds on so the strip stays honest.
+export type Brand = { name: string; src: string };
+export const BRAND_LOGOS: Brand[] = [
+  { name: "0G", src: "/logos/0g.png" },
+  { name: "OKX", src: "/logos/okx.svg" },
+  { name: "Ethereum", src: "/logos/ethereum.svg" },
+  { name: "Anthropic · MCP", src: "/logos/anthropic.svg" },
+  { name: "Coinbase · x402", src: "/logos/coinbase.svg" },
+  { name: "MetaMask", src: "/logos/metamask.svg" },
+  { name: "LangChain", src: "/logos/langchain.svg" },
+  { name: "CrewAI", src: "/logos/crewai.svg" },
+  { name: "Next.js", src: "/logos/nextdotjs.svg" },
 ];

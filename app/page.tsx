@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   ShieldCheck,
@@ -15,6 +16,8 @@ import {
   ArrowRight,
   Terminal,
   CheckCircle2,
+  Copy,
+  Check,
 } from "lucide-react";
 import Hero3D from "@/components/Hero3D";
 import SiteHeader from "@/components/SiteHeader";
@@ -65,13 +68,67 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
+/** Dark terminal card with the one-line skill install command + copy button. */
+function InstallSkill() {
+  const [copied, setCopied] = useState(false);
+  const cmd = "curl -s https://evidiq.dev/skill.md";
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(cmd);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      /* clipboard unavailable — no-op */
+    }
+  };
+
+  return (
+    <div className="w-full max-w-xl overflow-hidden rounded-2xl border border-[#2b2140] bg-[#171021] shadow-2xl shadow-violet-950/20">
+      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
+        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+        <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
+        <span className="ml-2 inline-flex items-center gap-1.5 text-xs font-medium text-white/45">
+          <Terminal size={12} /> install the EVIDIQ trust skill
+        </span>
+      </div>
+      <div className="flex items-center justify-between gap-4 px-4 py-4">
+        <code className="overflow-x-auto font-mono text-sm text-cyan-300 md:text-[15px]">
+          <span className="select-none text-violet-300/70">$ </span>
+          {cmd}
+        </code>
+        <button
+          type="button"
+          onClick={copy}
+          aria-label="Copy install command"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 transition-colors hover:bg-white/10"
+        >
+          {copied ? (
+            <>
+              <Check size={13} /> Copied
+            </>
+          ) : (
+            <>
+              <Copy size={13} /> Copy
+            </>
+          )}
+        </button>
+      </div>
+      <div className="border-t border-white/10 px-4 py-2.5 text-xs text-white/45">
+        Paste into Claude, Cursor, or any MCP client — your agent installs the skill to verify, score &amp; settle.
+      </div>
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <>
       <SiteHeader />
       <main className="relative min-h-screen overflow-x-hidden bg-[#f4efe4] text-[#201810]">
         {/* HERO */}
-      <section className="relative flex min-h-screen items-center">
+      <section className="relative flex min-h-[88vh] flex-col justify-center pb-10 pt-28">
         <div className="absolute inset-0"><Hero3D /></div>
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_70%_at_18%_50%,rgba(244,239,228,0.96),rgba(244,239,228,0.55)_55%,transparent)]" />
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 md:px-10">
@@ -96,7 +153,12 @@ export default function Home() {
             </p>
           </Reveal>
           <Reveal delay={0.15}>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-8">
+              <InstallSkill />
+            </div>
+          </Reveal>
+          <Reveal delay={0.2}>
+            <div className="mt-5 flex flex-wrap items-center gap-3">
               <a href="#how" className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3.5 font-bold text-white transition-colors hover:bg-violet-700">
                 Build a trusted agent <ArrowRight size={18} />
               </a>
@@ -105,22 +167,25 @@ export default function Home() {
               </a>
             </div>
           </Reveal>
-
-          <div className="mt-16 grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-4">
-            {PILLARS.map((p, i) => (
-              <Reveal key={p.title} delay={0.2 + i * 0.06}>
-                <div className={`h-full ${CARD} p-4`}>
-                  <p.icon className="text-violet-600" size={22} />
-                  <div className="mt-3 text-sm font-bold text-[#1a130a]">{p.title}</div>
-                  <div className="mt-1 text-xs leading-relaxed text-[#201810]/60">{p.desc}</div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
         </div>
       </section>
 
       <LogoMarquee />
+
+      {/* VALUE PILLARS */}
+      <section className="relative mx-auto max-w-6xl px-6 pt-20 md:px-10">
+        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {PILLARS.map((p, i) => (
+            <Reveal key={p.title} delay={i * 0.06}>
+              <div className={`h-full ${CARD} p-5`}>
+                <p.icon className="text-violet-600" size={22} />
+                <div className="mt-3 text-sm font-bold text-[#1a130a]">{p.title}</div>
+                <div className="mt-1 text-xs leading-relaxed text-[#201810]/60">{p.desc}</div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
 
       {/* STACK */}
       <section id="stack" className="relative mx-auto max-w-6xl px-6 py-28 md:px-10">

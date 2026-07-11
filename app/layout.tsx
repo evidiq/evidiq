@@ -13,14 +13,14 @@ export const metadata: Metadata = {
     description: "Verify. Score. Trust. Before every AI transaction.",
     url: SITE,
     siteName: "EVIDIQ",
-    images: [{ url: "/logo.png", width: 1254, height: 1254 }],
+    images: [{ url: "/og.png", width: 1200, height: 630 }],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
     title: "EVIDIQ — The Trust Layer for the AI Agent Economy",
     description: "Verify. Score. Trust. Before every AI transaction.",
-    images: ["/logo.png"],
+    images: ["/og.png"],
   },
 };
 

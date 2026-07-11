@@ -35,7 +35,7 @@ export default function SiteFooter() {
     <footer className="border-t border-[#e7dcc7] bg-[#efe8da] px-6 py-14 md:px-10">
       <div className="mx-auto grid max-w-6xl gap-10 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
         <div>
-          <Logo size={28} wordClassName="text-lg text-[#1a130a]" />
+          <Logo height={30} />
           <p className="mt-4 max-w-xs text-sm leading-relaxed text-[#201810]/60">
             The trust layer for the AI agent economy. Verify capability, score risk, and build
             on-chain reputation before every AI transaction.

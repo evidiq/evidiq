@@ -48,7 +48,7 @@ export default function SiteHeader() {
     <header className="fixed inset-x-0 top-0 z-50">
       <nav className="flex items-center justify-between border-b border-[#e7dcc7]/70 bg-[#f4efe4]/85 px-6 py-3 backdrop-blur-md md:px-10">
         <Link href="/" aria-label="EVIDIQ home">
-          <Logo size={28} wordClassName="text-lg text-[#1a130a]" />
+          <Logo height={30} priority />
         </Link>
 
         <div className="hidden items-center gap-7 text-sm text-[#201810]/70 lg:flex">
