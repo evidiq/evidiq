@@ -593,6 +593,7 @@ export default function PlaygroundPage() {
   const [error, setError] = useState<string>("");
   const [activePreset, setActivePreset] = useState<string>("");
   const resultsRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
 
   const set = (k: keyof Fields, v: string) => setF((p) => ({ ...p, [k]: v }));
 
@@ -642,7 +643,15 @@ export default function PlaygroundPage() {
   function applyPreset(p: Preset) {
     setF(p.fields);
     setActivePreset(p.key);
-    run(p.fields);
+    // Fill the form only — do NOT auto-run. The user presses "Verify" so the
+    // inputs being judged are visible on screen before the verdict appears.
+    setReport(null);
+    setStatus("idle");
+    setError("");
+    setTimeout(
+      () => formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }),
+      60
+    );
   }
 
   const canRun = f.agentId.trim().length > 0 && status !== "running";
@@ -695,7 +704,7 @@ export default function PlaygroundPage() {
       </div>
 
       {/* form */}
-      <div className="mt-6 rounded-3xl border border-[#e7dcc7] bg-[#fbf8f1] p-5 md:p-6">
+      <div ref={formRef} className="mt-6 scroll-mt-24 rounded-3xl border border-[#e7dcc7] bg-[#fbf8f1] p-5 md:p-6">
         <div className="grid gap-4 md:grid-cols-2">
           <Field label="Agent ID *" placeholder="address, URL, or name" value={f.agentId} onChange={(v) => set("agentId", v)} />
           <Field label="Endpoint" placeholder="https://agent.example/mcp" value={f.endpoint} onChange={(v) => set("endpoint", v)} />
@@ -712,7 +721,11 @@ export default function PlaygroundPage() {
             type="button"
             onClick={() => run(f)}
             disabled={!canRun}
-            className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3 font-bold text-white transition-colors hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-50"
+            className={`inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3 font-bold text-white transition-all hover:bg-violet-700 disabled:cursor-not-allowed disabled:opacity-50 ${
+              activePreset && status === "idle" && !report
+                ? "ring-4 ring-violet-300 ring-offset-2 ring-offset-[#fbf8f1]"
+                : ""
+            }`}
           >
             {status === "running" ? (
               <>
@@ -739,7 +752,16 @@ export default function PlaygroundPage() {
             Reset
           </button>
           <span className="text-xs text-[#201810]/45">
-            Free demo · same pipeline as the paid <span className="font-mono">verify_agent</span> MCP tool.
+            {activePreset && status === "idle" && !report ? (
+              <span className="font-semibold text-violet-700">
+                Preset loaded — press Verify to run the trust check.
+              </span>
+            ) : (
+              <>
+                Free demo · same pipeline as the paid{" "}
+                <span className="font-mono">verify_agent</span> MCP tool.
+              </>
+            )}
           </span>
         </div>
       </div>
