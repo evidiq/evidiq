@@ -1,51 +1,82 @@
-# EVIDIQ — The Trust Layer for the AI Agent Economy
+<p align="center">
+  <img src="https://raw.githubusercontent.com/evidiq/evidiq/main/assets/evidiq.png" width="88" alt="EVIDIQ" />
+</p>
 
-> Verify capability. Score risk. Build on-chain reputation. **Before every AI transaction.**
+<h1 align="center">EVIDIQ</h1>
 
-EVIDIQ is a universal trust layer for AI agents. It verifies what an agent can
-do, tracks how it performs, and records an immutable on-chain reputation — so
-users and agents can transact with confidence. Built for the **OKX AI Genesis
-Hackathon** (Agent Service Provider track).
+<p align="center"><strong>The trust layer for the AI agent economy.</strong></p>
 
-## The stack (7 layers)
+<p align="center">
+  Verify capability &middot; Score risk &middot; Prove reputation — before value moves between agents.
+</p>
 
-| # | Layer | Highlights |
-|---|-------|-----------|
-| 7 | Application | Dashboard, Agent Explorer, Reputation Marketplace, Developer Portal |
-| 6 | Trust API & SDK | REST, GraphQL, TypeScript SDK, Python SDK, Webhooks |
-| 5 | Agent Services | Identity, Capability, Performance, Risk, Reputation |
-| 4 | Data & Intelligence | Evidence Collector, AI Evaluation, Behavior Analyzer, Trust Scoring, Knowledge Graph |
-| 3 | Verification & Proof | Attestation (TEE / ZK), ZK Proofs, Proof Registry, Audit Trail |
-| 2 | Blockchain & Settlement | 0G Storage, x402, OKX Chain, Smart Contracts, On-chain Reputation |
-| 1 | Infrastructure | Secure Compute (TEE), Decentralized Network, IPFS / 0G Storage, Monitoring |
+<p align="center">
+  <a href="https://evidiq.dev">evidiq.dev</a> &middot;
+  <a href="https://github.com/evidiq/evidiq-skill">Agent Skill</a> &middot;
+  <a href="https://github.com/evidiq/mcp">MCP Server</a>
+</p>
 
-## Tech
+---
 
-- **Next.js 15** (App Router) · **React 19** · **TypeScript** (strict)
-- **Tailwind CSS v4** · **three.js** (3D hero) · **Framer Motion** · **Lucide**
-- **0G** storage + compute + TEE · **x402** payments · **OKX** ASP listing
+Autonomous agents can already discover each other, negotiate, and pay. What they
+still lack is a way to know whether a counterparty they have never met can be
+trusted. **EVIDIQ is the verification and reputation layer that answers that
+question** — delivered as an open Agent Skill and a remote MCP server, billed
+per call.
 
-## Getting started
+## What EVIDIQ does
 
-```bash
-cp .env.example .env.local   # fill in secrets (never commit .env.local)
-npm install
-npm run dev                  # http://localhost:3000
-```
+Before an agent transacts with, delegates to, or relies on another agent or a
+paid service, EVIDIQ returns a **Trust Report**:
 
-## Environment
+- **Verify** — prove what an agent can actually do (capability + identity).
+- **Score** — quantify how risky the interaction is right now (0–100 and a tier).
+- **Trust** — record and prove standing (on-chain reputation + a signed attestation).
 
-See `.env.example`. Secrets (`.env.local`) are **git-ignored** — GitHub token,
-`OG_PRIVATE_KEY` (0G storage/compute/TEE), and Cloudflare IDs live there only.
+Every paid verdict is anchored on 0G Storage and cryptographically signed, so it
+stays auditable and tamper-evident long after the deal closes.
 
-## For agents
-
-EVIDIQ ships an open Agent Skill and a remote MCP server:
+## Use it from any agent
 
 ```bash
-curl -s https://evidiq.dev/skill.md   # install the trust skill
+# Read the open skill
+curl -s https://evidiq.dev/skill.md
+
+# Or connect the remote MCP server (Claude Code)
+claude mcp add --transport http evidiq https://evidiq.dev/mcp
 ```
+
+`how_to_install` and `get_evidiq_skill` are free. `verify_agent` — the trust
+check itself — is **pay-per-call over [x402](https://evidiq.dev/x402)**:
+unauthenticated requests receive an HTTP 402 challenge; sign it and retry.
+
+## Products
+
+| Repository | What it is |
+|------------|-----------|
+| [**evidiq-skill**](https://github.com/evidiq/evidiq-skill) | The open EVIDIQ Agent Skill — the verify → score → reputation → attest workflow any skill-aware agent can install. |
+| [**mcp**](https://github.com/evidiq/mcp) | The remote MCP server and install endpoint that exposes the trust tools (live at `evidiq.dev/mcp`). |
+
+## How it settles
+
+EVIDIQ owns verification, proof, and scoring, and settles on open infrastructure:
+
+- **0G** — decentralized storage and compute/TEE for tamper-evident proofs.
+- **x402** — per-call settlement (EIP-3009 `exact`), so agents pay as they verify.
+- **OKX Chain / OKX AI** — on-chain settlement and agent-marketplace distribution.
+- **ERC-8004** — portable agent-identity anchors.
+
+Interoperates with agents built on LangChain, AutoGen, CrewAI, LlamaIndex, and
+custom stacks.
+
+## Links
+
+- Website — https://evidiq.dev
+- Skill — https://evidiq.dev/skill.md
+- MCP endpoint — https://evidiq.dev/mcp
+- Pricing / x402 — https://evidiq.dev/x402
 
 ## License
 
-Private — hackathon build.
+© EVIDIQ. All rights reserved. The EVIDIQ Agent Skill is published as an open
+specification — see [evidiq-skill](https://github.com/evidiq/evidiq-skill).
