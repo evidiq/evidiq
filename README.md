@@ -71,17 +71,26 @@ custom stacks.
 
 ## Proven on-chain
 
-A live `verify_agent` call, paid over x402 and settled on **X Layer** — the
-buyer signs an EIP-3009 authorization and EVIDIQ settles it on-chain (gasless
-for the payer):
+Every EVIDIQ trust check is verifiable end-to-end — the **payment** settles on
+X Layer, and the **verdict** is anchored on 0G. Both from live calls, not mockups.
+
+**1 · Payment — x402 settlement on X Layer**
 
 | | |
 |---|---|
-| Payment | `0.05 USDC` on X Layer (`eip155:196`) |
-| Flow | HTTP 402 → EIP-3009 signature → `transferWithAuthorization` |
-| Settlement | [`0x805882b3…47acfb12`](https://www.oklink.com/xlayer/tx/0x805882b3881b1ff551358ef77f3cde5324046ed090e59f1e5bc88fcd47acfb12) · SUCCESS |
+| Amount | `0.05 USDC` on X Layer (`eip155:196`) |
+| Flow | HTTP 402 → EIP-3009 signature → `transferWithAuthorization` (gasless for the payer) |
+| Tx | [`0x805882b3…47acfb12`](https://www.oklink.com/xlayer/tx/0x805882b3881b1ff551358ef77f3cde5324046ed090e59f1e5bc88fcd47acfb12) · SUCCESS |
 
-Real USDC moved between two agents — not a mockup.
+**2 · Verdict — TEE-verified analysis + 0G Storage anchor**
+
+| | |
+|---|---|
+| Compute | `glm-5.2` run in a TEE via 0G Compute (verified) |
+| Proof | report signed (EIP-191) + anchored on 0G Storage |
+| Anchor tx | [`0x3ece4ef3…aef9c64f`](https://chainscan.0g.ai/tx/0x3ece4ef3719cc7d3b7c532cdbdaf8bfc1c7bdf12860cd9461b27c017aef9c64f) · SUCCESS |
+
+Payment on one chain, tamper-evident proof on another — the whole trust check is auditable.
 
 ## Links
 

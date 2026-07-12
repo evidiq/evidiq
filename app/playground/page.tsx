@@ -198,7 +198,7 @@ function short(v?: string, head = 10, tail = 8): string {
   return v.length > head + tail + 3 ? `${v.slice(0, head)}…${v.slice(-tail)}` : v;
 }
 
-function Mono({ label, value }: { label: string; value?: string }) {
+function Mono({ label, value, href }: { label: string; value?: string; href?: string }) {
   const [copied, setCopied] = useState(false);
   if (!value) return null;
   const copy = async () => {
@@ -215,19 +215,30 @@ function Mono({ label, value }: { label: string; value?: string }) {
       <span className="shrink-0 text-[11px] font-semibold uppercase tracking-wider text-[#201810]/45">
         {label}
       </span>
-      <button
-        type="button"
-        onClick={copy}
-        className="group flex min-w-0 items-center gap-1.5 font-mono text-xs text-[#201810]/80"
-        title={value}
-      >
-        <span className="truncate">{short(value)}</span>
-        {copied ? (
-          <Check size={12} className="shrink-0 text-emerald-600" />
+      <span className="flex min-w-0 items-center gap-1.5 font-mono text-xs text-[#201810]/80">
+        {href ? (
+          <a
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            title={value}
+            className="truncate text-violet-700 underline decoration-violet-300 underline-offset-2 hover:text-violet-800"
+          >
+            {short(value)}
+          </a>
         ) : (
-          <Copy size={12} className="shrink-0 opacity-40 group-hover:opacity-90" />
+          <span className="truncate" title={value}>
+            {short(value)}
+          </span>
         )}
-      </button>
+        <button type="button" onClick={copy} aria-label="Copy" className="group shrink-0">
+          {copied ? (
+            <Check size={12} className="text-emerald-600" />
+          ) : (
+            <Copy size={12} className="opacity-40 group-hover:opacity-90" />
+          )}
+        </button>
+      </span>
     </div>
   );
 }
@@ -501,13 +512,28 @@ function Results({ report }: { report: TrustReport }) {
               <ShieldCheck size={12} /> Anchored on 0G Storage
             </span>
           )}
+          {att?.tee?.verified && (
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-violet-300 bg-violet-50 px-3 py-1 text-xs font-semibold text-violet-700">
+              <Cpu size={12} /> TEE-verified · {att.tee.model}
+            </span>
+          )}
         </div>
         <div className="grid gap-2 sm:grid-cols-2">
           <Mono label="Report hash" value={att?.reportHash} />
           <Mono label="Attester" value={att?.attester} />
           <Mono label="Signature" value={att?.signature} />
+          <Mono
+            label="0G storage tx"
+            value={att?.storageTx}
+            href={att?.storageTx ? `https://chainscan.0g.ai/tx/${att.storageTx}` : undefined}
+          />
           <Mono label="0G storage root" value={att?.storageRoot} />
-          <Mono label="0G storage tx" value={att?.storageTx} />
+          <Mono
+            label="0G TEE provider"
+            value={att?.tee?.provider}
+            href={att?.tee?.provider ? `https://chainscan.0g.ai/address/${att.tee.provider}` : undefined}
+          />
+          <Mono label="0G TEE request" value={att?.tee?.requestId} />
         </div>
         {att?.note && <p className="mt-2 text-xs text-[#201810]/45">{att.note}</p>}
       </Stage>
