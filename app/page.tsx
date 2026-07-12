@@ -19,6 +19,7 @@ import {
   Copy,
   Check,
   ArrowUpRight,
+  Play,
 } from "lucide-react";
 import Hero3D from "@/components/Hero3D";
 import SiteHeader from "@/components/SiteHeader";
@@ -65,6 +66,9 @@ const STEPS = [
 const CARD = "rounded-2xl border border-[#e7dcc7] bg-[#fbf8f1]";
 const CHIP = "rounded-lg border border-[#e7dcc7] bg-white/70 text-[#201810]/75";
 
+// EVIDIQ demo video (YouTube) — surfaced above the hero skill-install card.
+const DEMO_VIDEO_URL = "https://youtu.be/CRLUXSuRKQk";
+
 function Reveal({
   children,
   delay = 0,
@@ -106,17 +110,17 @@ function InstallSkill() {
   };
 
   return (
-    <div className="w-full max-w-xl overflow-hidden rounded-2xl border border-[#2b2140] bg-[#171021] shadow-2xl shadow-violet-950/20">
-      <div className="flex items-center gap-2 border-b border-white/10 px-4 py-2.5">
-        <span className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-        <span className="ml-2 inline-flex items-center gap-1.5 text-xs font-medium text-white/45">
-          <Terminal size={12} /> install the EVIDIQ trust skill
+    <div className="w-full max-w-md overflow-hidden rounded-xl border border-[#2b2140] bg-[#171021] shadow-xl shadow-violet-950/20">
+      <div className="flex items-center gap-2 border-b border-white/10 px-3.5 py-2">
+        <span className="h-2 w-2 rounded-full bg-[#ff5f57]" />
+        <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
+        <span className="h-2 w-2 rounded-full bg-[#28c840]" />
+        <span className="ml-2 inline-flex items-center gap-1.5 text-[11px] font-medium text-white/45">
+          <Terminal size={11} /> install the EVIDIQ trust skill
         </span>
       </div>
-      <div className="flex items-center justify-between gap-4 px-4 py-4">
-        <code className="overflow-x-auto font-mono text-sm text-cyan-300 md:text-[15px]">
+      <div className="flex items-center justify-between gap-3 px-3.5 py-2.5">
+        <code className="overflow-x-auto font-mono text-[13px] text-cyan-300">
           <span className="select-none text-violet-300/70">$ </span>
           {cmd}
         </code>
@@ -124,21 +128,21 @@ function InstallSkill() {
           type="button"
           onClick={copy}
           aria-label="Copy install command"
-          className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-semibold text-white/80 transition-colors hover:bg-white/10"
+          className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-white/15 bg-white/5 px-2.5 py-1 text-[11px] font-semibold text-white/80 transition-colors hover:bg-white/10"
         >
           {copied ? (
             <>
-              <Check size={13} /> Copied
+              <Check size={12} /> Copied
             </>
           ) : (
             <>
-              <Copy size={13} /> Copy
+              <Copy size={12} /> Copy
             </>
           )}
         </button>
       </div>
-      <div className="border-t border-white/10 px-4 py-2.5 text-xs text-white/45">
-        Paste into Claude, Cursor, or any MCP client — your agent installs the skill to verify, score &amp; settle.
+      <div className="border-t border-white/10 px-3.5 py-2 text-[11px] text-white/45">
+        Paste into Claude, Cursor, or any MCP client — installs the skill to verify, score &amp; settle.
       </div>
     </div>
   );
@@ -257,9 +261,32 @@ export default function Home() {
             </Reveal>
           </div>
 
-          {/* RIGHT — install terminal + CTAs (float over the trust-network globe) */}
+          {/* RIGHT — watch demo + install terminal + CTAs (float over the trust-network globe) */}
           <Reveal onMount delay={0.12}>
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4">
+              {/* Watch demo — sits directly above the skill install card */}
+              <a
+                href={DEMO_VIDEO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex max-w-md items-center gap-3 rounded-xl border border-[#e7dcc7] bg-white/70 px-4 py-3 backdrop-blur-sm transition-colors hover:border-violet-300 hover:bg-violet-50/70"
+              >
+                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-violet-600 to-fuchsia-500 text-white shadow-sm">
+                  <Play size={16} className="translate-x-[1px]" fill="currentColor" />
+                </span>
+                <span className="min-w-0">
+                  <span className="flex items-center gap-1.5 text-sm font-bold text-[#1a130a]">
+                    Watch the demo
+                    <ArrowUpRight
+                      size={14}
+                      className="text-violet-600 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                  </span>
+                  <span className="block text-xs text-[#201810]/55">
+                    A live agent trust check, end to end
+                  </span>
+                </span>
+              </a>
               <InstallSkill />
               <div className="flex flex-wrap items-center gap-3">
                 <a href="/playground" className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3.5 font-bold text-white transition-colors hover:bg-violet-700">
