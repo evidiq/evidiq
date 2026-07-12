@@ -1,4 +1,5 @@
 import type { X402Config } from "./config";
+import { OnchainSettler } from "./settle";
 import type {
   PaymentPayload,
   PaymentRequirements,
@@ -140,7 +141,10 @@ export class FacilitatorClient implements PaymentVerifier {
 }
 
 export function getVerifier(cfg: X402Config): PaymentVerifier {
-  return cfg.useFacilitator
-    ? new FacilitatorClient(cfg)
-    : new LocalVerifier(cfg);
+  // External facilitator if explicitly configured; otherwise self-settle
+  // on-chain when a settlement key is present; otherwise local (zero-value /
+  // testnet only — LocalVerifier.settle refuses nonzero mainnet).
+  if (cfg.useFacilitator) return new FacilitatorClient(cfg);
+  if (cfg.settleKey) return new OnchainSettler(cfg);
+  return new LocalVerifier(cfg);
 }

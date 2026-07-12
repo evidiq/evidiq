@@ -14,9 +14,16 @@ import { z } from "zod";
  *
  * Environments:
  * - preview/dev: X Layer testnet (eip155:1952), test token, price 0.
- * - production:  X Layer mainnet (eip155:196), USDT0 — set once X402_PAY_TO is
- *   confirmed and X402_USE_FACILITATOR=1.
+ * - production:  X Layer mainnet (eip155:196), USDC — set once X402_PAY_TO is
+ *   confirmed. USDC on X Layer is 0x74b7F16337b8972027F6196A17a631aC6dE26d22
+ *   with EIP-712 domain { name: "USD Coin", version: "2" }; $0.05 = price "50000"
+ *   (6 decimals). Settlement is self-served on-chain when X402_SETTLE_KEY is set.
  */
+
+/** USDC on X Layer mainnet — the OKX A2MCP settlement token (6 decimals). */
+export const XLAYER_USDC = "0x74b7F16337b8972027F6196A17a631aC6dE26d22";
+/** Default X Layer mainnet RPC used for on-chain settlement. */
+export const XLAYER_RPC = "https://rpc.xlayer.tech";
 
 /** Friendly chain slug → CAIP-2 network id. */
 const CHAIN_SLUGS: Record<string, string> = {
@@ -46,13 +53,18 @@ const envSchema = z.object({
   X402_PAY_TO: z
     .string()
     .regex(/^0x[0-9a-fA-F]{40}$/, "X402_PAY_TO must be a 0x… address"),
-  X402_DOMAIN_NAME: z.string().min(1).default("USDT0"),
-  X402_DOMAIN_VERSION: z.string().min(1).default("1"),
+  X402_DOMAIN_NAME: z.string().min(1).default("USD Coin"),
+  X402_DOMAIN_VERSION: z.string().min(1).default("2"),
   X402_PRICE: z
     .string()
     .regex(/^\d+$/, "X402_PRICE must be atomic units (decimal integer)")
     .default("0"),
   X402_FACILITATOR_URL: z.url().default("https://web3.okx.com"),
+  X402_RPC: z.url().default(XLAYER_RPC),
+  X402_SETTLE_KEY: z
+    .string()
+    .regex(/^0x[0-9a-fA-F]{64}$/, "X402_SETTLE_KEY must be a 0x… 32-byte private key")
+    .optional(),
   X402_GATE_ALL: z.string().optional(),
   X402_USE_FACILITATOR: z.string().optional(),
 });
@@ -69,9 +81,13 @@ export type X402Config = {
   /** Price in atomic units; 0n means signature-only (no settlement). */
   price: bigint;
   facilitatorUrl: string;
+  /** X Layer RPC used for on-chain settlement (transferWithAuthorization). */
+  rpcUrl: string;
+  /** Optional server key that settles payments on-chain via EIP-3009. */
+  settleKey?: `0x${string}`;
   /** Gate every MCP method (initialize/tools/list/…), not just paid tools. */
   gateAll: boolean;
-  /** Verify+settle through the facilitator instead of local-only verify. */
+  /** Verify+settle through an external facilitator instead of self-settling. */
   useFacilitator: boolean;
 };
 
@@ -109,6 +125,8 @@ export function getX402Config(): X402Config | null {
     X402_DOMAIN_VERSION: process.env.X402_DOMAIN_VERSION,
     X402_PRICE: process.env.X402_PRICE,
     X402_FACILITATOR_URL: process.env.X402_FACILITATOR_URL,
+    X402_RPC: process.env.X402_RPC,
+    X402_SETTLE_KEY: process.env.X402_SETTLE_KEY,
     X402_GATE_ALL: process.env.X402_GATE_ALL,
     X402_USE_FACILITATOR: process.env.X402_USE_FACILITATOR,
   });
@@ -122,6 +140,8 @@ export function getX402Config(): X402Config | null {
     domainVersion: env.X402_DOMAIN_VERSION,
     price: BigInt(env.X402_PRICE),
     facilitatorUrl: env.X402_FACILITATOR_URL,
+    rpcUrl: env.X402_RPC,
+    settleKey: env.X402_SETTLE_KEY as `0x${string}` | undefined,
     gateAll: env.X402_GATE_ALL === "1",
     useFacilitator: env.X402_USE_FACILITATOR === "1",
   };

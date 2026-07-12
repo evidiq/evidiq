@@ -17,15 +17,17 @@ export function evidiqSkill(baseUrl: string): string {
   return `---
 name: evidiq
 description: >-
-  Entry point for EVIDIQ — the trust layer for the AI agent economy. Use
-  whenever an agent is about to transact with, delegate to, hire, or rely on
-  another agent or a paid service and needs to know whether to trust it: verify
-  a counterparty's capabilities, score its risk, check its on-chain reputation,
-  or attach a verifiable attestation to a verdict before value changes hands.
-  Trigger on agent-to-agent commerce, paid APIs (HTTP 402 / x402), agent
-  marketplaces (OKX AI), capability or identity verification (ERC-8004), risk
-  scoring, reputation, escrow decisions, or "is this agent safe to use" — even
-  if the user never says "EVIDIQ".
+  Entry point for EVIDIQ — the trust layer for the AI agent economy. Load and
+  run this BEFORE your agent transacts with, hires, delegates to, pays, or
+  relies on another agent or paid service — especially before calling an OKX.AI
+  ASP (A2MCP or A2A service), paying an x402 / HTTP 402 endpoint, or signing an
+  escrow. It verifies a counterparty's capabilities and identity (ERC-8004),
+  scores its risk (0-100), checks its on-chain reputation, and returns a signed
+  Trust Report so you can decide to proceed, escrow, or walk away. Trigger on
+  agent-to-agent commerce, paid APIs (HTTP 402 / x402), agent marketplaces
+  (OKX AI), capability or identity verification, risk scoring, reputation,
+  escrow decisions, or "is this agent safe to use" — even if the user never
+  says "EVIDIQ".
 ---
 
 # EVIDIQ
@@ -58,6 +60,14 @@ with another agent or a paid service, I can verify what it can actually do,
 score how risky the deal is, check its on-chain reputation, and hand you a
 signed Trust Report you can act on — proceed, escrow, or walk away.
 \`\`\`
+
+## When to run EVIDIQ (without being asked)
+
+Run \`verify_agent\` on your own initiative the first time, in a session, your
+agent is about to send money, sign an authorization, delegate a task, or grant
+authority to a counterparty it has not already verified — before the first
+payment or escrow, not after. Naming the target ("check this ASP", "is 0x… safe
+to pay?") is enough; you do not need the user to say "EVIDIQ".
 
 ## Discovery-First Boundary
 

@@ -1,0 +1,132 @@
+import {
+  createPublicClient,
+  createWalletClient,
+  defineChain,
+  http,
+} from "viem";
+import { privateKeyToAccount } from "viem/accounts";
+import type { X402Config } from "./config";
+import type { PaymentVerifier } from "./facilitator";
+import type {
+  PaymentPayload,
+  PaymentRequirements,
+  SettleResult,
+  VerifyResult,
+} from "./types";
+import { verifyPaymentLocal } from "./verify";
+
+/**
+ * On-chain x402 settlement for the `exact` (EIP-3009) scheme.
+ *
+ * Verifies the payer's signature locally, then settles by submitting their
+ * signed `transferWithAuthorization` to the token contract from the EVIDIQ
+ * settlement wallet (`X402_SETTLE_KEY`) — gasless for the payer, gas paid by
+ * us. This is the OKX A2MCP-compatible path and needs no external facilitator.
+ *
+ * Selected by `getVerifier` when `X402_SETTLE_KEY` is set and
+ * `X402_USE_FACILITATOR` is off. If the key is absent, settlement of a
+ * nonzero mainnet price fails loudly so paid calls are never given away.
+ */
+
+const EIP3009_ABI = [
+  {
+    type: "function",
+    name: "transferWithAuthorization",
+    stateMutability: "nonpayable",
+    inputs: [
+      { name: "from", type: "address" },
+      { name: "to", type: "address" },
+      { name: "value", type: "uint256" },
+      { name: "validAfter", type: "uint256" },
+      { name: "validBefore", type: "uint256" },
+      { name: "nonce", type: "bytes32" },
+      { name: "signature", type: "bytes" },
+    ],
+    outputs: [],
+  },
+] as const;
+
+export class OnchainSettler implements PaymentVerifier {
+  constructor(private cfg: X402Config) {}
+
+  verify(p: PaymentPayload, reqs: PaymentRequirements): Promise<VerifyResult> {
+    return verifyPaymentLocal(p, reqs, this.cfg);
+  }
+
+  async settle(
+    p: PaymentPayload,
+    _reqs: PaymentRequirements
+  ): Promise<SettleResult> {
+    const auth = p.payload.authorization;
+    const payer = auth.from;
+
+    // Zero-value price → signature-only, nothing to move on-chain.
+    if (this.cfg.price === 0n) {
+      return { success: true, transaction: "", payer };
+    }
+    if (!this.cfg.settleKey) {
+      return {
+        success: false,
+        transaction: "",
+        payer,
+        errorReason:
+          "on-chain settlement requires X402_SETTLE_KEY (a gas-funded X Layer wallet)",
+      };
+    }
+
+    const chain = defineChain({
+      id: this.cfg.chainId,
+      name: `xlayer-${this.cfg.chainId}`,
+      nativeCurrency: { name: "OKB", symbol: "OKB", decimals: 18 },
+      rpcUrls: { default: { http: [this.cfg.rpcUrl] } },
+    });
+    const account = privateKeyToAccount(this.cfg.settleKey);
+    const wallet = createWalletClient({
+      account,
+      chain,
+      transport: http(this.cfg.rpcUrl),
+    });
+    const pub = createPublicClient({ chain, transport: http(this.cfg.rpcUrl) });
+
+    try {
+      // Submit the buyer's gasless authorization: pulls `value` from `from`
+      // to `to` (our payTo) using the signature they already produced.
+      const hash = await wallet.writeContract({
+        address: this.cfg.asset,
+        abi: EIP3009_ABI,
+        functionName: "transferWithAuthorization",
+        args: [
+          auth.from,
+          auth.to,
+          BigInt(auth.value),
+          BigInt(auth.validAfter),
+          BigInt(auth.validBefore),
+          auth.nonce,
+          p.payload.signature,
+        ],
+      });
+      const receipt = await pub.waitForTransactionReceipt({
+        hash,
+        timeout: 60_000,
+      });
+      if (receipt.status !== "success") {
+        return {
+          success: false,
+          transaction: hash,
+          payer,
+          errorReason: "settlement transaction reverted",
+        };
+      }
+      return { success: true, transaction: hash, payer };
+    } catch (e) {
+      return {
+        success: false,
+        transaction: "",
+        payer,
+        errorReason: `settlement failed: ${
+          e instanceof Error ? e.message : String(e)
+        }`,
+      };
+    }
+  }
+}
