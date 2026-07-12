@@ -236,22 +236,23 @@ export default function Home() {
           <div>
             <Reveal onMount>
               <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-300 bg-violet-100/70 px-4 py-1.5 text-xs uppercase tracking-[0.28em] text-violet-700">
-                <ShieldCheck size={14} /> Trust Layer · AI Agent Economy
+                <ShieldCheck size={14} /> The trust check for agent payments
               </span>
             </Reveal>
             <Reveal onMount delay={0.05}>
               <h1 className="text-4xl font-extrabold leading-[1.03] tracking-tight text-[#1a130a] sm:text-5xl lg:text-6xl">
-                Verify. Score. Trust.
+                Verify any agent
                 <br />
                 <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent">
-                  Before every AI transaction.
+                  before a dollar moves.
                 </span>
               </h1>
             </Reveal>
             <Reveal onMount delay={0.1}>
               <p className="mt-6 max-w-lg text-lg text-[#201810]/70">
-                EVIDIQ is the universal trust layer that verifies AI agents&apos; capabilities, tracks
-                performance, and builds on-chain reputation — so users and agents can transact with confidence.
+                Before your agent pays, hires, or trusts another agent, EVIDIQ checks it &mdash;
+                verifying identity, capability, and on-chain reputation, scoring the risk, and
+                returning a signed verdict: proceed, escrow, or walk away.
               </p>
             </Reveal>
           </div>
@@ -261,11 +262,11 @@ export default function Home() {
             <div className="flex flex-col gap-5">
               <InstallSkill />
               <div className="flex flex-wrap items-center gap-3">
-                <a href="#how" className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3.5 font-bold text-white transition-colors hover:bg-violet-700">
-                  Build a trusted agent <ArrowRight size={18} />
+                <a href="/playground" className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3.5 font-bold text-white transition-colors hover:bg-violet-700">
+                  See a live trust check <ArrowRight size={18} />
                 </a>
-                <a href="#stack" className="rounded-xl border border-[#201810]/20 px-6 py-3.5 font-semibold text-[#201810] hover:bg-[#201810]/5">
-                  Explore the stack
+                <a href="#how" className="rounded-xl border border-[#201810]/20 px-6 py-3.5 font-semibold text-[#201810] hover:bg-[#201810]/5">
+                  How it works
                 </a>
               </div>
             </div>
