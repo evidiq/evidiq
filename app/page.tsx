@@ -148,6 +148,48 @@ function InstallSkill() {
   );
 }
 
+/** Facade YouTube embed — shows the thumbnail + a play button, and only loads the
+    (heavy) YouTube iframe on click, so the hero stays fast. */
+function DemoVideo() {
+  const [playing, setPlaying] = useState(false);
+  const id = "CRLUXSuRKQk";
+
+  return (
+    <div className="relative aspect-video w-full overflow-hidden rounded-2xl border border-[#2b2140] bg-[#120c1c] shadow-2xl shadow-violet-950/30">
+      {playing ? (
+        <iframe
+          className="absolute inset-0 h-full w-full"
+          src={`https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1`}
+          title="EVIDIQ — live agent trust check demo"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      ) : (
+        <button
+          type="button"
+          onClick={() => setPlaying(true)}
+          aria-label="Play the EVIDIQ demo"
+          className="group absolute inset-0 h-full w-full"
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`}
+            alt="EVIDIQ demo — a live agent trust check"
+            className="absolute inset-0 h-full w-full object-cover opacity-95 transition-opacity group-hover:opacity-100"
+          />
+          <span className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/15 to-black/5" />
+          <span className="absolute left-1/2 top-1/2 grid h-16 w-16 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-white/95 shadow-2xl transition-transform group-hover:scale-110">
+            <Play size={26} className="translate-x-[2px] text-violet-700" fill="currentColor" />
+          </span>
+          <span className="absolute bottom-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/20 bg-black/50 px-3 py-1.5 text-xs font-semibold text-white backdrop-blur-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Live demo — verify before you pay
+          </span>
+        </button>
+      )}
+    </div>
+  );
+}
+
 /** Closing CTA — internetcourt.org-style dark card with the skill terminal (violet accents). */
 function SkillCTA() {
   const [copied, setCopied] = useState(false);
@@ -232,11 +274,11 @@ export default function Home() {
       <SiteHeader />
       <main className="relative min-h-screen overflow-x-hidden bg-[#f4efe4] text-[#201810]">
         {/* HERO */}
-      <section className="relative min-h-[74vh] pb-6 pt-24">
+      <section className="relative flex min-h-[74vh] flex-col justify-center pb-10 pt-24">
         <div className="absolute inset-0"><Hero3D /></div>
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(90%_70%_at_18%_50%,rgba(244,239,228,0.96),rgba(244,239,228,0.55)_55%,transparent)]" />
-        <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-10 px-6 md:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-          {/* LEFT — message */}
+        <div className="relative z-10 mx-auto grid w-full max-w-6xl items-center gap-10 px-6 md:px-10 lg:grid-cols-[1.05fr_1fr] lg:gap-14">
+          {/* LEFT — message + skill install + CTAs */}
           <div>
             <Reveal onMount>
               <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-violet-300 bg-violet-100/70 px-4 py-1.5 text-xs uppercase tracking-[0.28em] text-violet-700">
@@ -244,51 +286,22 @@ export default function Home() {
               </span>
             </Reveal>
             <Reveal onMount delay={0.05}>
-              <h1 className="text-4xl font-extrabold leading-[1.03] tracking-tight text-[#1a130a] sm:text-5xl lg:text-6xl">
-                Verify any agent
+              <h1 className="text-3xl font-extrabold leading-[1.08] tracking-tight text-[#1a130a] sm:text-4xl lg:text-[2.5rem]">
+                The Trust &amp; Safety Layer
                 <br />
+                for the{" "}
                 <span className="bg-gradient-to-r from-violet-600 via-fuchsia-600 to-cyan-600 bg-clip-text text-transparent">
-                  before a dollar moves.
+                  AI-Agent Economy
                 </span>
               </h1>
             </Reveal>
-            <Reveal onMount delay={0.1}>
-              <p className="mt-6 max-w-lg text-lg text-[#201810]/70">
-                Before your agent pays, hires, or trusts another agent, EVIDIQ checks it &mdash;
-                verifying identity, capability, and on-chain reputation, scoring the risk, and
-                returning a signed verdict: proceed, escrow, or walk away.
-              </p>
+            <Reveal onMount delay={0.15}>
+              <div className="mt-8">
+                <InstallSkill />
+              </div>
             </Reveal>
-          </div>
-
-          {/* RIGHT — watch demo + install terminal + CTAs (float over the trust-network globe) */}
-          <Reveal onMount delay={0.12}>
-            <div className="flex flex-col gap-4">
-              {/* Watch demo — sits directly above the skill install card */}
-              <a
-                href={DEMO_VIDEO_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex max-w-md items-center gap-3 rounded-xl border border-[#e7dcc7] bg-white/70 px-4 py-3 backdrop-blur-sm transition-colors hover:border-violet-300 hover:bg-violet-50/70"
-              >
-                <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-gradient-to-br from-violet-600 to-fuchsia-500 text-white shadow-sm">
-                  <Play size={16} className="translate-x-[1px]" fill="currentColor" />
-                </span>
-                <span className="min-w-0">
-                  <span className="flex items-center gap-1.5 text-sm font-bold text-[#1a130a]">
-                    Watch the demo
-                    <ArrowUpRight
-                      size={14}
-                      className="text-violet-600 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                    />
-                  </span>
-                  <span className="block text-xs text-[#201810]/55">
-                    A live agent trust check, end to end
-                  </span>
-                </span>
-              </a>
-              <InstallSkill />
-              <div className="flex flex-wrap items-center gap-3">
+            <Reveal onMount delay={0.2}>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
                 <a href="/playground" className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-6 py-3.5 font-bold text-white transition-colors hover:bg-violet-700">
                   See a live trust check <ArrowRight size={18} />
                 </a>
@@ -296,6 +309,21 @@ export default function Home() {
                   How it works
                 </a>
               </div>
+            </Reveal>
+          </div>
+
+          {/* RIGHT — the demo video, vertically centered against the message */}
+          <Reveal onMount delay={0.12}>
+            <div className="flex flex-col gap-3">
+              <DemoVideo />
+              <a
+                href={DEMO_VIDEO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 self-end text-xs font-semibold text-[#201810]/55 transition-colors hover:text-violet-700"
+              >
+                Watch on YouTube <ArrowUpRight size={13} />
+              </a>
             </div>
           </Reveal>
         </div>
