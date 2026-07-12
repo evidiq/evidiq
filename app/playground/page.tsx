@@ -784,6 +784,17 @@ export default function PlaygroundPage() {
           This is the same trust check an agent runs automatically over MCP before it transacts. Add
           it to your own agent in one line.
         </p>
+        <p className="text-xs text-[#201810]/55">
+          Paid calls settle on-chain via x402 —{" "}
+          <a
+            href="https://www.oklink.com/xlayer/tx/0x805882b3881b1ff551358ef77f3cde5324046ed090e59f1e5bc88fcd47acfb12"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-violet-700 underline decoration-violet-300 underline-offset-2 hover:text-violet-800"
+          >
+            see a real settlement on X Layer &#8599;
+          </a>
+        </p>
         <a
           href="/docs"
           className="inline-flex items-center gap-2 rounded-xl bg-violet-600 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-violet-700"

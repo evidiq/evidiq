@@ -69,6 +69,20 @@ EVIDIQ owns verification, proof, and scoring, and settles on open infrastructure
 Interoperates with agents built on LangChain, AutoGen, CrewAI, LlamaIndex, and
 custom stacks.
 
+## Proven on-chain
+
+A live `verify_agent` call, paid over x402 and settled on **X Layer** — the
+buyer signs an EIP-3009 authorization and EVIDIQ settles it on-chain (gasless
+for the payer):
+
+| | |
+|---|---|
+| Payment | `0.05 USDC` on X Layer (`eip155:196`) |
+| Flow | HTTP 402 → EIP-3009 signature → `transferWithAuthorization` |
+| Settlement | [`0x805882b3…47acfb12`](https://www.oklink.com/xlayer/tx/0x805882b3881b1ff551358ef77f3cde5324046ed090e59f1e5bc88fcd47acfb12) · SUCCESS |
+
+Real USDC moved between two agents — not a mockup.
+
 ## Links
 
 - Website — https://evidiq.dev
