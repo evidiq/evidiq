@@ -7,6 +7,7 @@ export const SITE = {
 };
 
 export const NAV: { label: string; href: string }[] = [
+  { label: "Playground", href: "/playground" },
   { label: "Stack", href: "/#stack" },
   { label: "How it works", href: "/#how" },
   { label: "Docs", href: "/docs" },
