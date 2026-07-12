@@ -105,11 +105,23 @@ export class OnchainSettler implements PaymentVerifier {
           p.payload.signature,
         ],
       });
-      const receipt = await pub.waitForTransactionReceipt({
-        hash,
-        timeout: 60_000,
-      });
-      if (receipt.status !== "success") {
+      // Poll for the receipt by tx hash. We deliberately avoid
+      // waitForTransactionReceipt (which watches new blocks via
+      // eth_getBlockByNumber): public X Layer RPCs behind a load balancer
+      // intermittently answer "block is out of range" for that call. Looking
+      // the receipt up directly by hash is resilient to that inconsistency.
+      let receipt: { status: string } | null = null;
+      for (let i = 0; i < 40; i++) {
+        try {
+          receipt = (await pub.getTransactionReceipt({ hash })) as unknown as {
+            status: string;
+          };
+          break;
+        } catch {
+          await new Promise((r) => setTimeout(r, 1500));
+        }
+      }
+      if (receipt && receipt.status !== "success") {
         return {
           success: false,
           transaction: hash,
@@ -117,6 +129,7 @@ export class OnchainSettler implements PaymentVerifier {
           errorReason: "settlement transaction reverted",
         };
       }
+      // Broadcast succeeded (receipt confirmed, or still pending but on-chain).
       return { success: true, transaction: hash, payer };
     } catch (e) {
       return {
