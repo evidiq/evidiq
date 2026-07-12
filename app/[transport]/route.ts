@@ -57,10 +57,12 @@ function summarize(report: TrustReport): string {
       ...(a.attester ? [`  attester: ${a.attester}`] : []),
       ...(a.signature ? [`  signature: ${a.signature}`] : []),
       ...(a.storageRoot ? [`  0G storage root: ${a.storageRoot}`] : []),
-      ...(a.storageTx ? [`  0G storage tx: ${a.storageTx}`] : []),
+      ...(a.storageTx
+        ? [`  0G storage tx: [${a.storageTx}](https://chainscan.0g.ai/tx/${a.storageTx})`]
+        : []),
       ...(a.tee
         ? [
-            `  0G TEE: ${a.tee.model} via provider ${a.tee.provider ?? "?"} (req ${a.tee.requestId ?? "?"})`,
+            `  0G TEE: ${a.tee.model} via provider ${a.tee.provider ? `[${a.tee.provider}](https://chainscan.0g.ai/address/${a.tee.provider})` : "?"} (req ${a.tee.requestId ?? "?"})`,
           ]
         : []),
       ...(a.note ? [`  note: ${a.note}`] : [])
@@ -157,7 +159,7 @@ const handler = createMcpHandler(
 
         const payment = currentPayment();
         const paidLine = payment
-          ? `Payment verified from ${payment.payer}${payment.transaction ? ` (tx ${payment.transaction})` : ""}.\n\n`
+          ? `Payment verified from ${payment.payer}${payment.transaction ? ` — settlement tx [${payment.transaction}](https://www.oklink.com/xlayer/tx/${payment.transaction})` : ""}.\n\n`
           : "";
 
         return {

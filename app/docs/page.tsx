@@ -95,15 +95,45 @@ export default function DocsPage() {
         a TEE-verified AI analysis, and an attestation.
       </p>
 
-      <H2 id="x402">x402 pay-per-call</H2>
+      <H2 id="x402">Paying from your agent (x402)</H2>
       <p className="mt-3 text-[#201810]/70">
         <span className="font-mono">verify_agent</span> is metered with x402 (scheme{" "}
-        <span className="font-mono">exact</span>, EIP-3009 on X Layer). Unpaid calls receive an HTTP
-        402 challenge; sign it and retry with a <span className="font-mono">PAYMENT-SIGNATURE</span>{" "}
-        header (the OKX Payment SDK / OnchainOS does this automatically). Pricing discovery lives at{" "}
+        <span className="font-mono">exact</span>, EIP-3009, USDC on X Layer /{" "}
+        <span className="font-mono">eip155:196</span>). An unpaid call returns an HTTP 402 with the
+        payment requirements; the agent signs a gasless authorization and retries with an{" "}
+        <span className="font-mono">X-PAYMENT</span> header. EVIDIQ verifies it, settles the transfer
+        on-chain, and returns the Trust Report plus the settlement tx. Pricing discovery lives at{" "}
         <span className="font-mono text-violet-700">/x402</span>.
       </p>
-      <Code>curl -s https://evidiq.dev/x402</Code>
+      <Code>{`// 1. Unpaid call -> HTTP 402 with payment requirements
+const { accepts: [req] } = await (await callVerifyAgent()).json();
+
+// 2. Sign EIP-3009 transferWithAuthorization (gasless: the seller submits + pays gas)
+const authorization = {
+  from: account.address, to: req.payTo, value: req.maxAmountRequired,
+  validAfter: "0", validBefore: String(now + 600), nonce: randomHex32(),
+};
+const signature = await account.signTypedData({
+  domain: { name: req.extra.name, version: req.extra.version,
+    chainId: Number(req.network.split(":")[1]), verifyingContract: req.asset },
+  types: { TransferWithAuthorization: EIP3009_TYPES },
+  primaryType: "TransferWithAuthorization", message: authorization,
+});
+
+// 3. Retry with X-PAYMENT -> EVIDIQ settles on X Layer, returns report + tx
+const paid = await callVerifyAgent({
+  "X-PAYMENT": base64({ x402Version: 1, scheme: "exact",
+    network: req.network, payload: { signature, authorization } }),
+});`}</Code>
+      <p className="mt-4 text-[#201810]/70">
+        Agents with the <span className="font-semibold">OKX Payment SDK / OnchainOS</span> emit this
+        automatically. Agents <span className="font-semibold">without</span> native x402 — OpenClaw,
+        Hermes, and most MCP clients — add a thin payment layer: wrap the three steps above as an MCP
+        tool (or client middleware) that holds a funded wallet, so the agent simply calls{" "}
+        <span className="font-mono">verify_agent</span> and the layer pays and settles behind it. A
+        reference payment-proxy MCP ships in the repo at{" "}
+        <span className="font-mono text-violet-700">scripts/evidiq-pay-mcp.mjs</span>.
+      </p>
 
       <H2 id="attestation">Attestation &amp; 0G</H2>
       <p className="mt-3 text-[#201810]/70">

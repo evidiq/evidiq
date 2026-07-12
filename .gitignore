@@ -38,3 +38,15 @@ yarn-debug.log*
 yarn-error.log*
 .vercel
 *.tsbuildinfo
+
+# working logo source files (kept local only, never uploaded)
+/Logo
+/logo 2
+/logo color.png
+/evidiq.dev
+/evidiq-avatar.png
+
+# demo / video test outputs (kept local only, never uploaded)
+*.mp4
+/evidiq-demo.gif
+/evidiq-demo.cast

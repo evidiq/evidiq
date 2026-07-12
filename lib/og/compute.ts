@@ -84,6 +84,7 @@ export async function analyzeTrust(
         ],
         max_tokens: 900,
         temperature: 0.2,
+        reasoning_effort: "none",
       }),
       signal: AbortSignal.timeout(COMPUTE_TIMEOUT_MS),
     });
