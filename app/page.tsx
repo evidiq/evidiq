@@ -190,7 +190,7 @@ function DemoVideo() {
   );
 }
 
-/** Closing CTA — internetcourt.org-style dark card with the skill terminal (violet accents). */
+/** Closing CTA — dark card with the skill terminal (violet accents). */
 function SkillCTA() {
   const [copied, setCopied] = useState(false);
   const cmd = "curl -s https://evidiq.dev/skill.md";
@@ -530,7 +530,7 @@ export default function Home() {
         </section>
       )}
 
-      {/* SKILL / CTA — internetcourt-style dark block */}
+      {/* SKILL / CTA — dark block */}
       <section className="relative mx-auto max-w-6xl px-6 pb-28 md:px-10">
         <Reveal>
           <SkillCTA />

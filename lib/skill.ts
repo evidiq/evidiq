@@ -170,6 +170,6 @@ When you run a check, report back:
 Built on **0G Labs** (storage + compute/TEE for proofs), **OKX Chain / OKX AI**
 (marketplace + settlement), **x402** (pay-per-call), and **OpenClaw / Hermes**.
 Works with agents from LangChain, AutoGen, CrewAI, LlamaIndex, Haystack, or custom
-stacks, and complements agent-to-agent commerce skills such as Internet Court.
+stacks, and complements the broader agent-to-agent commerce stack.
 `;
 }

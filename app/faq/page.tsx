@@ -41,7 +41,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Is EVIDIQ open?",
-    a: "Yes — the skill is served openly at /skill.md and the code is on GitHub. It complements agent-to-agent commerce skills such as Internet Court rather than replacing them.",
+    a: "Yes — the skill is served openly at /skill.md and the code is on GitHub. It complements the broader agent-to-agent commerce stack rather than replacing it.",
   },
 ];
 
