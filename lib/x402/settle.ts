@@ -89,6 +89,18 @@ export class OnchainSettler implements PaymentVerifier {
     const pub = createPublicClient({ chain, transport: http(this.cfg.rpcUrl) });
 
     try {
+      // Public X Layer RPCs intermittently answer "block is out of range" for
+      // eth_getBlockByNumber, which viem calls during EIP-1559 fee estimation
+      // (estimateFeesPerGas) and gas estimation while preparing a tx. Provide
+      // explicit LEGACY gas params so submission never touches that flaky path
+      // — only eth_gasPrice (single, reliable) + eth_getTransactionCount +
+      // eth_sendRawTransaction are used.
+      let gasPrice: bigint;
+      try {
+        gasPrice = ((await pub.getGasPrice()) * 12n) / 10n; // +20% headroom
+      } catch {
+        gasPrice = 1_000_000_000n; // 1 gwei fallback (X Layer fees are tiny)
+      }
       // Submit the buyer's gasless authorization: pulls `value` from `from`
       // to `to` (our payTo) using the signature they already produced.
       const hash = await wallet.writeContract({
@@ -104,6 +116,8 @@ export class OnchainSettler implements PaymentVerifier {
           auth.nonce,
           p.payload.signature,
         ],
+        gas: 300_000n, // fixed cap → skips eth_estimateGas
+        gasPrice, // legacy tx → skips estimateFeesPerGas / eth_getBlockByNumber
       });
       // Poll for the receipt by tx hash. We deliberately avoid
       // waitForTransactionReceipt (which watches new blocks via
