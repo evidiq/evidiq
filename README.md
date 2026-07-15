@@ -16,6 +16,16 @@
   <a href="https://github.com/evidiq/mcp">MCP Server</a>
 </p>
 
+<p align="center">
+  <a href="https://glama.ai/mcp/servers/evidiq/mcp"><img src="https://glama.ai/mcp/servers/evidiq/mcp/badges/score.svg" alt="Glama score" /></a>
+  <a href="https://evidiq.dev/mcp"><img src="https://img.shields.io/badge/MCP%20Server-Verified-6E56CF?style=flat-square" alt="MCP Server" /></a>
+  <a href="https://0g.ai"><img src="https://img.shields.io/badge/0G-TEE%20%2B%20Storage-00C2A8?style=flat-square" alt="0G TEE + Storage" /></a>
+  <a href="https://www.oklink.com/xlayer"><img src="https://img.shields.io/badge/X%20Layer-Live-3CCF4E?style=flat-square" alt="X Layer" /></a>
+  <a href="https://evidiq.dev/x402"><img src="https://img.shields.io/badge/x402-pay--per--call-2563EB?style=flat-square" alt="x402" /></a>
+  <a href="https://okx.ai"><img src="https://img.shields.io/badge/OKX.AI-ASP-121212?style=flat-square&logo=okx&logoColor=white" alt="OKX.AI ASP" /></a>
+  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-3DA639?style=flat-square" alt="License: MIT" /></a>
+</p>
+
 ---
 
 Autonomous agents can already discover each other, negotiate, and pay. What they
