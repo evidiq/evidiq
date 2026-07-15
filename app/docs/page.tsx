@@ -69,6 +69,13 @@ export default function DocsPage() {
     "evidiq": { "url": "https://evidiq.dev/mcp" }
   }
 }`}</Code>
+      <p className="mt-4 text-[#201810]/70">
+        <span className="font-mono">how_to_install</span> and{" "}
+        <span className="font-mono">get_evidiq_skill</span> are free and need no payment. A plain{" "}
+        <span className="font-mono">application/json</span> request is accepted (a{" "}
+        <span className="font-mono">text/event-stream</span> Accept header is not required), and the
+        response comes back as JSON.
+      </p>
 
       <H2 id="verify">verify_agent</H2>
       <p className="mt-3 text-[#201810]/70">
@@ -88,6 +95,11 @@ export default function DocsPage() {
   "context": "pay-per-call weather API, $2 / 1k calls"
 }`}</Code>
       <p className="mt-4 text-[#201810]/70">
+        <span className="font-mono">agentId</span> is the only required field. Field names are
+        camelCase; common snake_case aliases (<span className="font-mono">agent_id</span>,{" "}
+        <span className="font-mono">target_name</span>) are also accepted.
+      </p>
+      <p className="mt-4 text-[#201810]/70">
         It returns a Trust Report: a score (0–100), a tier, a per-dimension breakdown (identity,
         capability, reputation, risk), an explicit recommendation
         (<span className="font-mono">proceed</span>, <span className="font-mono">proceed_with_escrow</span>,{" "}
@@ -98,7 +110,7 @@ export default function DocsPage() {
       <H2 id="x402">Paying from your agent (x402)</H2>
       <p className="mt-3 text-[#201810]/70">
         <span className="font-mono">verify_agent</span> is metered with x402 (scheme{" "}
-        <span className="font-mono">exact</span>, EIP-3009, USDC on X Layer /{" "}
+        <span className="font-mono">exact</span>, EIP-3009, USDT0 on X Layer /{" "}
         <span className="font-mono">eip155:196</span>). An unpaid call returns an HTTP 402 with the
         payment requirements; the agent signs a gasless authorization and retries with an{" "}
         <span className="font-mono">X-PAYMENT</span> header. EVIDIQ verifies it, settles the transfer
@@ -110,7 +122,7 @@ const { accepts: [req] } = await (await callVerifyAgent()).json();
 
 // 2. Sign EIP-3009 transferWithAuthorization (gasless: the seller submits + pays gas)
 const authorization = {
-  from: account.address, to: req.payTo, value: req.maxAmountRequired,
+  from: account.address, to: req.payTo, value: req.amount, // v2 (maxAmountRequired = v1 alias)
   validAfter: "0", validBefore: String(now + 600), nonce: randomHex32(),
 };
 const signature = await account.signTypedData({
