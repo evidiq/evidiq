@@ -17,7 +17,7 @@ export const NAV: { label: string; href: string }[] = [
 
 // GitHub and X are live; update the Telegram handle once the account exists.
 export const SOCIALS = {
-  github: "https://github.com/evidiq/evidiq",
+  github: "https://github.com/evidiq",
   x: "https://x.com/evidiqdev",
   telegram: "https://t.me/evidiq",
 };
