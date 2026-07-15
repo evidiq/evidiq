@@ -78,9 +78,9 @@ X Layer, and the **verdict** is anchored on 0G. Both from live calls, not mockup
 
 | | |
 |---|---|
-| Amount | `0.05 USDC` on X Layer (`eip155:196`) |
+| Amount | `0.05 USDT0` on X Layer (`eip155:196`) |
 | Flow | HTTP 402 → EIP-3009 signature → `transferWithAuthorization` (gasless for the payer) |
-| Tx | [`0x805882b3…47acfb12`](https://www.oklink.com/xlayer/tx/0x805882b3881b1ff551358ef77f3cde5324046ed090e59f1e5bc88fcd47acfb12) · SUCCESS |
+| Tx | [`0x6f74549e…96cca86`](https://www.oklink.com/xlayer/tx/0x6f74549eecb4627509f6397db02b8397892c9893d869790006b258b6996cca86) · SUCCESS |
 
 **2 · Verdict — TEE-verified analysis + 0G Storage anchor**
 
@@ -88,7 +88,7 @@ X Layer, and the **verdict** is anchored on 0G. Both from live calls, not mockup
 |---|---|
 | Compute | `glm-5.2` run in a TEE via 0G Compute (verified) |
 | Proof | report signed (EIP-191) + anchored on 0G Storage |
-| Anchor tx | [`0x3ece4ef3…aef9c64f`](https://chainscan.0g.ai/tx/0x3ece4ef3719cc7d3b7c532cdbdaf8bfc1c7bdf12860cd9461b27c017aef9c64f) · SUCCESS |
+| Anchor tx | [`0xa6a55316…d0ae15`](https://chainscan.0g.ai/tx/0xa6a553162b82e7a1d6fa3fdc4d331067a60462ba453c285c9965441be8d0ae15) · SUCCESS |
 
 Payment on one chain, tamper-evident proof on another — the whole trust check is auditable.
 
@@ -101,5 +101,5 @@ Payment on one chain, tamper-evident proof on another — the whole trust check 
 
 ## License
 
-© EVIDIQ. All rights reserved. The EVIDIQ Agent Skill is published as an open
-specification — see [evidiq-skill](https://github.com/evidiq/evidiq-skill).
+MIT © 2026 EVIDIQ — see [LICENSE](./LICENSE). The EVIDIQ Agent Skill is also
+published as an open specification — see [evidiq-skill](https://github.com/evidiq/evidiq-skill).

@@ -2,6 +2,9 @@
   "name": "evidiq",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "author": "EVIDIQ",
+  "contributors": ["EVIDIQ"],
   "description": "EVIDIQ — the trust layer for the AI agent economy. Verify capability, score risk, build on-chain reputation before every AI transaction.",
   "scripts": {
     "dev": "next dev",

@@ -38,6 +38,7 @@ if (!TOKEN) {
 const MIRRORS = {
   mcp: {
     files: [
+      ["LICENSE", "LICENSE"],
       ["app/[transport]/route.ts", "route.ts"],
       ["lib/install.ts", "lib/install.ts"],
       ["lib/request-context.ts", "lib/request-context.ts"],
@@ -60,6 +61,7 @@ const MIRRORS = {
   },
   "evidiq-skill": {
     files: [
+      ["LICENSE", "LICENSE"],
       ["lib/install.ts", "src/install.ts"],
       ["lib/skill.ts", "src/skill.ts"],
     ],
