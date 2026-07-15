@@ -14,14 +14,15 @@ import { z } from "zod";
  *
  * Environments:
  * - preview/dev: X Layer testnet (eip155:1952), test token, price 0.
- * - production:  X Layer mainnet (eip155:196), USDC — set once X402_PAY_TO is
- *   confirmed. USDC on X Layer is 0x74b7F16337b8972027F6196A17a631aC6dE26d22
- *   with EIP-712 domain { name: "USD Coin", version: "2" }; $0.05 = price "50000"
+ * - production:  X Layer mainnet (eip155:196), USDT0 — the OKX A2MCP settlement
+ *   token, 0x779ded0c9e1022225f8e0630b35a9b54be713736, EIP-712 domain
+ *   { name: "USD₮0", version: "1" }; $0.05 = price "50000"
  *   (6 decimals). Settlement is self-served on-chain when X402_SETTLE_KEY is set.
  */
 
-/** USDC on X Layer mainnet — the OKX A2MCP settlement token (6 decimals). */
-export const XLAYER_USDC = "0x74b7F16337b8972027F6196A17a631aC6dE26d22";
+/** USDT0 on X Layer mainnet — the OKX A2MCP settlement token (6 decimals).
+ *  (USDC 0x74b7… is intentionally NOT used: OKX's system can't resolve its decimals.) */
+export const XLAYER_USDT0 = "0x779ded0c9e1022225f8e0630b35a9b54be713736";
 /** Default X Layer mainnet RPC used for on-chain settlement. */
 export const XLAYER_RPC = "https://rpc.xlayer.tech";
 
@@ -53,8 +54,8 @@ const envSchema = z.object({
   X402_PAY_TO: z
     .string()
     .regex(/^0x[0-9a-fA-F]{40}$/, "X402_PAY_TO must be a 0x… address"),
-  X402_DOMAIN_NAME: z.string().min(1).default("USD Coin"),
-  X402_DOMAIN_VERSION: z.string().min(1).default("2"),
+  X402_DOMAIN_NAME: z.string().min(1).default("USD₮0"),
+  X402_DOMAIN_VERSION: z.string().min(1).default("1"),
   X402_PRICE: z
     .string()
     .regex(/^\d+$/, "X402_PRICE must be atomic units (decimal integer)")
