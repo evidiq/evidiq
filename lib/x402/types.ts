@@ -14,7 +14,12 @@ export type PaymentRequirements = {
   scheme: "exact";
   /** CAIP-2 network id, e.g. "eip155:196" (X Layer mainnet). */
   network: string;
-  /** Atomic units, decimal string. "0" is a valid zero-value requirement. */
+  /** x402 v2 amount — atomic units, decimal string. "0" is a valid zero value. */
+  amount: string;
+  /**
+   * x402 v1 alias of `amount`, kept so legacy payers that read
+   * `maxAmountRequired` still resolve the price. Always equals `amount`.
+   */
   maxAmountRequired: string;
   /** Absolute URL of the paid resource. */
   resource: string;

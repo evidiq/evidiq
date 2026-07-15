@@ -115,10 +115,11 @@ export async function verifyPaymentLocal(
   if (auth.to.toLowerCase() !== cfg.payTo.toLowerCase()) {
     return { valid: false, reason: `payTo mismatch: got ${auth.to}` };
   }
-  if (BigInt(auth.value) < BigInt(reqs.maxAmountRequired)) {
+  const required = reqs.amount ?? reqs.maxAmountRequired;
+  if (BigInt(auth.value) < BigInt(required)) {
     return {
       valid: false,
-      reason: `value ${auth.value} below required ${reqs.maxAmountRequired}`,
+      reason: `value ${auth.value} below required ${required}`,
     };
   }
   const now = BigInt(Math.floor(Date.now() / 1000));

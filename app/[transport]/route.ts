@@ -1,4 +1,5 @@
 import { createMcpHandler } from "mcp-handler";
+import { McpError, ErrorCode } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
 import { installInstructions } from "@/lib/install";
 import { evidiqSkill } from "@/lib/skill";
@@ -110,9 +111,15 @@ const handler = createMcpHandler(
         inputSchema: {
           agentId: z
             .string()
+            .optional()
             .describe(
-              "A stable identifier for the agent being checked (address, URL, name, or id)."
+              'REQUIRED. A stable identifier for the agent being checked (address, URL, name, or id). Send as camelCase "agentId". snake_case aliases agent_id / target / target_name are also accepted.'
             ),
+          // Accepted aliases for agentId, normalized server-side so callers
+          // using snake_case or alternate names are not rejected.
+          agent_id: z.string().optional().describe("Alias for agentId."),
+          target: z.string().optional().describe("Alias for agentId."),
+          target_name: z.string().optional().describe("Alias for agentId."),
           endpoint: z
             .string()
             .optional()
@@ -123,6 +130,10 @@ const handler = createMcpHandler(
             .array(z.string())
             .optional()
             .describe("Capabilities the agent claims to have."),
+          declared_capabilities: z
+            .array(z.string())
+            .optional()
+            .describe("Alias for declaredCapabilities."),
           framework: z
             .string()
             .optional()
@@ -143,10 +154,27 @@ const handler = createMcpHandler(
         },
       },
       async (args) => {
+        // Accept camelCase (canonical) plus common snake_case / alias field
+        // names, and surface a precise MCP -32602 error when the required
+        // agent identifier is missing — never a generic "Invalid input".
+        const agentId = (
+          args.agentId ??
+          args.agent_id ??
+          args.target ??
+          args.target_name ??
+          ""
+        ).trim();
+        if (!agentId) {
+          throw new McpError(
+            ErrorCode.InvalidParams,
+            'Missing required field "agentId": the agent to verify (an address, URL, name, or id). Send it as "agentId" (camelCase); aliases "agent_id", "target", "target_name" are also accepted. Example: { "agentId": "0x1234…" }.'
+          );
+        }
         const input: AgentDescriptor = {
-          agentId: args.agentId,
+          agentId,
           endpoint: args.endpoint,
-          declaredCapabilities: args.declaredCapabilities,
+          declaredCapabilities:
+            args.declaredCapabilities ?? args.declared_capabilities,
           framework: args.framework,
           identity: args.identity,
           context: args.context,
