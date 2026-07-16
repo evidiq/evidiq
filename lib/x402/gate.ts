@@ -195,7 +195,7 @@ export function withX402Gate(
       return build402Response(cfg, resourceUrl, undefined);
     }
 
-    const reqs = buildAccepts(cfg, resourceUrl)[0];
+    const reqs = buildAccepts(cfg)[0];
     const verifier = getVerifier(cfg);
     const verdict = await verifier.verify(payment, reqs);
     if (!verdict.valid) {

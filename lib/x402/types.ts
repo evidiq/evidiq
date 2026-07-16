@@ -9,21 +9,29 @@
 
 export type Hex = `0x${string}`;
 
+/**
+ * Top-level x402 v2 resource descriptor. Per the OKX A2MCP spec this is an
+ * OBJECT ({url, description, mimeType}) sitting at challenge.resource — NOT a
+ * bare URL string. The marketplace validates the PAYMENT-REQUIRED header, so
+ * the shape must match exactly.
+ */
+export type X402Resource = {
+  url: string;
+  description: string;
+  mimeType: string;
+};
+
 export type PaymentRequirements = {
   scheme: "exact";
   /** CAIP-2 network id, e.g. "eip155:196" (X Layer mainnet). */
   network: string;
+  /** ERC-20 token contract address. */
+  asset: string;
   /** x402 v2 amount — atomic units, decimal string. "0" is a valid zero value. */
   amount: string;
-  /** Absolute URL of the paid resource. */
-  resource: string;
-  description: string;
-  mimeType: string;
   /** Recipient address for the payment. */
   payTo: string;
   maxTimeoutSeconds: number;
-  /** ERC-20 token contract address. */
-  asset: string;
   /** EIP-712 domain of the token — must match on-chain or signatures break. */
   extra: { name: string; version: string };
 };
