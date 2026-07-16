@@ -10,6 +10,12 @@ NAME="${NAME:-evidiq}"
 NETWORK="${NETWORK:-coolify}"
 ENV_FILE="${ENV_FILE:-/root/evidiq.env}"
 
+# Auto-blog: bind mounts so generated posts/images survive `docker rm` +
+# recreate on every redeploy. -p 127.0.0.1:3000:3000 lets the systemd
+# blog-cron timer (host, see EVIDIQ-RUNBOOK.md §20) reach the API directly,
+# without going through Traefik/the public internet.
+mkdir -p /root/evidiq-blog-content /root/evidiq-blog-public
+
 docker rm -f "$NAME" >/dev/null 2>&1 || true
 
 docker run -d \
@@ -17,6 +23,9 @@ docker run -d \
   --restart unless-stopped \
   --network "$NETWORK" \
   --env-file "$ENV_FILE" \
+  -p 127.0.0.1:3000:3000 \
+  -v /root/evidiq-blog-content:/app/content/blog \
+  -v /root/evidiq-blog-public:/app/public/blog \
   --label 'traefik.enable=true' \
   --label 'traefik.http.routers.evidiq-http.entrypoints=http' \
   --label 'traefik.http.routers.evidiq-http.rule=Host(`evidiq.dev`) || Host(`www.evidiq.dev`)' \

@@ -28,6 +28,11 @@ export default function Post() {
         {post.title}
       </h1>
 
+      <div className="mt-8 overflow-hidden rounded-2xl border border-[#e7dcc7]">
+        {/* eslint-disable-next-line @next/next/no-img-element -- served by app/blog-img/, outside next/image's static pipeline */}
+        <img src="/blog-img/evidiq-live-on-0g/hero.jpg" alt={post.title} className="w-full" />
+      </div>
+
       <div className="mt-8 space-y-5 text-lg leading-relaxed text-[#201810]/80">
         <p>
           Agents can already discover each other, negotiate, and pay. What they still lack is a way to

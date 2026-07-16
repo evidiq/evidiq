@@ -26,5 +26,9 @@ COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.mjs ./next.config.mjs
 
+# Auto-blog: bind-mount targets for generated posts/images (see deploy/run.sh).
+# Created here so the mount points exist even before the first `docker run -v`.
+RUN mkdir -p ./content/blog ./public/blog
+
 EXPOSE 3000
 CMD ["npm", "run", "start"]

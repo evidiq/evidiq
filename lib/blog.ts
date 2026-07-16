@@ -5,6 +5,8 @@ export type Post = {
   readingTime: string;
   tag: string;
   excerpt: string;
+  /** Served by app/blog-img/[...path]/route.ts, same as generated posts. */
+  image: string | null;
 };
 
 export const POSTS: Post[] = [
@@ -16,6 +18,7 @@ export const POSTS: Post[] = [
     tag: "Launch",
     excerpt:
       "Verify capability, score risk, and get a TEE-verified, 0G-anchored Trust Report before any agent-to-agent transaction — served as an open skill, an MCP server, and an x402 endpoint.",
+    image: "/blog-img/evidiq-live-on-0g/hero.jpg",
   },
 ];
 
