@@ -54,6 +54,9 @@ yarn-error.log*
 /evidiq-okx-resubmit.png
 /evidiq-okx-status.png
 
+# scripts (local dev utilities, never committed)
+/scripts
+
 # auto-blog: generated posts + images (bind-mounted volumes on the server,
 # never committed — see EVIDIQ-RUNBOOK.md §20)
 /content/blog
