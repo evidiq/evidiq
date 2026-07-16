@@ -30,7 +30,9 @@ const Body = z.object({
     .object({
       address: z.string().trim().max(120).nullish(),
       ens: z.string().trim().max(200).nullish(),
-      erc8004Id: z.string().trim().max(120).nullish(),
+      // Accept a bare integer id too (agents send 1024, not "1024"); coerced
+      // to a string in the handler.
+      erc8004Id: z.union([z.string().trim().max(120), z.number()]).nullish(),
       domain: z.string().trim().max(253).nullish(),
     })
     .nullish(),
@@ -121,7 +123,10 @@ export async function POST(req: Request): Promise<Response> {
     ? {
         address: rawIdentity.address ?? undefined,
         ens: rawIdentity.ens ?? undefined,
-        erc8004Id: rawIdentity.erc8004Id ?? undefined,
+        erc8004Id:
+          rawIdentity.erc8004Id == null
+            ? undefined
+            : String(rawIdentity.erc8004Id),
         domain: rawIdentity.domain ?? undefined,
       }
     : undefined;

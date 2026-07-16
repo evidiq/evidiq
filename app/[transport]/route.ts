@@ -143,11 +143,14 @@ const handler = createMcpHandler(
             .object({
               address: z.string().nullish(),
               ens: z.string().nullish(),
-              erc8004Id: z.string().nullish(),
+              // Accept a number too — agents frequently send an ERC-8004 id as a
+              // bare integer (1024) rather than a string ("1024"); coerced to a
+              // string in the handler so a numeric id can't 402-then-reject.
+              erc8004Id: z.union([z.string(), z.number()]).nullish(),
               domain: z.string().nullish(),
             })
             .nullish()
-            .describe("Identity anchors: EVM address, ENS, ERC-8004 id, domain. Any field may be null or omitted."),
+            .describe("Identity anchors: EVM address, ENS, ERC-8004 id (string or number), domain. Any field may be null or omitted."),
           context: z
             .string()
             .nullish()
@@ -180,7 +183,10 @@ const handler = createMcpHandler(
           ? {
               address: rawIdentity.address ?? undefined,
               ens: rawIdentity.ens ?? undefined,
-              erc8004Id: rawIdentity.erc8004Id ?? undefined,
+              erc8004Id:
+                rawIdentity.erc8004Id == null
+                  ? undefined
+                  : String(rawIdentity.erc8004Id),
               domain: rawIdentity.domain ?? undefined,
             }
           : undefined;
