@@ -23,7 +23,7 @@ docker run -d \
   --restart unless-stopped \
   --network "$NETWORK" \
   --env-file "$ENV_FILE" \
-  -p 127.0.0.1:3000:3000 \
+  -p 127.0.0.1:3010:3000 \
   -v /root/evidiq-blog-content:/app/content/blog \
   -v /root/evidiq-blog-public:/app/public/blog \
   --label 'traefik.enable=true' \

@@ -15,6 +15,13 @@
 import { readFile, stat } from "node:fs/promises";
 import path from "node:path";
 
+// Never cache/prerender this handler. Without this, Next 15 treats the GET as
+// statically cacheable and freezes whatever it returned at build time — and at
+// build time public/blog is empty, so every request would 404 forever until a
+// restart. force-dynamic + revalidate 0 make it stat/read the file per request.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const BLOG_PUBLIC_DIR = path.join(process.cwd(), "public", "blog");
 
 const CONTENT_TYPES: Record<string, string> = {

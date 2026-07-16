@@ -21,7 +21,7 @@ const result = await new Promise((resolve, reject) => {
   const req = http.request(
     {
       hostname: "localhost",
-      port: 3000,
+      port: 3010,
       path: "/api/blog/generate",
       method: "POST",
       headers: {
