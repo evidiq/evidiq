@@ -15,7 +15,7 @@ import { resolveErc8004Identity } from "@/lib/trust/erc8004";
 import { attestReport } from "@/lib/og/attest";
 import { analyzeTrust } from "@/lib/og/compute";
 import { probeEndpoint } from "@/lib/trust/probe";
-import type { AgentDescriptor, TrustReport } from "@/lib/trust/types";
+import type { AgentDescriptor, AgentIdentity, TrustReport } from "@/lib/trust/types";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -112,45 +112,45 @@ const handler = createMcpHandler(
         inputSchema: {
           agentId: z
             .string()
-            .optional()
+            .nullish()
             .describe(
               'REQUIRED. A stable identifier for the agent being checked (address, URL, name, or id). Send as camelCase "agentId". snake_case aliases agent_id / target / target_name are also accepted.'
             ),
           // Accepted aliases for agentId, normalized server-side so callers
           // using snake_case or alternate names are not rejected.
-          agent_id: z.string().optional().describe("Alias for agentId."),
-          target: z.string().optional().describe("Alias for agentId."),
-          target_name: z.string().optional().describe("Alias for agentId."),
+          agent_id: z.string().nullish().describe("Alias for agentId."),
+          target: z.string().nullish().describe("Alias for agentId."),
+          target_name: z.string().nullish().describe("Alias for agentId."),
           endpoint: z
             .string()
-            .optional()
+            .nullish()
             .describe(
               "The agent's service URL / MCP endpoint. EVIDIQ probes it for a live trust signal."
             ),
           declaredCapabilities: z
             .array(z.string())
-            .optional()
+            .nullish()
             .describe("Capabilities the agent claims to have."),
           declared_capabilities: z
             .array(z.string())
-            .optional()
+            .nullish()
             .describe("Alias for declaredCapabilities."),
           framework: z
             .string()
-            .optional()
+            .nullish()
             .describe("Framework the agent is built on (LangChain, AutoGen, …)."),
           identity: z
             .object({
-              address: z.string().optional(),
-              ens: z.string().optional(),
-              erc8004Id: z.string().optional(),
-              domain: z.string().optional(),
+              address: z.string().nullish(),
+              ens: z.string().nullish(),
+              erc8004Id: z.string().nullish(),
+              domain: z.string().nullish(),
             })
-            .optional()
-            .describe("Identity anchors: EVM address, ENS, ERC-8004 id, domain."),
+            .nullish()
+            .describe("Identity anchors: EVM address, ENS, ERC-8004 id, domain. Any field may be null or omitted."),
           context: z
             .string()
-            .optional()
+            .nullish()
             .describe("What the deal is about / why the check is being run."),
         },
       },
@@ -171,14 +171,27 @@ const handler = createMcpHandler(
             'Missing required field "agentId": the agent to verify (an address, URL, name, or id). Send it as "agentId" (camelCase); aliases "agent_id", "target", "target_name" are also accepted. Example: { "agentId": "0x1234…" }.'
           );
         }
+        // The input schema is nullish on every optional field so callers that
+        // send explicit `null` (e.g. erc8004Id: null for an unregistered agent)
+        // aren't rejected after payment already settled. Normalize null →
+        // undefined here so the trust pipeline sees clean AgentDescriptor types.
+        const rawIdentity = args.identity ?? undefined;
+        const identity: AgentIdentity | undefined = rawIdentity
+          ? {
+              address: rawIdentity.address ?? undefined,
+              ens: rawIdentity.ens ?? undefined,
+              erc8004Id: rawIdentity.erc8004Id ?? undefined,
+              domain: rawIdentity.domain ?? undefined,
+            }
+          : undefined;
         const input: AgentDescriptor = {
           agentId,
-          endpoint: args.endpoint,
+          endpoint: args.endpoint ?? undefined,
           declaredCapabilities:
-            args.declaredCapabilities ?? args.declared_capabilities,
-          framework: args.framework,
-          identity: args.identity,
-          context: args.context,
+            args.declaredCapabilities ?? args.declared_capabilities ?? undefined,
+          framework: args.framework ?? undefined,
+          identity,
+          context: args.context ?? undefined,
         };
         const [probe, erc8004] = await Promise.all([
           probeEndpoint(input.endpoint),

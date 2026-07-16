@@ -5,7 +5,7 @@ import { assessAgent } from "@/lib/trust/score";
 import { resolveErc8004Identity } from "@/lib/trust/erc8004";
 import { analyzeTrust } from "@/lib/og/compute";
 import { attestReport } from "@/lib/og/attest";
-import type { AgentDescriptor } from "@/lib/trust/types";
+import type { AgentDescriptor, AgentIdentity } from "@/lib/trust/types";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -23,18 +23,18 @@ export const maxDuration = 60;
 
 const Body = z.object({
   agentId: z.string().trim().min(1).max(200),
-  endpoint: z.string().trim().max(400).optional(),
-  declaredCapabilities: z.array(z.string().trim().max(120)).max(32).optional(),
-  framework: z.string().trim().max(120).optional(),
+  endpoint: z.string().trim().max(400).nullish(),
+  declaredCapabilities: z.array(z.string().trim().max(120)).max(32).nullish(),
+  framework: z.string().trim().max(120).nullish(),
   identity: z
     .object({
-      address: z.string().trim().max(120).optional(),
-      ens: z.string().trim().max(200).optional(),
-      erc8004Id: z.string().trim().max(120).optional(),
-      domain: z.string().trim().max(253).optional(),
+      address: z.string().trim().max(120).nullish(),
+      ens: z.string().trim().max(200).nullish(),
+      erc8004Id: z.string().trim().max(120).nullish(),
+      domain: z.string().trim().max(253).nullish(),
     })
-    .optional(),
-  context: z.string().trim().max(800).optional(),
+    .nullish(),
+  context: z.string().trim().max(800).nullish(),
 });
 
 /**
@@ -104,7 +104,7 @@ export async function POST(req: Request): Promise<Response> {
   }
 
   const data = parsed.data;
-  if (!endpointAllowed(data.endpoint)) {
+  if (!endpointAllowed(data.endpoint ?? undefined)) {
     return NextResponse.json(
       {
         error:
@@ -114,12 +114,24 @@ export async function POST(req: Request): Promise<Response> {
     );
   }
 
+  // Schema is nullish on optional fields; normalize null → undefined so the
+  // trust pipeline receives clean AgentDescriptor / AgentIdentity types.
+  const rawIdentity = data.identity ?? undefined;
+  const identity: AgentIdentity | undefined = rawIdentity
+    ? {
+        address: rawIdentity.address ?? undefined,
+        ens: rawIdentity.ens ?? undefined,
+        erc8004Id: rawIdentity.erc8004Id ?? undefined,
+        domain: rawIdentity.domain ?? undefined,
+      }
+    : undefined;
+
   const input: AgentDescriptor = {
     agentId: data.agentId,
     endpoint: data.endpoint || undefined,
     declaredCapabilities: data.declaredCapabilities?.filter(Boolean),
     framework: data.framework || undefined,
-    identity: data.identity,
+    identity,
     context: data.context || undefined,
   };
 
