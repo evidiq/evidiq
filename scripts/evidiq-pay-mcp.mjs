@@ -23,7 +23,7 @@ const EVIDIQ_MCP = process.env.EVIDIQ_MCP_URL || "https://evidiq.dev/mcp";
 const KEY = process.env.BUYER_KEY;
 
 if (!KEY || !/^0x[0-9a-fA-F]{64}$/.test(KEY)) {
-  console.error("evidiq-pay-mcp: set BUYER_KEY=0x<64-hex private key> (holds USDC on X Layer)");
+  console.error("evidiq-pay-mcp: set BUYER_KEY=0x<64-hex private key> (holds USDT0 on X Layer)");
   process.exit(1);
 }
 const account = privateKeyToAccount(KEY);
@@ -174,7 +174,7 @@ function buildServer() {
     {
       title: "Verify an agent via EVIDIQ (auto-pays x402 on X Layer)",
       description:
-        "The EVIDIQ trust check for a counterparty agent. EVIDIQ is an x402-paid MCP service: this tool AUTOMATICALLY pays the required USDC on X Layer (EIP-3009, gasless signature) and returns the signed Trust Report (score, tier, breakdown, recommendation) plus the on-chain settlement transaction. Call this before transacting with, paying, or delegating to another agent. Supply everything you know about the counterparty.",
+        "The EVIDIQ trust check for a counterparty agent. EVIDIQ is an x402-paid MCP service: this tool AUTOMATICALLY pays the required USDT0 on X Layer (EIP-3009, gasless signature) and returns the signed Trust Report (score, tier, breakdown, recommendation) plus the on-chain settlement transaction. Call this before transacting with, paying, or delegating to another agent. Supply everything you know about the counterparty.",
       inputSchema: {
         agentId: z
           .string()
@@ -204,10 +204,10 @@ function buildServer() {
         if (!r.paid) {
           return { content: [{ type: "text", text: report }] };
         }
-        const usdc = (Number(r.amount) / 1e6).toFixed(2);
+        const amt = (Number(r.amount) / 1e6).toFixed(2);
         const tx = r.settle?.transaction;
         const header = [
-          `x402 PAYMENT SETTLED on X Layer — paid ${usdc} USDC to ${r.payTo}.`,
+          `x402 PAYMENT SETTLED on X Layer — paid ${amt} USDT0 to ${r.payTo}.`,
           tx
             ? `Settlement tx: [${tx}](https://www.oklink.com/xlayer/tx/${tx})`
             : "(signature-only / zero-value settlement — no on-chain tx)",

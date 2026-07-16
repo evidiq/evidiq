@@ -124,12 +124,12 @@ async function ask(prompt, maxWaitMs) {
 
 // Scenario 1 — sketchy agent → WALK AWAY
 await ask(
-  "A cold-DM 'airdrop bot' (id airdrop-bot, endpoint http://sketchy-agent.invalid) wants 250 USDC upfront for 10x returns. Verify it with EVIDIQ first — call verify_agent (this pays via x402 on X Layer). FIRST show the x402 payment (USDC amount paid + the X Layer settlement tx as a clickable OKLink explorer link), then present the FULL Trust Report as a clean markdown table — Trust Score & tier, the Identity / Capability / Reputation / Risk breakdown with notes, key findings, the 0G attestation (keep the storage tx as a clickable link), and end with a clear Decision: PROCEED, ESCROW, or WALK AWAY.",
+  "A cold-DM 'airdrop bot' (id airdrop-bot, endpoint http://sketchy-agent.invalid) wants 250 USDT upfront for 10x returns. Verify it with EVIDIQ first — call verify_agent (this pays via x402 on X Layer). FIRST show the x402 payment (USDT0 amount paid + the X Layer settlement tx as a clickable OKLink explorer link), then present the FULL Trust Report as a clean markdown table — Trust Score & tier, the Identity / Capability / Reputation / Risk breakdown with notes, key findings, the 0G attestation (keep the storage tx as a clickable link), and end with a clear Decision: PROCEED, ESCROW, or WALK AWAY.",
   75000
 );
 // Scenario 2 — verified vendor → PROCEED
 await ask(
-  "Now verify a real vendor before paying it 250 USDC. Call verify_agent with agentId 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984, endpoint https://evidiq.dev/skill.md, declaredCapabilities ['token price feeds','on-chain data indexing','swap routing'], framework 'LangChain', and identity { address: 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984, erc8004Id: 1024, domain: evidiq.dev } (this pays via x402 on X Layer). FIRST show the x402 payment (USDC amount + X Layer settlement tx as a clickable OKLink link), then present the FULL Trust Report as a clean markdown table — Trust Score & tier, the Identity / Capability / Reputation / Risk breakdown with notes, key findings, the 0G attestation (keep the storage tx as a clickable link), and end with a clear Decision.",
+  "Now verify a real vendor before paying it 250 USDT. Call verify_agent with agentId 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984, endpoint https://evidiq.dev/skill.md, declaredCapabilities ['token price feeds','on-chain data indexing','swap routing'], framework 'LangChain', and identity { address: 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984, erc8004Id: 1024, domain: evidiq.dev } (this pays via x402 on X Layer). FIRST show the x402 payment (USDT0 amount + X Layer settlement tx as a clickable OKLink link), then present the FULL Trust Report as a clean markdown table — Trust Score & tier, the Identity / Capability / Reputation / Risk breakdown with notes, key findings, the 0G attestation (keep the storage tx as a clickable link), and end with a clear Decision.",
   75000
 );
 await page.waitForTimeout(2500);

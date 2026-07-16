@@ -7,7 +7,7 @@
 //   (e.g. an OpenClaw agent) performs — just scripted so we control it.
 //
 // The buyer wallet only SIGNS (gasless); the EVIDIQ settler submits the tx and
-// pays gas. So the buyer key needs USDC on X Layer, not OKB.
+// pays gas. So the buyer key needs USDT0 on X Layer, not OKB.
 //
 // Usage:
 //   BUYER_KEY=0x<64-hex private key> node scripts/x402-pay-test.mjs [mcpUrl]
@@ -25,7 +25,7 @@ const die = (m) => {
 };
 
 if (!KEY || !/^0x[0-9a-fA-F]{64}$/.test(KEY)) {
-  die("Set BUYER_KEY=0x<64-hex private key> (a wallet holding USDC on X Layer).");
+  die("Set BUYER_KEY=0x<64-hex private key> (a wallet holding USDT0 on X Layer).");
 }
 
 const account = privateKeyToAccount(KEY);
@@ -55,7 +55,7 @@ const callBody = () =>
           erc8004Id: "1024",
           domain: "evidiq.dev",
         },
-        context: "verify a vendor before a 250 USDC job",
+        context: "verify a vendor before a 250 USDT job",
       },
     },
   });
