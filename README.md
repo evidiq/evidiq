@@ -74,7 +74,7 @@ EVIDIQ owns verification, proof, and scoring, and settles on open infrastructure
 - **0G** — decentralized storage and compute/TEE for tamper-evident proofs.
 - **x402** — per-call settlement (EIP-3009 `exact`), so agents pay as they verify.
 - **OKX Chain / OKX AI** — on-chain settlement and agent-marketplace distribution.
-- **ERC-8004** — portable agent-identity anchors.
+- **ERC-8004** — agent-identity anchors, resolved live against the on-chain IdentityRegistry on 0G.
 
 Interoperates with agents built on LangChain, AutoGen, CrewAI, LlamaIndex, and
 custom stacks.
@@ -100,7 +100,22 @@ X Layer, and the **verdict** is anchored on 0G. Both from live calls, not mockup
 | Proof | report signed (EIP-191) + anchored on 0G Storage |
 | Anchor tx | [`0xa6a55316…d0ae15`](https://chainscan.0g.ai/tx/0xa6a553162b82e7a1d6fa3fdc4d331067a60462ba453c285c9965441be8d0ae15) · SUCCESS |
 
-Payment on one chain, tamper-evident proof on another — the whole trust check is auditable.
+**3 · Identity — ERC-8004 resolved live on 0G**
+
+| | |
+|---|---|
+| Registry | ERC-8004 `IdentityRegistry` on 0G mainnet — [`0x8004A169…9a432`](https://chainscan.0g.ai/address/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432) |
+| Read | `verify_agent` calls `ownerOf` / `getAgentWallet` on-chain; identity credit is earned only if the id exists **and** the caller's address matches its on-chain owner |
+| Live | id `#0` → owner `0x4044…C224`, `ownerMatchesSupplied: true`; a non-existent id returns `not_found` (zero credit); an id owned by someone else is flagged as impersonation |
+
+```bash
+# Reproduce the identity check against the live 0G registry (returns "status":"resolved")
+curl -s https://evidiq.dev/api/verify -H 'content-type: application/json' \
+  -d '{"agentId":"evoevo-0","identity":{"erc8004Id":"0","address":"0x4044F973535fE12c481353E03Fd1f4B95635C224"}}' \
+  | grep -o '"erc8004":{[^}]*}'
+```
+
+Payment on one chain, identity and tamper-evident proof on 0G — the whole trust check is auditable end to end.
 
 ## Links
 
