@@ -51,6 +51,8 @@ yarn-error.log*
 *.mp4
 /evidiq-demo.gif
 /evidiq-demo.cast
+/evidiq-okx-resubmit.png
+/evidiq-okx-status.png
 
 # auto-blog: generated posts + images (bind-mounted volumes on the server,
 # never committed — see EVIDIQ-RUNBOOK.md §20)
