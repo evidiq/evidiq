@@ -151,10 +151,26 @@ export function withX402Gate(
 
     const bodyText = await req.text();
     let parsed: unknown = null;
+    let parseOk = false;
     try {
       parsed = JSON.parse(bodyText);
+      parseOk = true;
     } catch {
-      // Not JSON — the SDK will produce its own JSON-RPC error.
+      // Malformed JSON body. We MUST answer here: forwarding it to the MCP
+      // Streamable-HTTP handler (with the Accept we normalize to include
+      // text/event-stream) makes the transport open an SSE stream and hang
+      // indefinitely instead of erroring — a request that never returns.
+      // Reply with a spec JSON-RPC parse error immediately.
+    }
+    if (!parseOk) {
+      return new Response(
+        JSON.stringify({
+          jsonrpc: "2.0",
+          id: null,
+          error: { code: -32700, message: "Parse error: request body is not valid JSON." },
+        }),
+        { status: 400, headers: { "content-type": "application/json", "cache-control": "no-store" } }
+      );
     }
     const messages: JsonRpcCall[] = Array.isArray(parsed)
       ? parsed
