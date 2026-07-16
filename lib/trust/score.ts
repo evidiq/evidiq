@@ -1,6 +1,7 @@
 import type {
   AgentDescriptor,
   EndpointProbe,
+  Erc8004Resolution,
   Finding,
   Recommendation,
   ScoreBreakdown,
@@ -27,7 +28,8 @@ const clamp = (n: number, lo = 0, hi = 100): number =>
  */
 export function assessAgent(
   input: AgentDescriptor,
-  probe: EndpointProbe
+  probe: EndpointProbe,
+  erc8004?: Erc8004Resolution
 ): TrustReport {
   const findings: Finding[] = [];
   const id = input.identity ?? {};
@@ -43,14 +45,72 @@ export function assessAgent(
       message: "Controlling EVM address supplied — signatures are verifiable.",
     });
   }
-  if (id.erc8004Id) {
-    identity += 25;
-    findings.push({
-      severity: "positive",
-      code: "id.erc8004",
-      message: `ERC-8004 on-chain identity #${id.erc8004Id} referenced.`,
-    });
+
+  // ERC-8004: credit is earned by a LIVE on-chain lookup, not a self-declared
+  // id. `erc8004` is the result of reading the IdentityRegistry (see
+  // lib/trust/erc8004.ts). Only a resolved id counts; a claimed-but-absent id
+  // earns nothing and is flagged.
+  let erc8004Verified = false;
+  let erc8004RiskBump = 0;
+  const res = erc8004 ?? (id.erc8004Id ? { status: "unresolved" as const, agentId: id.erc8004Id, network: "unknown", chainId: 0, note: "no on-chain check performed" } : { status: "not_supplied" as const });
+  switch (res.status) {
+    case "resolved": {
+      if (res.ownerMatchesSupplied === false) {
+        // The id is real, but the caller's supplied address does NOT control
+        // it. Claiming an id you don't own is an impersonation signal: no
+        // identity/reputation credit, and a risk bump.
+        erc8004RiskBump += 15;
+        findings.push({
+          severity: "warning",
+          code: "id.erc8004_owner_mismatch",
+          message: `ERC-8004 id #${res.agentId} exists on ${res.network} (owner ${res.owner}, agent wallet ${res.agentWallet}) but does NOT match the supplied address — possible impersonation of an id the caller does not control. No identity credit given.`,
+        });
+        break;
+      }
+      erc8004Verified = true;
+      identity += 25;
+      if (res.ownerMatchesSupplied === true) {
+        identity += 15;
+        findings.push({
+          severity: "positive",
+          code: "id.erc8004_verified",
+          message: `ERC-8004 id #${res.agentId} verified on-chain (${res.network}); the supplied address controls it (owner/agent wallet ${res.owner}). Ownership confirmed.`,
+        });
+      } else {
+        findings.push({
+          severity: "positive",
+          code: "id.erc8004_verified",
+          message: `ERC-8004 id #${res.agentId} verified on-chain (${res.network}); owner ${res.owner}. No address supplied to confirm control.`,
+        });
+      }
+      break;
+    }
+    case "not_found":
+      findings.push({
+        severity: "warning",
+        code: "id.erc8004_unverified",
+        message: `Claimed ERC-8004 id #${res.agentId} does not exist in the IdentityRegistry on ${res.network} — ignored, no identity credit given.`,
+      });
+      break;
+    case "unresolved":
+      identity += 10;
+      findings.push({
+        severity: "info",
+        code: "id.erc8004_unresolved",
+        message: `ERC-8004 id #${res.agentId} could not be verified on-chain (${res.note}); treated as self-declared only.`,
+      });
+      break;
+    case "invalid_id":
+      findings.push({
+        severity: "warning",
+        code: "id.erc8004_invalid",
+        message: `Supplied ERC-8004 id "${res.raw}" is not a valid token id.`,
+      });
+      break;
+    case "not_supplied":
+      break;
   }
+
   if (id.ens) identity += 20;
   if (id.domain) {
     identity += 25;
@@ -108,7 +168,7 @@ export function assessAgent(
 
   // ── Reputation (0-100) — anchor-based, not a live history query ────
   let reputation = 30;
-  if (id.erc8004Id) reputation += 30;
+  if (erc8004Verified) reputation += 30;
   if (isAddress(id.address)) reputation += 20;
   if (probe.advertisesX402) {
     reputation += 20;
@@ -142,6 +202,7 @@ export function assessAgent(
   if (declared.length > 0 && probe.attempted && !probe.reachable) risk += 10;
   if (!probe.advertisesX402) risk += 10;
   else risk -= 10;
+  risk += erc8004RiskBump;
   risk = clamp(risk);
 
   // ── Composite ─────────────────────────────────────────────────────
@@ -189,6 +250,7 @@ export function assessAgent(
     breakdown,
     findings,
     probe,
+    ...(res.status !== "not_supplied" ? { erc8004: res } : {}),
     input,
     evidiq: { version: EVIDIQ_VERSION, layer: "trust-api/v1" },
   };

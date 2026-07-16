@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { z } from "zod";
 import { probeEndpoint } from "@/lib/trust/probe";
 import { assessAgent } from "@/lib/trust/score";
+import { resolveErc8004Identity } from "@/lib/trust/erc8004";
 import { analyzeTrust } from "@/lib/og/compute";
 import { attestReport } from "@/lib/og/attest";
 import type { AgentDescriptor } from "@/lib/trust/types";
@@ -123,8 +124,11 @@ export async function POST(req: Request): Promise<Response> {
   };
 
   // Same pipeline as the paid MCP tool.
-  const probe = await probeEndpoint(input.endpoint);
-  const report = assessAgent(input, probe);
+  const [probe, erc8004] = await Promise.all([
+    probeEndpoint(input.endpoint),
+    resolveErc8004Identity(input.identity),
+  ]);
+  const report = assessAgent(input, probe, erc8004);
   const analysis = await analyzeTrust(report);
   if (analysis) report.analysis = analysis;
   report.attestation = await attestReport(report);

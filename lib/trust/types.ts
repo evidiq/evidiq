@@ -106,6 +106,28 @@ export type TrustAnalysis = {
   text: string;
 };
 
+/**
+ * Result of resolving a caller-supplied ERC-8004 id against the live on-chain
+ * IdentityRegistry. Defined in ./erc8004 (kept as a type import here to avoid a
+ * viem dependency in the pure scoring path).
+ */
+export type Erc8004Resolution =
+  | { status: "not_supplied" }
+  | { status: "invalid_id"; raw: string }
+  | { status: "unresolved"; agentId: string; network: string; chainId: number; note: string }
+  | { status: "not_found"; agentId: string; network: string; chainId: number; registry: string }
+  | {
+      status: "resolved";
+      agentId: string;
+      network: string;
+      chainId: number;
+      registry: string;
+      owner: string;
+      agentWallet: string;
+      registrationUri?: string;
+      ownerMatchesSupplied: boolean | null;
+    };
+
 export type TrustReport = {
   schema: "evidiq.trust-report/v1";
   agentId: string;
@@ -116,6 +138,8 @@ export type TrustReport = {
   breakdown: ScoreBreakdown;
   findings: Finding[];
   probe?: EndpointProbe;
+  /** On-chain ERC-8004 identity resolution, when an id was supplied. */
+  erc8004?: Erc8004Resolution;
   analysis?: TrustAnalysis;
   input: AgentDescriptor;
   attestation?: Attestation;

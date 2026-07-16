@@ -11,6 +11,7 @@ import {
 } from "@/lib/request-context";
 import { withX402Gate } from "@/lib/x402/gate";
 import { assessAgent } from "@/lib/trust/score";
+import { resolveErc8004Identity } from "@/lib/trust/erc8004";
 import { attestReport } from "@/lib/og/attest";
 import { analyzeTrust } from "@/lib/og/compute";
 import { probeEndpoint } from "@/lib/trust/probe";
@@ -179,8 +180,11 @@ const handler = createMcpHandler(
           identity: args.identity,
           context: args.context,
         };
-        const probe = await probeEndpoint(input.endpoint);
-        const report = assessAgent(input, probe);
+        const [probe, erc8004] = await Promise.all([
+          probeEndpoint(input.endpoint),
+          resolveErc8004Identity(input.identity),
+        ]);
+        const report = assessAgent(input, probe, erc8004);
         const analysis = await analyzeTrust(report);
         if (analysis) report.analysis = analysis;
         report.attestation = await attestReport(report);
