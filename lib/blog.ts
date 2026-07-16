@@ -27,7 +27,7 @@ export function getPost(slug: string): Post | undefined {
 }
 
 export function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("en-US", {
+  return new Date(iso).toLocaleDateString("id-ID", {
     year: "numeric",
     month: "long",
     day: "numeric",

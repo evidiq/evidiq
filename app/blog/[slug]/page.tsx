@@ -10,11 +10,15 @@ import { BLOG_AUTHOR } from "@/lib/blog-engine/author";
 import { extractFaq, extractToc, headingId, childrenToText } from "@/lib/blog-engine/parse";
 
 function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("en-US", {
+  return new Date(iso).toLocaleDateString("id-ID", {
     year: "numeric",
     month: "long",
     day: "numeric",
   });
+}
+
+function formatDateISO(iso: string): string {
+  return new Date(iso).toISOString();
 }
 
 // New posts land on disk after the container is already running (the cron
@@ -30,9 +34,48 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = getPost(slug);
   if (!post || post.status !== "published") return {};
+
+  const siteUrl = "https://evidiq.dev";
+  const postUrl = `${siteUrl}/blog/${slug}`;
+  const publishedTime = new Date(post.publishedAt ?? post.createdAt).toISOString();
+  const modifiedTime = new Date(post.createdAt).toISOString();
+
   return {
     title: `${post.title} — EVIDIQ`,
     description: post.excerpt,
+    alternates: {
+      canonical: postUrl,
+    },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      url: postUrl,
+      siteName: "EVIDIQ",
+      type: "article",
+      publishedTime,
+      modifiedTime,
+      authors: [BLOG_AUTHOR.name],
+      section: post.category,
+      tags: post.tags,
+      images: post.featuredImage
+        ? [{ url: `${siteUrl}${post.featuredImage}`, width: 1200, height: 630 }]
+        : [{ url: `${siteUrl}/og.png`, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: post.title,
+      description: post.excerpt,
+      images: post.featuredImage
+        ? [`${siteUrl}${post.featuredImage}`]
+        : [`${siteUrl}/og.png`],
+    },
+    other: {
+      "article:published_time": publishedTime,
+      "article:modified_time": modifiedTime,
+      "article:author": BLOG_AUTHOR.name,
+      "article:section": post.category,
+      "article:tag": post.tags.join(","),
+    },
   };
 }
 
@@ -45,6 +88,38 @@ export default async function AutoBlogPost({
   const post = getPost(slug);
   if (!post || post.status !== "published") notFound();
 
+  const siteUrl = "https://evidiq.dev";
+  const postUrl = `${siteUrl}/blog/${slug}`;
+  const publishedTime = formatDateISO(post.publishedAt ?? post.createdAt);
+  const modifiedTime = formatDateISO(post.createdAt);
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.excerpt,
+    image: post.featuredImage ? `${siteUrl}${post.featuredImage}` : `${siteUrl}/og.png`,
+    datePublished: publishedTime,
+    dateModified: modifiedTime,
+    author: {
+      "@type": "Person",
+      name: BLOG_AUTHOR.name,
+      url: BLOG_AUTHOR.href,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "EVIDIQ",
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/evidiq-logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": postUrl,
+    },
+  };
+
   // Strip the leading "# {h1}" line (h1 is rendered separately above), then
   // pull the FAQ section out into structured data for the accordion below.
   const withoutH1 = post.content.replace(/^# .+\n/, "");
@@ -53,6 +128,10 @@ export default async function AutoBlogPost({
 
   return (
     <PageShell max="max-w-3xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link
         href="/blog"
         className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-700 hover:text-violet-800"

@@ -4,16 +4,82 @@ import { ArrowLeft } from "lucide-react";
 import PageShell from "@/components/PageShell";
 import { getPost, formatDate } from "@/lib/blog";
 
-const post = getPost("evidiq-live-on-0g")!;
+const slug = "evidiq-live-on-0g";
+const post = getPost(slug)!;
+const siteUrl = "https://evidiq.dev";
+const postUrl = `${siteUrl}/blog/${slug}`;
+const publishedTime = new Date(post.date).toISOString();
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  headline: post.title,
+  description: post.excerpt,
+  image: post.image ? `${siteUrl}${post.image}` : `${siteUrl}/og.png`,
+  datePublished: publishedTime,
+  dateModified: publishedTime,
+  author: {
+    "@type": "Person",
+    name: "EVIDIQ Team",
+    url: "https://evidiq.dev",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "EVIDIQ",
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/evidiq-logo.png`,
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": postUrl,
+  },
+};
 
 export const metadata: Metadata = {
   title: `${post.title} — EVIDIQ`,
   description: post.excerpt,
+  alternates: {
+    canonical: postUrl,
+  },
+  openGraph: {
+    title: post.title,
+    description: post.excerpt,
+    url: postUrl,
+    siteName: "EVIDIQ",
+    type: "article",
+    publishedTime,
+    modifiedTime: publishedTime,
+    authors: ["EVIDIQ Team"],
+    section: post.tag,
+    tags: ["EVIDIQ", "0G", "Trust Layer", "AI Agents"],
+    images: post.image
+      ? [{ url: `${siteUrl}${post.image}`, width: 1200, height: 630 }]
+      : [{ url: `${siteUrl}/og.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: post.title,
+    description: post.excerpt,
+    images: [`${siteUrl}${post.image}`],
+  },
+  other: {
+    "article:published_time": publishedTime,
+    "article:modified_time": publishedTime,
+    "article:author": "EVIDIQ Team",
+    "article:section": post.tag,
+    "article:tag": "trust layer,AI agents,0G,x402",
+  },
 };
 
 export default function Post() {
   return (
     <PageShell max="max-w-3xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Link href="/blog" className="inline-flex items-center gap-1.5 text-sm font-semibold text-violet-700 hover:text-violet-800">
         <ArrowLeft size={15} /> All posts
       </Link>
@@ -29,7 +95,6 @@ export default function Post() {
       </h1>
 
       <div className="mt-8 overflow-hidden rounded-2xl border border-[#e7dcc7]">
-        {/* eslint-disable-next-line @next/next/no-img-element -- served by app/blog-img/, outside next/image's static pipeline */}
         <img src="/blog-img/evidiq-live-on-0g/hero.jpg" alt={post.title} className="w-full" />
       </div>
 

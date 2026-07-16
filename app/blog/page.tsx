@@ -10,9 +10,48 @@ import { listPosts } from "@/lib/blog-engine/store";
 // rendered on request, not frozen at build time.
 export const dynamic = "force-dynamic";
 
+const siteUrl = "https://evidiq.dev";
+
+const blogJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  name: "EVIDIQ Blog",
+  description: "Updates and writing from EVIDIQ, the trust layer for the AI agent economy.",
+  url: `${siteUrl}/blog`,
+  publisher: {
+    "@type": "Organization",
+    name: "EVIDIQ",
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/evidiq-logo.png`,
+    },
+  },
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `${siteUrl}/blog`,
+  },
+};
+
 export const metadata: Metadata = {
   title: "Blog — EVIDIQ",
   description: "Updates and writing from EVIDIQ, the trust layer for the AI agent economy.",
+  alternates: {
+    canonical: `${siteUrl}/blog`,
+  },
+  openGraph: {
+    title: "EVIDIQ Blog",
+    description: "Updates and writing from EVIDIQ, the trust layer for the AI agent economy.",
+    url: `${siteUrl}/blog`,
+    siteName: "EVIDIQ",
+    type: "website",
+    images: [{ url: `${siteUrl}/og.png`, width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "EVIDIQ Blog",
+    description: "Updates and writing from EVIDIQ, the trust layer for the AI agent economy.",
+    images: [`${siteUrl}/og.png`],
+  },
 };
 
 type Card = {
@@ -52,9 +91,13 @@ export default function BlogPage() {
 
   return (
     <PageShell max="max-w-6xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogJsonLd) }}
+      />
       <p className="text-sm font-semibold uppercase tracking-[0.24em] text-violet-700">Blog</p>
       <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-[#1a130a] md:text-5xl">
-        Writing &amp; updates
+        Writing & updates
       </h1>
       <p className="mt-4 max-w-2xl text-lg text-[#201810]/70">
         Notes on building the trust layer for the AI agent economy.
