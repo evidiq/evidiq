@@ -47,6 +47,7 @@ const MIRRORS = {
       ["lib/og/compute.ts", "lib/og/compute.ts"],
       ["lib/og/config.ts", "lib/og/config.ts"],
       ["lib/og/storage.ts", "lib/og/storage.ts"],
+      ["lib/trust/erc8004.ts", "lib/trust/erc8004.ts"],
       ["lib/trust/probe.ts", "lib/trust/probe.ts"],
       ["lib/trust/score.ts", "lib/trust/score.ts"],
       ["lib/trust/types.ts", "lib/trust/types.ts"],
