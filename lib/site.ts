@@ -15,11 +15,10 @@ export const NAV: { label: string; href: string }[] = [
   { label: "Blog", href: "/blog" },
 ];
 
-// GitHub and X are live; update the Telegram handle once the account exists.
 export const SOCIALS = {
   github: "https://github.com/evidiq",
   x: "https://x.com/evidiqdev",
-  telegram: "https://t.me/evidiq",
+  telegram: "https://t.me/evidiqdev",
 };
 
 // The protocols, chains, and frameworks EVIDIQ builds on / interoperates with.
