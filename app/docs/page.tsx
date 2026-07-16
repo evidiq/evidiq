@@ -112,9 +112,9 @@ export default function DocsPage() {
         <span className="font-mono">verify_agent</span> is metered with x402 (scheme{" "}
         <span className="font-mono">exact</span>, EIP-3009, USDT0 on X Layer /{" "}
         <span className="font-mono">eip155:196</span>). An unpaid call returns an HTTP 402 with the
-        payment requirements; the agent signs a gasless authorization and retries with an{" "}
-        <span className="font-mono">X-PAYMENT</span> header. EVIDIQ verifies it, settles the transfer
-        on-chain, and returns the Trust Report plus the settlement tx. Pricing discovery lives at{" "}
+        payment requirements; the agent signs a gasless authorization and retries with a{" "}
+        <span className="font-mono">PAYMENT-SIGNATURE</span> header (the x402 v2 standard). EVIDIQ verifies it,
+        settles the transfer on-chain, and returns the Trust Report plus the settlement tx. Pricing discovery lives at{" "}
         <span className="font-mono text-violet-700">/x402</span>.
       </p>
       <Code>{`// 1. Unpaid call -> HTTP 402 with payment requirements
@@ -122,7 +122,7 @@ const { accepts: [req] } = await (await callVerifyAgent()).json();
 
 // 2. Sign EIP-3009 transferWithAuthorization (gasless: the seller submits + pays gas)
 const authorization = {
-  from: account.address, to: req.payTo, value: req.amount, // v2 (maxAmountRequired = v1 alias)
+  from: account.address, to: req.payTo, value: req.amount, // atomic price from the v2 challenge
   validAfter: "0", validBefore: String(now + 600), nonce: randomHex32(),
 };
 const signature = await account.signTypedData({
@@ -132,10 +132,10 @@ const signature = await account.signTypedData({
   primaryType: "TransferWithAuthorization", message: authorization,
 });
 
-// 3. Retry with X-PAYMENT -> EVIDIQ settles on X Layer, returns report + tx
+// 3. Retry with PAYMENT-SIGNATURE (x402 v2) -> EVIDIQ settles, returns report + tx
 const paid = await callVerifyAgent({
-  "X-PAYMENT": base64({ x402Version: 1, scheme: "exact",
-    network: req.network, payload: { signature, authorization } }),
+  "PAYMENT-SIGNATURE": base64({ x402Version: 2, accepted: req,
+    payload: { signature, authorization } }),
 });`}</Code>
       <p className="mt-4 text-[#201810]/70">
         Agents with the <span className="font-semibold">OKX Payment SDK / OnchainOS</span> emit this

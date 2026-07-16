@@ -2,7 +2,7 @@
 //
 // Simulates a paying agent end-to-end against the real EVIDIQ MCP endpoint:
 //   initialize → call verify_agent (no pay) → receive HTTP 402 → sign an
-//   EIP-3009 transferWithAuthorization → retry with X-PAYMENT → read the
+//   EIP-3009 transferWithAuthorization → retry with PAYMENT-SIGNATURE → read the
 //   on-chain settlement tx. This is the exact wire dance an OKX A2MCP buyer
 //   (e.g. an OpenClaw agent) performs — just scripted so we control it.
 //
@@ -106,7 +106,7 @@ if (first.status !== 402) {
 const reqs = (await first.json())?.accepts?.[0];
 if (!reqs) die("402 had no accepts[] — cannot read payment requirements.");
 console.log(
-  `   402 challenge: ${reqs.maxAmountRequired} atomic of ${reqs.asset} (${reqs.extra?.name} v${reqs.extra?.version}) on ${reqs.network} \u2192 ${reqs.payTo}`
+  `   402 challenge: ${reqs.amount} atomic of ${reqs.asset} (${reqs.extra?.name} v${reqs.extra?.version}) on ${reqs.network} \u2192 ${reqs.payTo}`
 );
 
 // [2] Sign EIP-3009 transferWithAuthorization.
@@ -115,7 +115,7 @@ const now = Math.floor(Date.now() / 1000);
 const authorization = {
   from: account.address,
   to: reqs.payTo,
-  value: reqs.maxAmountRequired,
+  value: reqs.amount,
   validAfter: "0",
   validBefore: String(now + 600),
   nonce: "0x" + randomBytes(32).toString("hex"),
@@ -148,18 +148,17 @@ const signature = await account.signTypedData({
   },
 });
 console.log(`   signed ${signature.slice(0, 20)}\u2026`);
-const xPayment = b64({
-  x402Version: 1,
-  scheme: "exact",
-  network: reqs.network,
+const paymentSignature = b64({
+  x402Version: 2,
+  accepted: reqs,
   payload: { signature, authorization },
 });
 
-// [3] Retry with X-PAYMENT → settlement.
-console.log("\n\u2192 [3] retrying with X-PAYMENT header \u2026");
+// [3] Retry with PAYMENT-SIGNATURE → settlement.
+console.log("\n\u2192 [3] retrying with PAYMENT-SIGNATURE header \u2026");
 const paid = await fetch(MCP_URL, {
   method: "POST",
-  headers: H({ "x-payment": xPayment }),
+  headers: H({ "payment-signature": paymentSignature }),
   body: callBody(),
 });
 console.log(`   status ${paid.status}`);

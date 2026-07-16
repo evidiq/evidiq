@@ -2,11 +2,10 @@ import type { X402Config } from "./config";
 import type { PaymentRequirements, PaymentResponseHeader } from "./types";
 
 /**
- * x402 challenge construction, standardized on v2:
+ * x402 v2 challenge construction:
  * - PAYMENT-REQUIRED response header: base64 JSON {x402Version: 2, resource, accepts}
  * - response body: {x402Version: 2, resource, accepts} (+ error on a 402)
- * Each accepts[] entry carries `amount` (v2) and, as an alias, `maxAmountRequired`
- * (v1) so both v2 and legacy v1 payers resolve the same price.
+ * Each accepts[] entry carries the price in `amount`. EVIDIQ speaks x402 v2 only.
  */
 
 function b64(value: unknown): string {
@@ -20,15 +19,12 @@ export function buildAccepts(
   cfg: X402Config,
   resourceUrl: string
 ): PaymentRequirements[] {
-  // x402 v2 uses `amount`; we also emit `maxAmountRequired` (= amount) so
-  // legacy v1 payers keep resolving the price. Same value in both fields.
-  const amount = cfg.price.toString();
+  // Pure x402 v2: the price lives in `amount` (no legacy `maxAmountRequired`).
   return [
     {
       scheme: "exact",
       network: cfg.network,
-      amount,
-      maxAmountRequired: amount,
+      amount: cfg.price.toString(),
       resource: resourceUrl,
       description: RESOURCE_DESCRIPTION,
       mimeType: "application/json",
@@ -59,7 +55,7 @@ export function build402Response(
     resource: resourceUrl,
     error:
       error ??
-      `Payment required. Sign the x402 challenge (PAYMENT-REQUIRED header / accepts[] below) and retry with a PAYMENT-SIGNATURE or X-PAYMENT header. Pricing discovery: ${resourceUrl.replace(/\/mcp$/, "")}/x402 — the skill and install tools (how_to_install, get_evidiq_skill) are free.`,
+      `Payment required. Sign the x402 v2 challenge (PAYMENT-REQUIRED header / accepts[] below) and retry with a PAYMENT-SIGNATURE header. Pricing discovery: ${resourceUrl.replace(/\/mcp$/, "")}/x402 — the skill and install tools (how_to_install, get_evidiq_skill) are free.`,
     accepts,
   };
   return new Response(JSON.stringify(body), {

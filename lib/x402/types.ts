@@ -1,11 +1,10 @@
 /**
- * x402 payment protocol types (v1 body / v2 header emission).
- *
- * Shapes follow the x402 spec as consumed by the OKX AI Marketplace:
- * - 402 challenge: `accepts[]` of PaymentRequirements (v1 = response body,
- *   v2 = base64 JSON in the PAYMENT-REQUIRED header).
- * - Payment proof: PaymentPayload (v1 = X-PAYMENT header, v2 = PAYMENT-SIGNATURE).
+ * x402 v2 payment protocol types, as consumed by the OKX AI Marketplace:
+ * - 402 challenge: `accepts[]` of PaymentRequirements — base64 JSON in the
+ *   PAYMENT-REQUIRED response header (also mirrored in the 402 body).
+ * - Payment proof: PaymentPayload — carried in the PAYMENT-SIGNATURE header.
  * - Scheme is always `exact` — EIP-3009 transferWithAuthorization.
+ * EVIDIQ speaks x402 v2 only (no v1, no X-PAYMENT).
  */
 
 export type Hex = `0x${string}`;
@@ -16,11 +15,6 @@ export type PaymentRequirements = {
   network: string;
   /** x402 v2 amount — atomic units, decimal string. "0" is a valid zero value. */
   amount: string;
-  /**
-   * x402 v1 alias of `amount`, kept so legacy payers that read
-   * `maxAmountRequired` still resolve the price. Always equals `amount`.
-   */
-  maxAmountRequired: string;
   /** Absolute URL of the paid resource. */
   resource: string;
   description: string;

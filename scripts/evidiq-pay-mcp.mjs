@@ -2,7 +2,7 @@
 //
 // Gives an agent (OpenClaw) a `verify_agent` tool that AUTO-PAYS EVIDIQ's
 // x402-gated verify_agent on X Layer: call -> 402 -> sign EIP-3009 -> retry
-// with X-PAYMENT -> return the Trust Report + the on-chain settlement tx.
+// with PAYMENT-SIGNATURE -> return the Trust Report + the on-chain settlement tx.
 //
 // This is the buyer wire-dance (scripts/x402-pay-test.mjs) wrapped as an MCP
 // tool so the agent can pay for a paid MCP service — the core OKX A2MCP flow.
@@ -80,7 +80,7 @@ async function payAndVerify(args) {
   const authorization = {
     from: account.address,
     to: reqs.payTo,
-    value: reqs.maxAmountRequired,
+    value: reqs.amount,
     validAfter: "0",
     validBefore: String(now + 600),
     nonce: "0x" + randomBytes(32).toString("hex"),
@@ -112,17 +112,16 @@ async function payAndVerify(args) {
       nonce: authorization.nonce,
     },
   });
-  const xPayment = b64({
-    x402Version: 1,
-    scheme: "exact",
-    network: reqs.network,
+  const paymentSignature = b64({
+    x402Version: 2,
+    accepted: reqs,
     payload: { signature, authorization },
   });
 
-  // Retry with X-PAYMENT → EVIDIQ verifies + settles on X Layer.
+  // Retry with PAYMENT-SIGNATURE → EVIDIQ verifies + settles on X Layer.
   const paid = await fetch(EVIDIQ_MCP, {
     method: "POST",
-    headers: H({ "x-payment": xPayment }),
+    headers: H({ "payment-signature": paymentSignature }),
     body: callBody(),
   });
   if (paid.status === 402) {
@@ -137,7 +136,7 @@ async function payAndVerify(args) {
   }
   return {
     paid: true,
-    amount: reqs.maxAmountRequired,
+    amount: reqs.amount,
     asset: reqs.asset,
     network: reqs.network,
     payTo: reqs.payTo,

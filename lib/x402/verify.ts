@@ -36,16 +36,10 @@ const proofSchema = z.object({
   }),
 });
 
-// v1 wire shape (X-PAYMENT): scheme/network at top level.
-const v1PayloadSchema = z.object({
-  x402Version: z.number(),
-  scheme: z.literal("exact"),
-  network: z.string(),
-  payload: proofSchema,
-});
-
-// v2 wire shape (PAYMENT-SIGNATURE, as emitted by OKX's onchainos signer):
-// the chosen accepts entry is echoed back under `accepted`.
+// x402 v2 wire shape — the ONLY shape EVIDIQ accepts. The signed proof arrives
+// in the standard `PAYMENT-SIGNATURE` header (as emitted by OKX OnchainOS): the
+// chosen accepts entry is echoed back under `accepted`, with the signed EIP-3009
+// authorization under `payload`. EVIDIQ is x402 v2 only — no v1, no X-PAYMENT.
 const v2PayloadSchema = z.object({
   x402Version: z.number(),
   accepted: z.looseObject({
@@ -56,28 +50,24 @@ const v2PayloadSchema = z.object({
 });
 
 /**
- * Read and decode the payment proof header — PAYMENT-SIGNATURE (v2) first,
- * then X-PAYMENT (v1). Accepts both wire shapes on either header and
- * normalizes to PaymentPayload. Returns null when absent or undecodable.
+ * Read and decode the payment proof from the standard x402 v2 `PAYMENT-SIGNATURE`
+ * header, normalizing to PaymentPayload. Returns null when the header is absent
+ * or does not carry a valid v2 payload. v1 / the legacy `X-PAYMENT` header are
+ * NOT supported — EVIDIQ speaks x402 v2 only.
  */
 export function decodePaymentHeader(req: Request): PaymentPayload | null {
-  const raw =
-    req.headers.get("payment-signature") ?? req.headers.get("x-payment");
+  const raw = req.headers.get("payment-signature");
   if (!raw) return null;
   try {
     const json = JSON.parse(Buffer.from(raw.trim(), "base64").toString("utf8"));
-    const v1 = v1PayloadSchema.safeParse(json);
-    if (v1.success) return v1.data as PaymentPayload;
     const v2 = v2PayloadSchema.safeParse(json);
-    if (v2.success) {
-      return {
-        x402Version: v2.data.x402Version,
-        scheme: v2.data.accepted.scheme,
-        network: v2.data.accepted.network,
-        payload: v2.data.payload,
-      } as PaymentPayload;
-    }
-    return null;
+    if (!v2.success) return null;
+    return {
+      x402Version: v2.data.x402Version,
+      scheme: v2.data.accepted.scheme,
+      network: v2.data.accepted.network,
+      payload: v2.data.payload,
+    } as PaymentPayload;
   } catch {
     return null;
   }
@@ -115,7 +105,7 @@ export async function verifyPaymentLocal(
   if (auth.to.toLowerCase() !== cfg.payTo.toLowerCase()) {
     return { valid: false, reason: `payTo mismatch: got ${auth.to}` };
   }
-  const required = reqs.amount ?? reqs.maxAmountRequired;
+  const required = reqs.amount;
   if (BigInt(auth.value) < BigInt(required)) {
     return {
       valid: false,

@@ -126,7 +126,7 @@ Connect the MCP server (\`${mcp}\`) to make these callable directly.
 |---|---|
 | Connect EVIDIQ to your agent | \`how_to_install\` MCP tool, or \`claude mcp add --transport http evidiq ${mcp}\` |
 | Read the latest EVIDIQ skill | \`get_evidiq_skill\` MCP tool, or \`curl -s ${skill}\` |
-| Pay per call from your agent | On the 402, sign the \`exact\` / EIP-3009 challenge and retry with an \`X-PAYMENT\` header (base64 of \`{x402Version, scheme, network, payload:{signature, authorization}}\`). Agents with the OKX Payment SDK / OnchainOS do this automatically; agents without native x402 (OpenClaw, Hermes, most MCP clients) wrap the flow as a small payment tool holding a funded wallet — see the x402 integration guide at \`${base}/docs\`. |
+| Pay per call from your agent | On the 402, sign the \`exact\` / EIP-3009 challenge and retry with a \`PAYMENT-SIGNATURE\` header (base64 of the signed x402 v2 payload — the header OnchainOS emits). Agents with the OKX Payment SDK / OnchainOS do this automatically; agents without native x402 (OpenClaw, Hermes, most MCP clients) wrap the flow as a small payment tool holding a funded wallet — see the x402 integration guide at \`${base}/docs\`. |
 
 ## Workflow
 

@@ -86,7 +86,7 @@ if (res.status === 402) {
   const authorization = {
     from: account.address,
     to: reqs.payTo,
-    value: reqs.maxAmountRequired,
+    value: reqs.amount,
     validAfter: "0",
     validBefore: String(now + 600),
     nonce: "0x" + randomBytes(32).toString("hex"),
@@ -118,18 +118,17 @@ if (res.status === 402) {
       nonce: authorization.nonce,
     },
   });
-  const xPayment = b64({
-    x402Version: 1,
-    scheme: "exact",
-    network: reqs.network,
+  const paymentSignature = b64({
+    x402Version: 2,
+    accepted: reqs,
     payload: { signature, authorization },
   });
   console.log(
-    `[x402] payment required — paid ${Number(reqs.maxAmountRequired) / 1e6} USDC on ${reqs.network}`
+    `[x402] payment required — paid ${Number(reqs.amount) / 1e6} USDT0 on ${reqs.network}`
   );
   res = await fetch(MCP_URL, {
     method: "POST",
-    headers: H({ "x-payment": xPayment }),
+    headers: H({ "payment-signature": paymentSignature }),
     body: callBody(),
   });
   const pr = res.headers.get("payment-response");

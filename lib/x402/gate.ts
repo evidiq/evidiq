@@ -17,8 +17,8 @@ import { decodePaymentHeader } from "./verify";
  *   tools/list, …) ALWAYS pass through — only PAID_TOOLS (or everything when
  *   X402_GATE_ALL=1) require payment. A content-negotiation 406 is NEVER
  *   turned into a 402 on the tool path, so free tools can never look paid.
- * - tools/call on a paid tool requires a valid PAYMENT-SIGNATURE / X-PAYMENT
- *   header; unpaid → HTTP 402. The server is stateless, so a 402 never breaks
+ * - tools/call on a paid tool requires a valid PAYMENT-SIGNATURE header (x402
+ *   v2); unpaid → HTTP 402. The server is stateless, so a 402 never breaks
  *   an MCP session.
  * - Accept-header leniency: the MCP Streamable-HTTP transport requires the
  *   caller to Accept BOTH application/json and text/event-stream, and 406s
