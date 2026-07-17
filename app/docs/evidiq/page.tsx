@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import PageShell from "@/components/PageShell";
+import OkxAiLiveBlock from "@/components/OkxAiLiveBlock";
 
 export const metadata: Metadata = {
   title: "EVIDIQ Trust Layer Docs — verify_agent, x402, 0G attestation",
@@ -43,6 +44,8 @@ export default function DocsPage() {
         and returns a signed Trust Report — anchored on 0G and analyzed in a TEE — before you
         transact. Connect it in one line.
       </p>
+
+      <OkxAiLiveBlock url="https://www.okx.ai/agents/5232" agentId={5232} name="EVIDIQ Trust Layer" />
 
       <H2 id="quickstart">Quickstart</H2>
       <p className="mt-3 text-[#201810]/70">

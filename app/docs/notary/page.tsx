@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
+import OkxAiLiveBlock from "@/components/OkxAiLiveBlock";
 
 export const metadata: Metadata = {
   title: "EVIDIQ Notary Docs — AI output receipts, x402, 0G anchoring",
@@ -48,6 +49,8 @@ export default function NotaryDocsPage() {
         signed, timestamped, 0G-anchored receipt that proves existence, integrity, and provenance —
         verifiable offline by anyone.
       </p>
+
+      <OkxAiLiveBlock url="https://www.okx.ai/agents/6278" agentId={6278} name="EVIDIQ Notary" />
 
       <H2 id="quickstart">Quickstart</H2>
       <p className="mt-3 text-[#201810]/70">
