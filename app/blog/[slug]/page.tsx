@@ -10,7 +10,7 @@ import { BLOG_AUTHOR } from "@/lib/blog-engine/author";
 import { extractFaq, extractToc, headingId, childrenToText } from "@/lib/blog-engine/parse";
 
 function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("id-ID", {
+  return new Date(iso).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
