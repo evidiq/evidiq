@@ -45,8 +45,8 @@ export const DOCS: DocCard[] = [
     description:
       "Submit a prompt + response + model id and receive a signed, timestamped, 0G-anchored receipt that anyone can verify offline. Two paid tools, four free.",
     endpoint: "https://mcp.evidiq.dev/notary/mcp",
-    badge: "Under review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "notarize_inference", paid: true },
       { name: "notarize_batch", paid: true },
