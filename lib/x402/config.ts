@@ -59,7 +59,7 @@ const envSchema = z.object({
   X402_PRICE: z
     .string()
     .regex(/^\d+$/, "X402_PRICE must be atomic units (decimal integer)")
-    .default("0"),
+    .default("50000"),
   X402_FACILITATOR_URL: z.url().default("https://web3.okx.com"),
   X402_RPC: z.url().default(XLAYER_RPC),
   X402_SETTLE_KEY: z
