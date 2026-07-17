@@ -199,12 +199,41 @@ export const SEED_TOPICS: TopicDef[] = [
       { heading: "Where the Replacement Is Still Catching Up", brief: "Honest gap: today's reputation component is anchor-and-signal based, not a full transaction history the way a human reference call would be — say plainly what's still improving." },
     ],
   },
+  {
+    id: "evidiq-notary-receipts",
+    keyword: "EVIDIQ Notary",
+    title: "EVIDIQ Notary: Cryptographic Receipts for Every AI Output",
+    angle:
+      "Introduce EVIDIQ Notary as the receipt layer for AI inferences — what it proves (existence, integrity, provenance), how it works (EIP-191 sign + 0G Storage anchor + Merkle proof), and why agents need provable outputs.",
+    category: "EVIDIQ Notary",
+    outline: [
+      { heading: "What Is an AI Output Receipt?", brief: "Featured-snippet definition: a cryptographic receipt proves a specific AI output (prompt + response + model) existed at a timestamp and was not altered. Name EVIDIQ Notary as the MCP server that issues them." },
+      { heading: "Why AI Outputs Need Notarization", brief: "The problem: agents generate millions of outputs, almost none are provable. Did this model say this? When? Was it altered? A receipt answers all three." },
+      { heading: "How EVIDIQ Notary Works End to End", brief: "Walk a single notarize_inference call: the MCP request, the x402 402 challenge, the EIP-191 signature, the 0G Storage upload, the returned receipt with storageRoot + storageTx. Use a concrete example." },
+      { heading: "Verifying a Receipt Offline", brief: "Anyone can verify without the notary: recompute keccak256(prompt ‖ response), recover the EIP-191 signer, check the Merkle proof. No API key, no trust, no contact with the notary needed." },
+    ],
+  },
+  {
+    id: "evidiq-notary-0g-anchor",
+    keyword: "AI output notarization",
+    title: "How EVIDIQ Notary Anchors AI Inferences on 0G Storage",
+    angle:
+      "Deep-dive on the 0G Storage anchoring layer — ZgFile upload, turbo indexer, merkle root, on-chain tx — and why tamper-evident storage matters for AI audit trails.",
+    category: "EVIDIQ Notary",
+    outline: [
+      { heading: "What 0G Storage Anchoring Means for AI Outputs", brief: "Featured-snippet: define 'AI output notarization' as anchoring a receipt on decentralized storage so it's tamper-evident and durable. Name 0G Storage Aristotle (chain 16661) as the layer EVIDIQ Notary uses." },
+      { heading: "The Upload Flow: ZgFile to 0G Mainnet", brief: "Technical walk: receipt JSON → ZgFile.fromFilePath → indexer.upload via @0gfoundation/0g-ts-sdk → storageRoot + storageTx returned. Mention turbo indexer fallback and 30s timeout budget." },
+      { heading: "Why Decentralized Storage Beats a Database for Audit Trails", brief: "A centralized log can be edited or deleted; a 0G Storage anchor is permanent and verifiable by anyone with the tx hash. Contrast against a traditional audit log." },
+      { heading: "Six Tools, Four Free — the Notary MCP Surface", brief: "List the six tools (notarize_inference, notarize_batch, verify_attestation, get_receipt, notary_stats, notary_pubkey), note which are free, and explain how x402 gates only the two paid tools." },
+    ],
+  },
 ];
 
 /** Internal links woven into every article. */
 export const EVIDIQ_INTERNAL_LINKS = [
   { url: "https://evidiq.dev", anchor: "EVIDIQ" },
   { url: "https://evidiq.dev/docs", anchor: "EVIDIQ docs" },
+  { url: "https://evidiq.dev/docs/notary", anchor: "EVIDIQ Notary docs" },
   { url: "https://evidiq.dev/skill.md", anchor: "the EVIDIQ skill" },
   { url: "https://evidiq.dev/playground", anchor: "try it in the EVIDIQ playground" },
 ];
