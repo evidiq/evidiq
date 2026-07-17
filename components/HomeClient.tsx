@@ -278,7 +278,27 @@ export type BlogCardData = {
   image: string | null;
 };
 
-export default function HomeClient({ blogCards }: { blogCards: BlogCardData[] }) {
+export type DocCardData = {
+  slug: string;
+  name: string;
+  tagline: string;
+  description: string;
+  badge: string;
+  badgeTone: "live" | "review" | "soon";
+  toolCount: number;
+  paidCount: number;
+  freeCount: number;
+  href: string;
+  image: string;
+};
+
+export default function HomeClient({
+  blogCards,
+  docCards,
+}: {
+  blogCards: BlogCardData[];
+  docCards: DocCardData[];
+}) {
   return (
     <>
       <SiteHeader />
@@ -487,6 +507,75 @@ export default function HomeClient({ blogCards }: { blogCards: BlogCardData[] })
       </section>
 
       <PartnersGrid />
+
+      {/* PRODUCT DOCS — 3-card strip (same card size as Dispatches) */}
+      {docCards.length > 0 && (
+        <section className="relative mx-auto max-w-6xl px-6 pb-16 pt-4 md:px-10">
+          <Reveal>
+            <div className="mb-8 flex items-end justify-between gap-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-700">
+                  Documentation
+                </p>
+                <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-[#1a130a] md:text-4xl">
+                  MCP products
+                </h2>
+              </div>
+              <Link
+                href="/docs"
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-[#201810]/20 px-4 py-2 text-sm font-semibold text-[#201810] transition-colors hover:bg-[#201810]/5"
+              >
+                All docs <ArrowRight size={15} />
+              </Link>
+            </div>
+          </Reveal>
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {docCards.slice(0, 3).map((doc, i) => {
+              const tone =
+                doc.badgeTone === "live"
+                  ? "bg-emerald-100 text-emerald-800 border-emerald-200"
+                  : doc.badgeTone === "review"
+                    ? "bg-amber-100 text-amber-800 border-amber-200"
+                    : "bg-slate-100 text-slate-700 border-slate-200";
+              return (
+                <Reveal key={doc.slug} delay={i * 0.05}>
+                  <Link
+                    href={doc.href}
+                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#e7dcc7] bg-[#fbf8f1] transition-colors hover:border-violet-300 hover:bg-violet-50/40"
+                  >
+                    <div className="relative h-36 overflow-hidden bg-[#efe6d2]">
+                      <img
+                        src={doc.image}
+                        alt={doc.name}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <span className={`absolute left-3 top-3 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold backdrop-blur-sm ${tone}`}>
+                        {doc.badge}
+                      </span>
+                    </div>
+                    <div className="flex flex-1 flex-col p-5">
+                      <h3 className="text-base font-bold leading-snug text-[#1a130a] transition-colors group-hover:text-violet-700">
+                        {doc.name}
+                      </h3>
+                      <p className="mt-1 text-xs font-medium text-violet-700">{doc.tagline}</p>
+                      <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-[#201810]/65">
+                        {doc.description}
+                      </p>
+                      <div className="mt-3 flex items-center gap-2 text-xs text-[#201810]/45">
+                        <span>{doc.toolCount} tools</span>
+                        <span>·</span>
+                        <span>{doc.paidCount} paid</span>
+                        <span>·</span>
+                        <span>{doc.freeCount} free</span>
+                      </div>
+                    </div>
+                  </Link>
+                </Reveal>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* DISPATCHES / BLOG — 6-card grid */}
       {blogCards.length > 0 && (

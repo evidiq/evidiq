@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
+import { DOCS } from "@/lib/docs";
 
 export const metadata: Metadata = {
   title: "EVIDIQ Documentation — Trust layer + Notary for AI agents",
@@ -14,58 +15,11 @@ export const metadata: Metadata = {
   },
 };
 
-type ProductDoc = {
-  slug: string;
-  name: string;
-  tagline: string;
-  description: string;
-  endpoint: string;
-  badge: string;
-  badgeColor: string;
-  tools: { name: string; paid: boolean }[];
-  href: string;
-  image: string;
+const BADGE_TONE: Record<string, string> = {
+  live: "bg-emerald-100 text-emerald-800 border-emerald-200",
+  review: "bg-amber-100 text-amber-800 border-amber-200",
+  soon: "bg-slate-100 text-slate-700 border-slate-200",
 };
-
-const DOCS: ProductDoc[] = [
-  {
-    slug: "evidiq",
-    name: "EVIDIQ Trust Layer",
-    tagline: "Verify capability · Score risk · Prove reputation",
-    description:
-      "Verify an agent's capability, score its risk, check its on-chain reputation, and return a signed Trust Report — anchored on 0G and analyzed in a TEE — before you transact.",
-    endpoint: "https://evidiq.dev/mcp",
-    badge: "Listed on OKX.AI",
-    badgeColor: "bg-emerald-100 text-emerald-800 border-emerald-200",
-    tools: [
-      { name: "how_to_install", paid: false },
-      { name: "get_evidiq_skill", paid: false },
-      { name: "verify_agent", paid: true },
-    ],
-    href: "/docs/evidiq",
-    image: "/docs/evidiq-hero.png",
-  },
-  {
-    slug: "notary",
-    name: "EVIDIQ Notary",
-    tagline: "Cryptographic receipts for AI outputs",
-    description:
-      "Submit a prompt + response + model id and receive a signed, timestamped, 0G-anchored receipt that anyone can verify offline. Two paid tools (single + batch), four free (verify, retrieve, stats, pubkey).",
-    endpoint: "https://mcp.evidiq.dev/notary/mcp",
-    badge: "Under review",
-    badgeColor: "bg-amber-100 text-amber-800 border-amber-200",
-    tools: [
-      { name: "notarize_inference", paid: true },
-      { name: "notarize_batch", paid: true },
-      { name: "verify_attestation", paid: false },
-      { name: "get_receipt", paid: false },
-      { name: "notary_stats", paid: false },
-      { name: "notary_pubkey", paid: false },
-    ],
-    href: "/docs/notary",
-    image: "/docs/notary-hero.png",
-  },
-];
 
 export default function DocsHubPage() {
   return (
@@ -97,7 +51,7 @@ export default function DocsHubPage() {
             <div className="p-6">
               <div className="flex items-center justify-between">
                 <h2 className="text-xl font-bold text-[#1a130a]">{doc.name}</h2>
-                <span className={`rounded-full border px-3 py-0.5 text-xs font-semibold ${doc.badgeColor}`}>
+                <span className={`rounded-full border px-3 py-0.5 text-xs font-semibold ${BADGE_TONE[doc.badgeTone] ?? BADGE_TONE.live}`}>
                   {doc.badge}
                 </span>
               </div>
