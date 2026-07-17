@@ -599,7 +599,7 @@ export default function HomeClient({
             </div>
           </Reveal>
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {blogCards.slice(0, 3).map((post, i) => (
+            {blogCards.slice(0, 6).map((post, i) => (
               <Reveal key={post.slug} delay={i * 0.05}>
                 <Link
                   href={`/blog/${post.slug}`}
