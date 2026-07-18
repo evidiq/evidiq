@@ -68,8 +68,8 @@ export const DOCS: DocCard[] = [
     description:
       "Drive a real browser from natural language — login, fill forms, download docs, extract data, run multi-step workflows. GLM-5.2 in 0G Compute TEE plans each action. 7 paid tools, 4 free.",
     endpoint: "https://mcp.evidiq.dev/operator/mcp",
-    badge: "Under review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "browser_task", paid: true },
       { name: "login_and_extract", paid: true },
