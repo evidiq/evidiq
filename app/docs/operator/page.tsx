@@ -7,11 +7,11 @@ import OkxAiLiveBlock from "@/components/OkxAiLiveBlock";
 export const metadata: Metadata = {
   title: "EVIDIQ Operator Docs — Computer Use Infrastructure for AI agents",
   description:
-    "Drive a real browser from natural language — login, fill forms, download docs, extract data, multi-step workflows. GLM-5.2 in 0G Compute TEE, x402 USDT0 pay-per-call.",
+    "Drive a real browser from natural language — login, fill forms, download docs, extract data, multi-step workflows. GPT-5.6-Terra via 0G Compute, x402 USDT0 pay-per-call.",
   alternates: { canonical: "https://evidiq.dev/docs/operator" },
   openGraph: {
     title: "EVIDIQ Operator Docs",
-    description: "Computer Use Infrastructure for Autonomous AI Agents — MCP, x402, 0G Compute TEE.",
+    description: "Computer Use Infrastructure for Autonomous AI Agents — MCP, x402, 0G Compute.",
     url: "https://evidiq.dev/docs/operator",
     images: [{ url: "/docs/operator-hero.png", width: 1024, height: 1024 }],
   },
@@ -47,7 +47,7 @@ export default function OperatorDocsPage() {
       <p className="mt-4 max-w-2xl text-lg text-[#201810]/70">
         Computer Use Infrastructure for Autonomous AI Agents. Drive a real browser from
         natural language — login, fill forms, download documents, extract data, run
-        multi-step workflows. GLM-5.2 in a 0G Compute TEE plans each action from screenshots.
+        multi-step workflows. GPT-5.6-Terra via 0G Compute plans each action from screenshots.
       </p>
 
       <OkxAiLiveBlock url="https://www.okx.ai/agents/6504" agentId={6504} name="EVIDIQ Operator" />
@@ -82,7 +82,7 @@ export default function OperatorDocsPage() {
 
       <H2 id="browser_task">browser_task</H2>
       <p className="mt-3 text-[#201810]/70">
-        Submit a natural-language task description. The LLM (GLM-5.2 in a 0G TEE) plans
+        Submit a natural-language task description. The LLM (GPT-5.6-Terra via 0G Compute) plans
         each action from screenshots and drives a real Chromium browser.
       </p>
       <Code>{`{
@@ -111,7 +111,7 @@ export default function OperatorDocsPage() {
       <ol className="mt-3 list-decimal space-y-1.5 pl-6 text-[#201810]/75">
         <li>Agent calls <span className="font-mono">browser_task</span> with a natural-language goal.</li>
         <li>Server spawns (or reuses) a dedicated Chromium browser sandbox.</li>
-        <li>GLM-5.2 (in a 0G Compute TEE) receives a screenshot + the task.</li>
+        <li>GPT-5.6-Terra (via 0G Compute) receives a screenshot + the task.</li>
         <li>LLM returns a single structured action: <span className="font-mono">click</span>, <span className="font-mono">type</span>, <span className="font-mono">scroll</span>, <span className="font-mono">navigate</span>, <span className="font-mono">extract</span>, <span className="font-mono">done</span>.</li>
         <li>Server executes the action on the sandbox (via Playwright).</li>
         <li>Repeat until <span className="font-mono">done</span> or max steps reached.</li>
