@@ -12,8 +12,9 @@
 
 <p align="center">
   <a href="https://evidiq.dev">evidiq.dev</a> &middot;
-  <a href="https://github.com/evidiq/evidiq-skill">Agent Skill</a> &middot;
-  <a href="https://github.com/evidiq/mcp">MCP Server</a>
+  <a href="https://evidiq.dev/skill.md">Agent Skill</a> &middot;
+  <a href="https://evidiq.dev/mcp">Core MCP</a> &middot;
+  <a href="#evidiq-mcp-suite">MCP Suite</a>
 </p>
 
 <p align="center">
@@ -60,12 +61,22 @@ claude mcp add --transport http evidiq https://evidiq.dev/mcp
 check itself — is **pay-per-call over [x402](https://evidiq.dev/x402)**:
 unauthenticated requests receive an HTTP 402 challenge; sign it and retry.
 
-## Products
+## EVIDIQ MCP Suite
 
-| Repository | What it is |
-|------------|-----------|
-| [**evidiq-skill**](https://github.com/evidiq/evidiq-skill) | The open EVIDIQ Agent Skill — the verify → score → reputation → attest workflow any skill-aware agent can install. |
-| [**mcp**](https://github.com/evidiq/mcp) | The remote MCP server and install endpoint that exposes the trust tools (live at `evidiq.dev/mcp`). |
+This repository is the public hub for the EVIDIQ product family. The Core MCP
+runs from this repository; Notary, Operator, and Sentinel are independently
+deployed specialist services. Their source remains in their own repositories,
+while this directory is the single place to discover every EVIDIQ MCP.
+
+| Service | Use it for | Remote MCP endpoint | Access |
+|---------|------------|---------------------|--------|
+| [**EVIDIQ Core**](https://evidiq.dev/docs/evidiq) | Verify an agent's capability, identity, risk, and reputation before value moves. | [`evidiq.dev/mcp`](https://evidiq.dev/mcp) | `verify_agent` — `0.05 USDT0`; `how_to_install` and `get_evidiq_skill` are free. |
+| [**EVIDIQ Notary**](https://github.com/evidiq/evidiq-notary-mcp)<br/>[Docs](https://evidiq.dev/docs/notary) | Create cryptographic, signed, 0G-anchored receipts for AI outputs. | [`mcp.evidiq.dev/notary/mcp`](https://mcp.evidiq.dev/notary/mcp) | 2 paid tools — `0.001` / `0.005 USDT0`; 4 verification tools are free. |
+| [**EVIDIQ Operator**](https://github.com/evidiq/evidiq-operator)<br/>[Docs](https://evidiq.dev/docs/operator) | Give autonomous agents isolated browser and computer-use execution. | [`mcp.evidiq.dev/operator/mcp`](https://mcp.evidiq.dev/operator/mcp) | 7 browser tools — `0.02 USDT0` each; 4 discovery tools are free. |
+| [**EVIDIQ Sentinel**](https://github.com/evidiq/evidiq-sentinel-mcp)<br/>[Docs](https://evidiq.dev/docs/sentinel) | Security-preflight MCP endpoints, manifests, Agent Skills, and bundles before connection or payment. | [`mcp.evidiq.dev/sentinel/mcp`](https://mcp.evidiq.dev/sentinel/mcp) | 4 scan tools — `0.02 USDT0` each; 4 preflight/verification tools are free. MCP is live; OKX.AI Agent #7584 is under review. |
+
+All paid tools use x402 v2 with USDT0 on X Layer. Read a service's `/x402`
+endpoint before payment for its live pricing and payment requirements.
 
 ## How it settles
 
@@ -123,8 +134,11 @@ Payment on one chain, identity and tamper-evident proof on 0G — the whole trus
 - Skill — https://evidiq.dev/skill.md
 - MCP endpoint — https://evidiq.dev/mcp
 - Pricing / x402 — https://evidiq.dev/x402
+- Notary MCP — https://mcp.evidiq.dev/notary/mcp
+- Operator MCP — https://mcp.evidiq.dev/operator/mcp
+- Sentinel MCP — https://mcp.evidiq.dev/sentinel/mcp
 
 ## License
 
-MIT © 2026 EVIDIQ — see [LICENSE](./LICENSE). The EVIDIQ Agent Skill is also
-published as an open specification — see [evidiq-skill](https://github.com/evidiq/evidiq-skill).
+MIT © 2026 EVIDIQ — see [LICENSE](./LICENSE). The open Agent Skill is available
+at [evidiq.dev/skill.md](https://evidiq.dev/skill.md).
