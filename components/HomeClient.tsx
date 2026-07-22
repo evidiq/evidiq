@@ -549,7 +549,7 @@ export default function HomeClient({
                     />
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-violet-50/10 to-violet-100/95 lg:block" />
                     <div className="absolute inset-0 bg-gradient-to-t from-violet-100/95 via-transparent to-transparent lg:hidden" />
-                    <span className="absolute left-5 top-5 rounded-full border border-emerald-300/70 bg-emerald-50/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-800 backdrop-blur-md">
+                    <span className="absolute left-5 top-5 rounded-full border border-emerald-950/20 bg-emerald-700 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-white shadow-lg shadow-emerald-950/25">
                       {doc.badge}
                     </span>
                   </div>
