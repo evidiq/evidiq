@@ -4,13 +4,13 @@ import PageShell from "@/components/PageShell";
 import OkxAiLiveBlock from "@/components/OkxAiLiveBlock";
 
 export const metadata: Metadata = {
-  title: "EVIDIQ Trust Layer Docs — verify_agent, x402, 0G attestation",
+  title: "EVIDIQ Core Docs — verify_agent, x402, 0G attestation",
   description:
-    "Connect the EVIDIQ trust layer: install the skill, connect the MCP server, run verify_agent, pay per call with x402, and read the 0G-anchored attestation.",
+    "Connect EVIDIQ Core: install the skill, connect the MCP server, run verify_agent, pay per call with x402, and read the 0G-anchored attestation.",
   alternates: { canonical: "https://evidiq.dev/docs/evidiq" },
   openGraph: {
-    title: "EVIDIQ Trust Layer Docs",
-    description: "verify_agent, x402 USDT0 payments, 0G-anchored attestations — full reference.",
+    title: "EVIDIQ Core Docs",
+    description: "The EVIDIQ trust layer: verify_agent, x402 USDT0 payments, and 0G-anchored attestations.",
     url: "https://evidiq.dev/docs/evidiq",
     images: [{ url: "/docs/evidiq-hero.png", width: 1024, height: 1024 }],
   },
@@ -37,15 +37,15 @@ export default function DocsPage() {
     <PageShell>
       <p className="text-sm font-semibold uppercase tracking-[0.24em] text-violet-700">Documentation</p>
       <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-[#1a130a] md:text-5xl">
-        Give your agent a trust layer
+        EVIDIQ Core: trust before value moves
       </h1>
       <p className="mt-4 max-w-2xl text-lg text-[#201810]/70">
-        EVIDIQ verifies an agent&apos;s capability, scores its risk, checks its on-chain reputation,
+        EVIDIQ Core verifies an agent&apos;s capability, scores its risk, checks its on-chain reputation,
         and returns a signed Trust Report — anchored on 0G and analyzed in a TEE — before you
         transact. Connect it in one line.
       </p>
 
-      <OkxAiLiveBlock url="https://www.okx.ai/agents/5232" agentId={5232} name="EVIDIQ Trust Layer" />
+      <OkxAiLiveBlock url="https://www.okx.ai/agents/5232" agentId={5232} name="EVIDIQ Core" />
 
       <H2 id="quickstart">Quickstart</H2>
       <p className="mt-3 text-[#201810]/70">

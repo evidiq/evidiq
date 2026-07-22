@@ -1,7 +1,7 @@
 import HomeClient, { type BlogCardData, type DocCardData } from "@/components/HomeClient";
 import { POSTS } from "@/lib/blog";
 import { listPosts } from "@/lib/blog-engine/store";
-import { latestDocs } from "@/lib/docs";
+import { homepageDocs } from "@/lib/docs";
 
 // Server component: reads generated posts off disk (content/blog/) and the
 // hand-written POSTS list, merges + sorts them, and hands the top ones to
@@ -35,7 +35,7 @@ export default function Home() {
   }));
   const blogCards = [...handWritten, ...generated].sort((a, b) => b.date.localeCompare(a.date));
 
-  const docCards: DocCardData[] = latestDocs(3).map((d) => ({
+  const docCards: DocCardData[] = homepageDocs().map((d) => ({
     slug: d.slug,
     name: d.name,
     tagline: d.tagline,

@@ -24,10 +24,10 @@ export type DocCard = {
 export const DOCS: DocCard[] = [
   {
     slug: "evidiq",
-    name: "EVIDIQ Trust Layer",
+    name: "EVIDIQ Core",
     tagline: "Verify capability · Score risk · Prove reputation",
     description:
-      "Verify an agent's capability, score its risk, check its on-chain reputation, and return a signed Trust Report — anchored on 0G and analyzed in a TEE — before you transact.",
+      "The trust layer for agent transactions: verify capability and identity, score interaction risk, and return a signed Trust Report backed by 0G evidence before value moves.",
     endpoint: "https://evidiq.dev/mcp",
     badge: "Listed on OKX.AI",
     badgeTone: "live",
@@ -112,7 +112,9 @@ export const DOCS: DocCard[] = [
   },
 ];
 
-/** Latest N docs for the landing-page strip (newest first = last-added first). */
-export function latestDocs(n = 3): DocCard[] {
-  return [...DOCS].reverse().slice(0, n);
+/** Homepage order: the Core trust layer first, followed by specialist services. */
+export function homepageDocs(): DocCard[] {
+  const core = DOCS.find((doc) => doc.slug === "evidiq");
+  const specialists = DOCS.filter((doc) => doc.slug !== "evidiq");
+  return core ? [core, ...specialists] : specialists;
 }

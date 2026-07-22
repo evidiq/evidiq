@@ -508,71 +508,127 @@ export default function HomeClient({
 
       <PartnersGrid />
 
-      {/* PRODUCT DOCS — 3-card strip (same card size as Dispatches) */}
+      {/* PRODUCT ECOSYSTEM — Core spotlight + specialist services */}
       {docCards.length > 0 && (
-        <section className="relative mx-auto max-w-6xl px-6 pb-16 pt-4 md:px-10">
+        <section id="products" className="relative mx-auto max-w-6xl px-6 pb-20 pt-4 md:px-10">
           <Reveal>
-            <div className="mb-8 flex items-end justify-between gap-4">
+            <div className="mb-9 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
               <div>
                 <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-700">
-                  Documentation
+                  EVIDIQ ecosystem
                 </p>
-                <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-[#1a130a] md:text-4xl">
-                  MCP products
+                <h2 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-tight text-[#1a130a] md:text-5xl">
+                  Core trust. Specialist infrastructure.
                 </h2>
+                <p className="mt-4 max-w-2xl text-[#201810]/65">
+                  Start with the EVIDIQ trust layer, then add cryptographic receipts, autonomous
+                  browser execution, and security preflight through purpose-built MCP services.
+                </p>
               </div>
               <Link
                 href="/docs"
-                className="inline-flex shrink-0 items-center gap-1.5 rounded-lg border border-[#201810]/20 px-4 py-2 text-sm font-semibold text-[#201810] transition-colors hover:bg-[#201810]/5"
+                className="inline-flex w-fit shrink-0 items-center gap-1.5 rounded-xl border border-[#201810]/20 bg-white/60 px-4 py-2.5 text-sm font-semibold text-[#201810] transition-all hover:border-violet-300 hover:text-violet-700"
               >
-                All docs <ArrowRight size={15} />
+                Explore all docs <ArrowRight size={15} />
               </Link>
             </div>
           </Reveal>
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {docCards.slice(0, 3).map((doc, i) => {
-              const tone =
-                doc.badgeTone === "live"
-                  ? "bg-emerald-100 text-emerald-800 border-emerald-200"
-                  : doc.badgeTone === "review"
-                    ? "bg-amber-100 text-amber-800 border-amber-200"
-                    : "bg-slate-100 text-slate-700 border-slate-200";
-              return (
-                <Reveal key={doc.slug} delay={i * 0.05}>
-                  <Link
-                    href={doc.href}
-                    className="group flex h-full flex-col overflow-hidden rounded-2xl border border-[#e7dcc7] bg-[#fbf8f1] transition-colors hover:border-violet-300 hover:bg-violet-50/40"
-                  >
-                    <div className="relative h-36 overflow-hidden bg-[#efe6d2]">
-                      <img
-                        src={doc.image}
-                        alt={doc.name}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <span className={`absolute left-3 top-3 rounded-full border px-2.5 py-0.5 text-[11px] font-semibold backdrop-blur-sm ${tone}`}>
-                        {doc.badge}
-                      </span>
+
+          <div className="overflow-hidden rounded-[2rem] border border-violet-300/30 bg-[#171021] shadow-[0_24px_80px_rgba(55,31,91,0.2)]">
+            {docCards.filter((doc) => doc.slug === "evidiq").map((doc) => (
+              <Reveal key={doc.slug}>
+                <Link
+                  href={doc.href}
+                  className="group relative grid overflow-hidden border-b border-white/10 lg:grid-cols-[1.05fr_1fr]"
+                >
+                  <div className="relative min-h-64 overflow-hidden lg:min-h-[360px]">
+                    <img
+                      src={doc.image}
+                      alt={doc.name}
+                      className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#171021]/10 to-[#171021] lg:block" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#171021] via-transparent to-transparent lg:hidden" />
+                    <span className="absolute left-5 top-5 rounded-full border border-emerald-300/30 bg-emerald-300/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-200 backdrop-blur-md">
+                      {doc.badge}
+                    </span>
+                  </div>
+                  <div className="relative flex flex-col justify-center p-7 text-white md:p-10 lg:-ml-10 lg:pl-16">
+                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-300">
+                      Core trust layer
+                    </p>
+                    <h3 className="mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">{doc.name}</h3>
+                    <p className="mt-2 text-sm font-semibold text-cyan-200">{doc.tagline}</p>
+                    <p className="mt-5 max-w-xl leading-relaxed text-white/65">{doc.description}</p>
+                    <div className="mt-6 flex flex-wrap gap-2 text-xs">
+                      <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5">{doc.toolCount} MCP tools</span>
+                      <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5">0G verified evidence</span>
+                      <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5">x402 settlement</span>
                     </div>
-                    <div className="flex flex-1 flex-col p-5">
-                      <h3 className="text-base font-bold leading-snug text-[#1a130a] transition-colors group-hover:text-violet-700">
-                        {doc.name}
-                      </h3>
-                      <p className="mt-1 text-xs font-medium text-violet-700">{doc.tagline}</p>
-                      <p className="mt-2 line-clamp-2 flex-1 text-sm leading-relaxed text-[#201810]/65">
-                        {doc.description}
-                      </p>
-                      <div className="mt-3 flex items-center gap-2 text-xs text-[#201810]/45">
-                        <span>{doc.toolCount} tools</span>
-                        <span>·</span>
-                        <span>{doc.paidCount} paid</span>
-                        <span>·</span>
-                        <span>{doc.freeCount} free</span>
-                      </div>
-                    </div>
-                  </Link>
-                </Reveal>
-              );
-            })}
+                    <span className="mt-7 inline-flex items-center gap-2 font-semibold text-violet-200 transition-colors group-hover:text-white">
+                      Explore EVIDIQ Core <ArrowRight size={17} />
+                    </span>
+                  </div>
+                </Link>
+              </Reveal>
+            ))}
+
+            <div className="p-5 md:p-8">
+              <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-300">Specialist services</p>
+                  <h3 className="mt-2 text-2xl font-bold text-white">Extend the trust stack where the work happens.</h3>
+                </div>
+                <p className="max-w-md text-sm leading-relaxed text-white/50">
+                  Independent MCP endpoints with a shared x402 payment rail and service-specific evidence guarantees.
+                </p>
+              </div>
+              <div className="grid gap-4 md:grid-cols-3">
+                {docCards.filter((doc) => doc.slug !== "evidiq").map((doc, i) => {
+                  const tone =
+                    doc.badgeTone === "live"
+                      ? "border-emerald-300/30 bg-emerald-300/10 text-emerald-200"
+                      : doc.badgeTone === "review"
+                        ? "border-amber-300/30 bg-amber-300/10 text-amber-200"
+                        : "border-white/15 bg-white/5 text-white/60";
+                  return (
+                    <Reveal key={doc.slug} delay={i * 0.05}>
+                      <Link
+                        href={doc.href}
+                        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] transition-all hover:-translate-y-1 hover:border-violet-300/50 hover:bg-white/[0.09]"
+                      >
+                        <div className="relative h-36 overflow-hidden bg-[#241832]">
+                          <img
+                            src={doc.image}
+                            alt={doc.name}
+                            className="h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:scale-105 group-hover:opacity-100"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-[#171021] via-transparent to-transparent" />
+                          <span className={`absolute left-3 top-3 rounded-full border px-2.5 py-0.5 text-[10px] font-semibold ${tone}`}>
+                            {doc.badge}
+                          </span>
+                        </div>
+                        <div className="flex flex-1 flex-col p-5">
+                          <h4 className="text-lg font-bold text-white transition-colors group-hover:text-violet-200">{doc.name}</h4>
+                          <p className="mt-1 text-xs font-medium text-cyan-200">{doc.tagline}</p>
+                          <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-white/55">{doc.description}</p>
+                          <div className="mt-5 flex items-center gap-2 text-xs text-white/55">
+                            <span>{doc.toolCount} tools</span>
+                            <span>·</span>
+                            <span>{doc.paidCount} paid</span>
+                            <span>·</span>
+                            <span>{doc.freeCount} free</span>
+                          </div>
+                          <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-violet-300 group-hover:text-white">
+                            View service <ArrowRight size={14} />
+                          </span>
+                        </div>
+                      </Link>
+                    </Reveal>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </section>
       )}

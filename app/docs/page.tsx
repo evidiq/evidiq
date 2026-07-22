@@ -1,94 +1,149 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
-import { DOCS } from "@/lib/docs";
+import { DOCS, type DocCard } from "@/lib/docs";
 
 export const metadata: Metadata = {
-  title: "EVIDIQ Documentation — Trust layer + Notary for AI agents",
+  title: "EVIDIQ Documentation — Core trust and specialist MCP services",
   description:
-    "Documentation hub for EVIDIQ products: the agent trust layer (verify_agent + x402 + 0G attestation) and the AI output notary (signed receipts, Merkle proofs, 0G anchoring).",
+    "Documentation for EVIDIQ Core, Notary, Operator, and Sentinel: verifiable MCP services for trust, receipts, execution, and security preflight.",
   alternates: { canonical: "https://evidiq.dev/docs" },
   openGraph: {
-    title: "EVIDIQ Documentation",
-    description: "Trust layer + Notary for AI agents — MCP servers, x402 payments, 0G Storage anchors.",
+    title: "Build with the EVIDIQ MCP ecosystem",
+    description: "One core trust layer with specialist MCP services for notarization, execution, and security.",
     url: "https://evidiq.dev/docs",
   },
 };
 
 const BADGE_TONE: Record<string, string> = {
-  live: "bg-emerald-100 text-emerald-800 border-emerald-200",
-  review: "bg-amber-100 text-amber-800 border-amber-200",
-  soon: "bg-slate-100 text-slate-700 border-slate-200",
+  live: "border-emerald-300/40 bg-emerald-300/15 text-emerald-200",
+  review: "border-amber-300/40 bg-amber-300/15 text-amber-200",
+  soon: "border-white/20 bg-white/10 text-white/60",
 };
 
-export default function DocsHubPage() {
+function ToolChips({ doc, dark = false }: { doc: DocCard; dark?: boolean }) {
   return (
-    <PageShell max="max-w-5xl">
+    <div className="mt-5 flex flex-wrap gap-1.5">
+      {doc.tools.map((tool) => (
+        <span
+          key={tool.name}
+          className={`rounded-md px-2 py-1 font-mono text-[11px] ${
+            dark
+              ? tool.paid
+                ? "bg-violet-400/15 text-violet-200"
+                : "bg-white/[0.07] text-white/50"
+              : tool.paid
+                ? "bg-violet-100 text-violet-800"
+                : "bg-[#f4efe4] text-[#201810]/60"
+          }`}
+        >
+          {tool.name} · {tool.paid ? "paid" : "free"}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function ServiceCard({ doc }: { doc: DocCard }) {
+  return (
+    <Link
+      href={doc.href}
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-violet-200 bg-white shadow-sm transition-all hover:-translate-y-1 hover:border-violet-300 hover:shadow-lg"
+    >
+      <div className="relative aspect-[16/9] overflow-hidden bg-[#171021]">
+        <img
+          src={doc.image}
+          alt={`${doc.name} cover`}
+          className="h-full w-full object-cover opacity-85 transition-all duration-500 group-hover:scale-105 group-hover:opacity-100"
+          loading="lazy"
+        />
+        <span className={`absolute left-4 top-4 rounded-full border px-3 py-1 text-[11px] font-semibold backdrop-blur-md ${BADGE_TONE[doc.badgeTone]}`}>
+          {doc.badge}
+        </span>
+      </div>
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="text-xl font-bold text-[#1a130a] transition-colors group-hover:text-violet-700">{doc.name}</h3>
+        <p className="mt-1 text-sm font-semibold text-violet-700">{doc.tagline}</p>
+        <p className="mt-4 flex-1 text-sm leading-relaxed text-[#201810]/65">{doc.description}</p>
+        <ToolChips doc={doc} />
+        <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-violet-700">
+          Explore service <span className="transition-transform group-hover:translate-x-1">→</span>
+        </span>
+      </div>
+    </Link>
+  );
+}
+
+export default function DocsHubPage() {
+  const core = DOCS.find((doc) => doc.slug === "evidiq");
+  const specialists = DOCS.filter((doc) => doc.slug !== "evidiq");
+
+  return (
+    <PageShell max="max-w-6xl">
       <p className="text-sm font-semibold uppercase tracking-[0.24em] text-violet-700">Documentation</p>
-      <h1 className="mt-3 text-4xl font-extrabold tracking-tight text-[#1a130a] md:text-5xl">
-        Build with EVIDIQ
+      <h1 className="mt-3 max-w-4xl text-4xl font-extrabold tracking-tight text-[#1a130a] md:text-6xl">
+        Build trust into every agent interaction.
       </h1>
-      <p className="mt-4 max-w-2xl text-lg text-[#201810]/70">
-        Open MCP services for the AI agent economy — trust verification, security preflight, browser
-        execution, and output notarization. Pay per call with x402 and keep evidence anchored on 0G Storage.
+      <p className="mt-5 max-w-3xl text-lg leading-relaxed text-[#201810]/65">
+        Begin with EVIDIQ Core for identity, capability, and risk verification. Add specialist MCP
+        services when your workflow needs cryptographic receipts, browser execution, or security preflight.
       </p>
 
-      <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-        {DOCS.map((doc) => (
-          <Link
-            key={doc.slug}
-            href={doc.href}
-            className="group overflow-hidden rounded-2xl border border-violet-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
-          >
-            <div className="aspect-[16/10] overflow-hidden bg-[#171021]">
-              <img
-                src={doc.image}
-                alt={`${doc.name} cover`}
-                className="h-full w-full object-cover opacity-90 transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
-            </div>
-            <div className="p-6">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-[#1a130a]">{doc.name}</h2>
-                <span className={`rounded-full border px-3 py-0.5 text-xs font-semibold ${BADGE_TONE[doc.badgeTone] ?? BADGE_TONE.live}`}>
-                  {doc.badge}
-                </span>
-              </div>
-              <p className="mt-1 text-sm font-medium text-violet-700">{doc.tagline}</p>
-              <p className="mt-3 text-sm text-[#201810]/70">{doc.description}</p>
-              <div className="mt-4 flex flex-wrap gap-1.5">
-                {doc.tools.map((t) => (
-                  <span
-                    key={t.name}
-                    className={`rounded-md px-2 py-0.5 font-mono text-xs ${
-                      t.paid
-                        ? "bg-violet-100 text-violet-800"
-                        : "bg-[#f4efe4] text-[#201810]/60"
-                    }`}
-                  >
-                    {t.name}
-                    {t.paid ? " · paid" : " · free"}
-                  </span>
-                ))}
-              </div>
-              <div className="mt-5 flex items-center gap-2 text-sm font-semibold text-violet-700">
-                Read the docs
-                <span className="transition-transform group-hover:translate-x-0.5">→</span>
-              </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+      {core && (
+        <Link
+          href={core.href}
+          className="group relative mt-12 grid overflow-hidden rounded-[2rem] border border-violet-300/30 bg-[#171021] shadow-[0_24px_80px_rgba(55,31,91,0.2)] lg:grid-cols-[1.05fr_1fr]"
+        >
+          <div className="relative min-h-72 overflow-hidden lg:min-h-[410px]">
+            <img
+              src={core.image}
+              alt={`${core.name} cover`}
+              className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.03]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#171021]/10 to-[#171021]" />
+            <span className={`absolute left-5 top-5 rounded-full border px-3 py-1 text-[11px] font-semibold backdrop-blur-md ${BADGE_TONE[core.badgeTone]}`}>
+              {core.badge}
+            </span>
+          </div>
+          <div className="relative flex flex-col justify-center p-8 text-white md:p-12 lg:-ml-12 lg:pl-20">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-violet-300">Core trust layer</p>
+            <h2 className="mt-3 text-4xl font-extrabold tracking-tight md:text-5xl">{core.name}</h2>
+            <p className="mt-2 font-semibold text-cyan-200">{core.tagline}</p>
+            <p className="mt-6 max-w-xl leading-relaxed text-white/65">{core.description}</p>
+            <ToolChips doc={core} dark />
+            <span className="mt-8 inline-flex items-center gap-2 font-semibold text-violet-200 group-hover:text-white">
+              Start with EVIDIQ Core <span className="transition-transform group-hover:translate-x-1">→</span>
+            </span>
+          </div>
+        </Link>
+      )}
 
-      <div className="mt-14 rounded-2xl border border-violet-200 bg-violet-50/60 p-6">
-        <h2 className="text-lg font-bold text-[#1a130a]">Every product shares a verifiable stack</h2>
-        <ul className="mt-3 space-y-1.5 text-sm text-[#201810]/75">
-          <li>· x402 v2 (EIP-3009 <span className="font-mono">exact</span>) — gasless for the payer, USDT0 on X Layer</li>
-          <li>· 0G Storage mainnet (Aristotle, chain 16661) — tamper-evident anchoring via <span className="font-mono">@0gfoundation/0g-ts-sdk</span></li>
-          <li>· EIP-191 signatures — recoverable offline from any receipt</li>
-          <li>· MCP Streamable HTTP — works with Claude Code, Cursor, OnchainOS, and any MCP client</li>
-        </ul>
+      <section className="mt-16">
+        <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-700">Specialist services</p>
+            <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-[#1a130a] md:text-4xl">
+              Extend the stack without changing your trust foundation.
+            </h2>
+          </div>
+          <p className="max-w-md text-sm leading-relaxed text-[#201810]/60">
+            Independent endpoints, consistent x402 payments, signed evidence, and one developer experience.
+          </p>
+        </div>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {specialists.map((doc) => <ServiceCard key={doc.slug} doc={doc} />)}
+        </div>
+      </section>
+
+      <div className="mt-16 overflow-hidden rounded-2xl border border-violet-200 bg-gradient-to-r from-violet-50 to-cyan-50/60 p-7 md:p-9">
+        <p className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-700">Shared foundation</p>
+        <h2 className="mt-2 text-2xl font-bold text-[#1a130a]">Shared primitives, service-specific guarantees.</h2>
+        <div className="mt-6 grid gap-4 text-sm text-[#201810]/70 sm:grid-cols-2 lg:grid-cols-4">
+          <div><span className="font-bold text-[#1a130a]">x402 v2</span><br />A consistent USDT0 payment rail on X Layer</div>
+          <div><span className="font-bold text-[#1a130a]">0G infrastructure</span><br />Compute or storage where each service requires it</div>
+          <div><span className="font-bold text-[#1a130a]">Explicit evidence</span><br />Receipts, reports, or execution records per service</div>
+          <div><span className="font-bold text-[#1a130a]">MCP native</span><br />Streamable HTTP for any compatible client</div>
+        </div>
       </div>
     </PageShell>
   );
