@@ -17,6 +17,47 @@ export interface SeoResult {
   canPublish: boolean;
 }
 
+/**
+ * Robust keyword-presence check. The LLM writes natural titles with hyphens
+ * ("Agent-to-Agent"), connector words ("in 2026"), and verb conjugation
+ * ("Verifies" vs keyword "verify") — a naive `includes()` substring match
+ * fails these even though the keyword is semantically present. This normalizes
+ * punctuation AND falls back to token-level stem-prefix matching so good
+ * natural-language titles score as passing.
+ *
+ * The auto-publish pipeline was silently stuck at "draft" for days because the
+ * old literal match flagged keyword-in-title as a fail on otherwise-excellent
+ * posts (humanity 100, all other SEO checks green). Don't regress this.
+ */
+function normalizeText(s: string): string {
+  return s.toLowerCase().replace(/[^a-z0-9\s]/g, " ").replace(/\s+/g, " ").trim();
+}
+function tokenize(s: string): string[] {
+  return normalizeText(s).split(" ").filter((t) => t.length > 3);
+}
+function tokenStemMatch(keywordToken: string, targetToken: string): boolean {
+  if (keywordToken === targetToken) return true;
+  // stem-prefix: "verify" ~ "verifies" (4-char prefix), "agent" ~ "agents"
+  const prefixLen = Math.min(4, Math.min(keywordToken.length, targetToken.length));
+  return (
+    targetToken.startsWith(keywordToken.slice(0, prefixLen)) ||
+    keywordToken.startsWith(targetToken.slice(0, prefixLen))
+  );
+}
+function keywordPresent(target: string, keyword: string): boolean {
+  const tNorm = normalizeText(target);
+  const kNorm = normalizeText(keyword);
+  if (!kNorm) return false;
+  // 1. exact phrase match after punctuation normalization (handles hyphens/quotes)
+  if (tNorm.includes(kNorm)) return true;
+  // 2. token-level: every significant keyword token (len>3) matches some target
+  //    token via stem-prefix (handles verb conjugation + reordering + connectors)
+  const kTokens = tokenize(keyword);
+  if (kTokens.length === 0) return tNorm.includes(kNorm);
+  const tTokens = tokenize(target);
+  return kTokens.every((kt) => tTokens.some((tt) => tokenStemMatch(kt, tt)));
+}
+
 export function scoreSeo(post: {
   title: string;
   excerpt: string;
@@ -32,9 +73,9 @@ export function scoreSeo(post: {
   const h3Count = (post.content.match(/^### /gm) || []).length;
   const internalLinks = (post.content.match(/\]\(https?:\/\/(?:www\.)?evidiq\.dev/g) || []).length;
   const hasFAQ = /## Frequently Asked/i.test(post.content);
-  const hasKeywordInTitle = post.title.toLowerCase().includes(post.keyword.toLowerCase());
-  const hasKeywordInH1 = post.h1.toLowerCase().includes(post.keyword.toLowerCase());
-  const hasKeywordInExcerpt = post.excerpt.toLowerCase().includes(post.keyword.toLowerCase());
+  const hasKeywordInTitle = keywordPresent(post.title, post.keyword);
+  const hasKeywordInH1 = keywordPresent(post.h1, post.keyword);
+  const hasKeywordInExcerpt = keywordPresent(post.excerpt, post.keyword);
   const keywordCount = (
     post.content.match(new RegExp(post.keyword.replace(/[-/\\^$*+?.()|[\]{}]/g, "\\$&"), "gi")) || []
   ).length;

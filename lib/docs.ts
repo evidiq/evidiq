@@ -87,6 +87,29 @@ export const DOCS: DocCard[] = [
     image: "/docs/operator-hero.png",
     okxUrl: "https://www.okx.ai/agents/6504",
   },
+  {
+    slug: "sentinel",
+    name: "EVIDIQ Sentinel",
+    tagline: "Security preflight for autonomous agents",
+    description:
+      "Scan MCP endpoints, manifests, Agent Skills, and bundles before you connect, authorize, or pay. Signed reports, deterministic verdicts, 0G Compute, and 0G Storage evidence.",
+    endpoint: "https://mcp.evidiq.dev/sentinel/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "scan_mcp_endpoint", paid: true },
+      { name: "scan_mcp_manifest", paid: true },
+      { name: "scan_agent_skill", paid: true },
+      { name: "scan_bundle", paid: true },
+      { name: "sentinel_capabilities", paid: false },
+      { name: "validate_scan_target", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "verify_scan_report", paid: false },
+    ],
+    href: "/docs/sentinel",
+    image: "/docs/sentinel-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/7584",
+  },
 ];
 
 /** Latest N docs for the landing-page strip (newest first = last-added first). */

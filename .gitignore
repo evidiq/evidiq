@@ -30,6 +30,7 @@ OKX-ASP-REGISTRATION.md
 # misc / OS / editor
 .DS_Store
 *.pem
+.kilo
 .vscode/*
 !.vscode/extensions.json
 .idea

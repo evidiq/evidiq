@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">EVIDIQ Sentinel security preflight</title>
+  <desc id="desc">A violet shield protects an MCP agent network while a security score is verified by a 0G evidence anchor.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#171021"/>
+      <stop offset="0.53" stop-color="#30204a"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="56%">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity=".55"/>
+      <stop offset=".48" stop-color="#6d28d9" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#171021" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="shield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c4b5fd"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" rx="40" fill="url(#bg)"/>
+  <rect width="1200" height="750" rx="40" fill="url(#glow)"/>
+  <g opacity=".22" stroke="#c4b5fd" fill="none">
+    <path d="M0 148H230L312 230H510"/><path d="M0 534H244L330 448H510"/>
+    <path d="M1200 148H970L888 230H690"/><path d="M1200 534H956L870 448H690"/>
+    <circle cx="230" cy="148" r="8" fill="#c4b5fd"/><circle cx="244" cy="534" r="8" fill="#c4b5fd"/>
+    <circle cx="970" cy="148" r="8" fill="#c4b5fd"/><circle cx="956" cy="534" r="8" fill="#c4b5fd"/>
+  </g>
+
+  <g transform="translate(600 365)">
+    <circle r="234" fill="#8b5cf6" opacity=".15" filter="url(#soft)"/>
+    <circle r="198" fill="none" stroke="#a78bfa" stroke-opacity=".32" stroke-width="2" stroke-dasharray="7 14"/>
+    <circle r="162" fill="#171021" stroke="#8b5cf6" stroke-width="2"/>
+    <path d="M0-123 106-76V6c0 77-47 130-106 158C-59 136-106 83-106 6v-82Z" fill="url(#shield)" stroke="#ddd6fe" stroke-width="3"/>
+    <path d="m-47 13 32 32 63-72" fill="none" stroke="#171021" stroke-linecap="round" stroke-linejoin="round" stroke-width="19"/>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, sans-serif" fill="#fff">
+    <text x="76" y="96" font-size="25" font-weight="700" letter-spacing="7" fill="#c4b5fd">EVIDIQ SENTINEL</text>
+    <text x="76" y="145" font-size="27" fill="#e9d5ff">Security preflight for autonomous agents</text>
+  </g>
+
+  <g transform="translate(72 610)">
+    <rect width="256" height="77" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#c4b5fd" stroke-opacity=".38"/>
+    <text x="22" y="30" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#c4b5fd">SENTINEL REPORT</text>
+    <text x="22" y="59" font-family="ui-monospace, monospace" font-size="23" font-weight="700" fill="#f5f3ff">PASS / REVIEW / BLOCK</text>
+  </g>
+
+  <g transform="translate(872 586)">
+    <rect width="256" height="101" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#5eead4" stroke-opacity=".45"/>
+    <text x="22" y="32" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#99f6e4">VERIFIABLE EVIDENCE</text>
+    <text x="22" y="62" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#f0fdfa">0G Compute · TEE</text>
+    <text x="22" y="86" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#f0fdfa">0G Storage · EIP-191</text>
+  </g>
+</svg>

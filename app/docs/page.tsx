@@ -29,8 +29,8 @@ export default function DocsHubPage() {
         Build with EVIDIQ
       </h1>
       <p className="mt-4 max-w-2xl text-lg text-[#201810]/70">
-        Open MCP servers for the AI agent economy — trust verification and output notarization,
-        pay-per-call over x402, anchored on 0G Storage. Pick a product below for the full reference.
+        Open MCP services for the AI agent economy — trust verification, security preflight, browser
+        execution, and output notarization. Pay per call with x402 and keep evidence anchored on 0G Storage.
       </p>
 
       <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -82,7 +82,7 @@ export default function DocsHubPage() {
       </div>
 
       <div className="mt-14 rounded-2xl border border-violet-200 bg-violet-50/60 p-6">
-        <h2 className="text-lg font-bold text-[#1a130a]">Both products share the same stack</h2>
+        <h2 className="text-lg font-bold text-[#1a130a]">Every product shares a verifiable stack</h2>
         <ul className="mt-3 space-y-1.5 text-sm text-[#201810]/75">
           <li>· x402 v2 (EIP-3009 <span className="font-mono">exact</span>) — gasless for the payer, USDT0 on X Layer</li>
           <li>· 0G Storage mainnet (Aristotle, chain 16661) — tamper-evident anchoring via <span className="font-mono">@0gfoundation/0g-ts-sdk</span></li>
