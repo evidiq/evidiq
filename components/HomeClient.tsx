@@ -534,12 +534,12 @@ export default function HomeClient({
             </div>
           </Reveal>
 
-          <div className="overflow-hidden rounded-[2rem] border border-violet-300/30 bg-[#171021] shadow-[0_24px_80px_rgba(55,31,91,0.2)]">
+          <div className="overflow-hidden rounded-[2rem] border border-violet-300/60 bg-gradient-to-br from-violet-100/80 via-white/55 to-fuchsia-100/60 shadow-[0_24px_80px_rgba(109,76,160,0.16)] backdrop-blur-sm">
             {docCards.filter((doc) => doc.slug === "evidiq").map((doc) => (
               <Reveal key={doc.slug}>
                 <Link
                   href={doc.href}
-                  className="group relative grid overflow-hidden border-b border-white/10 lg:grid-cols-[1.05fr_1fr]"
+                  className="group relative grid overflow-hidden border-b border-violet-200/80 lg:grid-cols-[1.05fr_1fr]"
                 >
                   <div className="relative min-h-64 overflow-hidden lg:min-h-[360px]">
                     <img
@@ -547,25 +547,25 @@ export default function HomeClient({
                       alt={doc.name}
                       className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.03]"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#171021]/10 to-[#171021] lg:block" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#171021] via-transparent to-transparent lg:hidden" />
-                    <span className="absolute left-5 top-5 rounded-full border border-emerald-300/30 bg-emerald-300/15 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-200 backdrop-blur-md">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-violet-50/10 to-violet-100/95 lg:block" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-violet-100/95 via-transparent to-transparent lg:hidden" />
+                    <span className="absolute left-5 top-5 rounded-full border border-emerald-300/70 bg-emerald-50/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-800 backdrop-blur-md">
                       {doc.badge}
                     </span>
                   </div>
-                  <div className="relative flex flex-col justify-center p-7 text-white md:p-10 lg:-ml-10 lg:pl-16">
-                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-300">
+                  <div className="relative flex flex-col justify-center p-7 text-[#1a130a] md:p-10 lg:-ml-10 lg:pl-16">
+                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-violet-700">
                       Core trust layer
                     </p>
                     <h3 className="mt-3 text-3xl font-extrabold tracking-tight md:text-4xl">{doc.name}</h3>
-                    <p className="mt-2 text-sm font-semibold text-cyan-200">{doc.tagline}</p>
-                    <p className="mt-5 max-w-xl leading-relaxed text-white/65">{doc.description}</p>
-                    <div className="mt-6 flex flex-wrap gap-2 text-xs">
-                      <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5">{doc.toolCount} MCP tools</span>
-                      <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5">0G verified evidence</span>
-                      <span className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5">x402 settlement</span>
+                    <p className="mt-2 text-sm font-semibold text-cyan-800">{doc.tagline}</p>
+                    <p className="mt-5 max-w-xl leading-relaxed text-[#201810]/65">{doc.description}</p>
+                    <div className="mt-6 flex flex-wrap gap-2 text-xs text-[#201810]/75">
+                      <span className="rounded-full border border-violet-200/90 bg-white/55 px-3 py-1.5">{doc.toolCount} MCP tools</span>
+                      <span className="rounded-full border border-violet-200/90 bg-white/55 px-3 py-1.5">0G verified evidence</span>
+                      <span className="rounded-full border border-violet-200/90 bg-white/55 px-3 py-1.5">x402 settlement</span>
                     </div>
-                    <span className="mt-7 inline-flex items-center gap-2 font-semibold text-violet-200 transition-colors group-hover:text-white">
+                    <span className="mt-7 inline-flex items-center gap-2 font-semibold text-violet-700 transition-colors group-hover:text-violet-950">
                       Explore EVIDIQ Core <ArrowRight size={17} />
                     </span>
                   </div>
@@ -576,10 +576,10 @@ export default function HomeClient({
             <div className="p-5 md:p-8">
               <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
                 <div>
-                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-300">Specialist services</p>
-                  <h3 className="mt-2 text-2xl font-bold text-white">Extend the trust stack where the work happens.</h3>
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-violet-700">Specialist services</p>
+                  <h3 className="mt-2 text-2xl font-bold text-[#1a130a]">Extend the trust stack where the work happens.</h3>
                 </div>
-                <p className="max-w-md text-sm leading-relaxed text-white/50">
+                <p className="max-w-md text-sm leading-relaxed text-[#201810]/60">
                   Independent MCP endpoints with a shared x402 payment rail and service-specific evidence guarantees.
                 </p>
               </div>
@@ -587,39 +587,39 @@ export default function HomeClient({
                 {docCards.filter((doc) => doc.slug !== "evidiq").map((doc, i) => {
                   const tone =
                     doc.badgeTone === "live"
-                      ? "border-emerald-300/30 bg-emerald-300/10 text-emerald-200"
+                      ? "border-emerald-300/70 bg-emerald-50/90 text-emerald-800"
                       : doc.badgeTone === "review"
-                        ? "border-amber-300/30 bg-amber-300/10 text-amber-200"
-                        : "border-white/15 bg-white/5 text-white/60";
+                        ? "border-amber-300/70 bg-amber-50/90 text-amber-800"
+                        : "border-violet-200/80 bg-white/75 text-[#201810]/60";
                   return (
                     <Reveal key={doc.slug} delay={i * 0.05}>
                       <Link
                         href={doc.href}
-                        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-white/[0.055] transition-all hover:-translate-y-1 hover:border-violet-300/50 hover:bg-white/[0.09]"
+                        className="group flex h-full flex-col overflow-hidden rounded-2xl border border-violet-200/80 bg-white/55 shadow-sm backdrop-blur-sm transition-all hover:-translate-y-1 hover:border-violet-300 hover:bg-white/80 hover:shadow-lg"
                       >
-                        <div className="relative h-36 overflow-hidden bg-[#241832]">
+                        <div className="relative h-36 overflow-hidden bg-violet-100">
                           <img
                             src={doc.image}
                             alt={doc.name}
-                            className="h-full w-full object-cover opacity-80 transition-all duration-500 group-hover:scale-105 group-hover:opacity-100"
+                            className="h-full w-full object-cover opacity-85 transition-all duration-500 group-hover:scale-105 group-hover:opacity-100"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-[#171021] via-transparent to-transparent" />
-                          <span className={`absolute left-3 top-3 rounded-full border px-2.5 py-0.5 text-[10px] font-semibold ${tone}`}>
+                          <div className="absolute inset-0 bg-gradient-to-t from-violet-50/85 via-transparent to-transparent" />
+                          <span className={`absolute left-3 top-3 rounded-full border px-2.5 py-0.5 text-[10px] font-semibold backdrop-blur-md ${tone}`}>
                             {doc.badge}
                           </span>
                         </div>
                         <div className="flex flex-1 flex-col p-5">
-                          <h4 className="text-lg font-bold text-white transition-colors group-hover:text-violet-200">{doc.name}</h4>
-                          <p className="mt-1 text-xs font-medium text-cyan-200">{doc.tagline}</p>
-                          <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-white/55">{doc.description}</p>
-                          <div className="mt-5 flex items-center gap-2 text-xs text-white/55">
+                          <h4 className="text-lg font-bold text-[#1a130a] transition-colors group-hover:text-violet-800">{doc.name}</h4>
+                          <p className="mt-1 text-xs font-medium text-cyan-800">{doc.tagline}</p>
+                          <p className="mt-3 line-clamp-3 flex-1 text-sm leading-relaxed text-[#201810]/60">{doc.description}</p>
+                          <div className="mt-5 flex items-center gap-2 text-xs text-[#201810]/55">
                             <span>{doc.toolCount} tools</span>
                             <span>·</span>
                             <span>{doc.paidCount} paid</span>
                             <span>·</span>
                             <span>{doc.freeCount} free</span>
                           </div>
-                          <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-violet-300 group-hover:text-white">
+                          <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-semibold text-violet-700 group-hover:text-violet-950">
                             View service <ArrowRight size={14} />
                           </span>
                         </div>

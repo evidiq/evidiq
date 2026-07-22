@@ -92,7 +92,7 @@ export default function DocsHubPage() {
       {core && (
         <Link
           href={core.href}
-          className="group relative mt-12 grid overflow-hidden rounded-[2rem] border border-violet-300/30 bg-[#171021] shadow-[0_24px_80px_rgba(55,31,91,0.2)] lg:grid-cols-[1.05fr_1fr]"
+          className="group relative mt-12 grid overflow-hidden rounded-[2rem] border border-violet-300/60 bg-gradient-to-br from-violet-100/80 via-white/55 to-fuchsia-100/60 shadow-[0_24px_80px_rgba(109,76,160,0.16)] backdrop-blur-sm lg:grid-cols-[1.05fr_1fr]"
         >
           <div className="relative min-h-72 overflow-hidden lg:min-h-[410px]">
             <img
@@ -100,18 +100,18 @@ export default function DocsHubPage() {
               alt={`${core.name} cover`}
               className="absolute inset-0 h-full w-full object-cover opacity-90 transition-transform duration-700 group-hover:scale-[1.03]"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#171021]/10 to-[#171021]" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-violet-50/10 to-violet-100/95" />
             <span className={`absolute left-5 top-5 rounded-full border px-3 py-1 text-[11px] font-semibold backdrop-blur-md ${BADGE_TONE[core.badgeTone]}`}>
               {core.badge}
             </span>
           </div>
-          <div className="relative flex flex-col justify-center p-8 text-white md:p-12 lg:-ml-12 lg:pl-20">
-            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-violet-300">Core trust layer</p>
+          <div className="relative flex flex-col justify-center p-8 text-[#1a130a] md:p-12 lg:-ml-12 lg:pl-20">
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-violet-700">Core trust layer</p>
             <h2 className="mt-3 text-4xl font-extrabold tracking-tight md:text-5xl">{core.name}</h2>
-            <p className="mt-2 font-semibold text-cyan-200">{core.tagline}</p>
-            <p className="mt-6 max-w-xl leading-relaxed text-white/65">{core.description}</p>
-            <ToolChips doc={core} dark />
-            <span className="mt-8 inline-flex items-center gap-2 font-semibold text-violet-200 group-hover:text-white">
+            <p className="mt-2 font-semibold text-cyan-800">{core.tagline}</p>
+            <p className="mt-6 max-w-xl leading-relaxed text-[#201810]/65">{core.description}</p>
+            <ToolChips doc={core} />
+            <span className="mt-8 inline-flex items-center gap-2 font-semibold text-violet-700 group-hover:text-violet-950">
               Start with EVIDIQ Core <span className="transition-transform group-hover:translate-x-1">→</span>
             </span>
           </div>
