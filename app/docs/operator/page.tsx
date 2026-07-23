@@ -59,6 +59,10 @@ export default function OperatorDocsPage() {
       <Code>claude mcp add --transport http evidiq-operator https://mcp.evidiq.dev/operator/mcp</Code>
       <p className="mt-4 text-[#201810]/70">Or probe the live pricing discovery endpoint:</p>
       <Code>curl -s https://mcp.evidiq.dev/operator/x402</Code>
+      <p className="mt-4 text-[#201810]/70">
+        Prefer a skill file? Fetch the agent-readable EVIDIQ Operator skill:
+      </p>
+      <Code>curl -s https://mcp.evidiq.dev/operator/skill.md</Code>
 
       <H2 id="mcp">MCP server</H2>
       <p className="mt-3 text-[#201810]/70">

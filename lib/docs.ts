@@ -66,7 +66,7 @@ export const DOCS: DocCard[] = [
     name: "EVIDIQ Operator",
     tagline: "Computer Use Infrastructure for AI Agents",
     description:
-      "Drive a real browser from natural language — login, fill forms, download docs, extract data, run multi-step workflows. GLM-5.2 in 0G Compute TEE plans each action. 7 paid tools, 4 free.",
+      "Drive a real browser from natural language — login, fill forms, download docs, extract data, run multi-step workflows. GPT-5.6-Terra via 0G Compute plans each action. 7 paid tools, 4 free.",
     endpoint: "https://mcp.evidiq.dev/operator/mcp",
     badge: "Listed on OKX.AI",
     badgeTone: "live",
