@@ -59,6 +59,10 @@ export default function NotaryDocsPage() {
       <Code>claude mcp add --transport http evidiq-notary https://mcp.evidiq.dev/notary/mcp</Code>
       <p className="mt-4 text-[#201810]/70">Or probe the live pricing discovery endpoint:</p>
       <Code>curl -s https://mcp.evidiq.dev/notary/x402</Code>
+      <p className="mt-4 text-[#201810]/70">
+        Prefer a skill file? Fetch the agent-readable EVIDIQ Notary skill:
+      </p>
+      <Code>curl -s https://mcp.evidiq.dev/notary/skill.md</Code>
 
       <H2 id="mcp">MCP server</H2>
       <p className="mt-3 text-[#201810]/70">
