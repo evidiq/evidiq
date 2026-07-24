@@ -110,6 +110,31 @@ export const DOCS: DocCard[] = [
     image: "/docs/sentinel-hero.svg",
     okxUrl: "https://www.okx.ai/agents/7584",
   },
+  {
+    slug: "atlas",
+    name: "EVIDIQ Atlas",
+    tagline: "Reproducible research for large datasets",
+    description:
+      "Profile, query, visualize, compare, and research CSV, JSON, NDJSON, or Parquet in a bounded in-memory DuckDB runtime. Canonical, optionally signed reports and content-addressed artifacts an agent can verify offline.",
+    endpoint: "https://mcp.evidiq.dev/atlas/mcp",
+    badge: "In review",
+    badgeTone: "review",
+    tools: [
+      { name: "profile_dataset", paid: true },
+      { name: "query_dataset", paid: true },
+      { name: "visualize_dataset", paid: true },
+      { name: "compare_datasets", paid: true },
+      { name: "research_dataset", paid: true },
+      { name: "atlas_capabilities", paid: false },
+      { name: "validate_dataset_source", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "verify_atlas_report", paid: false },
+      { name: "get_artifact", paid: false },
+    ],
+    href: "/docs/atlas",
+    image: "/docs/atlas-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/9023",
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */

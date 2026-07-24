@@ -6,11 +6,11 @@ import { DOCS, type DocCard } from "@/lib/docs";
 export const metadata: Metadata = {
   title: "EVIDIQ Documentation — Core trust and specialist MCP services",
   description:
-    "Documentation for EVIDIQ Core, Notary, Operator, and Sentinel: verifiable MCP services for trust, receipts, execution, and security preflight.",
+    "Documentation for EVIDIQ Core, Notary, Operator, Sentinel, and Atlas: verifiable MCP services for trust, receipts, execution, security, and dataset intelligence.",
   alternates: { canonical: "https://evidiq.dev/docs" },
   openGraph: {
     title: "Build with the EVIDIQ MCP ecosystem",
-    description: "One core trust layer with specialist MCP services for notarization, execution, and security.",
+    description: "One core trust layer with specialist MCP services for notarization, execution, security, and reproducible dataset research.",
     url: "https://evidiq.dev/docs",
   },
 };
@@ -86,7 +86,8 @@ export default function DocsHubPage() {
       </h1>
       <p className="mt-5 max-w-3xl text-lg leading-relaxed text-[#201810]/65">
         Begin with EVIDIQ Core for identity, capability, and risk verification. Add specialist MCP
-        services when your workflow needs cryptographic receipts, browser execution, or security preflight.
+        services when your workflow needs cryptographic receipts, browser execution, security preflight,
+        or reproducible dataset research.
       </p>
 
       {core && (
@@ -130,7 +131,7 @@ export default function DocsHubPage() {
             Independent endpoints, consistent x402 payments, signed evidence, and one developer experience.
           </p>
         </div>
-        <div className="mt-8 grid gap-6 md:grid-cols-3">
+        <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
           {specialists.map((doc) => <ServiceCard key={doc.slug} doc={doc} />)}
         </div>
       </section>

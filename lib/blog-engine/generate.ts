@@ -77,24 +77,28 @@ EVIDIQ PRODUCT TRUTH (MANDATORY — never contradict, never invent features):
 
 SEO FORMATTING (checked programmatically — every rule below is mandatory regardless of what the
 section headings happen to be called):
-- Bold (**keyword**) the primary keyword and 2-3 related terms naturally in the body — 4 to 8 times
-  total across the whole article. If the keyword is a long phrase, it is fine to bold a partial
-  natural repetition of it (e.g. just "trust score" for the keyword "AI agent trust score") — the
-  count that matters is how many times the core phrase appears, not exact full-phrase matches only.
-- Directly under the FIRST H2 (whatever it's called), write a concise 40-60 word Featured Snippet
-  paragraph — a direct, quotable answer to "what is [the keyword]" as if answering a Google search.
-- The article MUST contain AT LEAST ONE markdown bullet list (lines starting with "- ") somewhere —
-  pick whichever section naturally has a set of parallel items (outputs, checks, fields, tips,
-  failure modes) and present that as bullets, even if the section's heading doesn't say "list".
-- The article MUST also contain at least one numbered list (1. 2. 3.) for any sequential/step
-  content. A bullet list and a numbered list are BOTH required, in different sections.
-- Markdown only. No HTML tags.
+- PRIMARY KEYWORD: bold (**keyword**) the exact primary keyword phrase 4-8 times total across the
+  whole article. If the keyword is a long phrase, bold partial natural repetitions (e.g. just
+  "trust score" for "AI agent trust score") — the count is core phrase appearances, not exact
+  full-phrase matches only. Also bold 2-3 related terms naturally.
+- FEATURED SNIPPET: Directly under the FIRST H2 (whatever it's called), write a concise 40-60 word
+  Featured Snippet paragraph — a direct, quotable answer to "what is [the keyword]" as if answering
+  a Google search. This paragraph MUST be 40-60 words exactly, name EVIDIQ, and define the keyword.
+- BULLET LIST: The article MUST contain AT LEAST ONE markdown bullet list (lines starting with "- ")
+  somewhere — pick a section with parallel items (outputs, checks, fields, tips, failure modes) and
+  present as bullets, even if the heading doesn't say "list".
+- NUMBERED LIST: The article MUST also contain at least one numbered list (1. 2. 3.) for sequential/
+  step content. A bullet list AND a numbered list are BOTH required, in DIFFERENT sections.
+- INTERNAL LINKS: Must naturally weave at least 3 internal links into body text. Two MUST be:
+  [EVIDIQ Sentinel docs](https://evidiq.dev/docs/sentinel) and [EVIDIQ Operator docs](https://evidiq.dev/docs/operator).
+  The third can be evidiq.dev/skill.md or evidiq.dev/playground.
 - IMAGES: Provide exactly 2 image placeholders placed precisely:
   [IMAGE_PROMPT: detailed english description of a modern flat illustration, developer/tech aesthetic]
   First placeholder: immediately after the SECOND H2.
   Second placeholder: immediately after the FOURTH H2.
   Each prompt must describe a specific, detailed visual (not generic), and must NOT depict any
   specific brand logo other than a neutral abstract representation of blockchain/AI/trust concepts.
+- Markdown only. No HTML tags.
 
 OUTPUT: return ONLY valid JSON — no markdown fence, no preamble:
 {
@@ -114,7 +118,13 @@ function buildUserPrompt(opts: {
   outline: OutlineSection[];
   internalLinks: { url: string; anchor: string }[];
 }): string {
-  const links = opts.internalLinks.map((l) => `- [${l.anchor}](${l.url})`).join("\n");
+  // Add mandatory internal links to Sentinel and Operator docs
+  const mandatoryLinks = [
+    { url: "https://evidiq.dev/docs/sentinel", anchor: "EVIDIQ Sentinel docs" },
+    { url: "https://evidiq.dev/docs/operator", anchor: "EVIDIQ Operator docs" },
+  ];
+  const allLinks = [...mandatoryLinks, ...opts.internalLinks];
+  const links = allLinks.map((l) => `- [${l.anchor}](${l.url})`).join("\n");
   const year = new Date().getUTCFullYear();
 
   // The outline is THIS topic's own section skeleton (see topics.ts) — every
@@ -165,7 +175,8 @@ Right after the FIRST H2 above (not necessarily a heading called "What Is..."), 
 the heading itself is topic-specific, the first paragraph under it should still read as a clean,
 quotable definition naming EVIDIQ.
 
-INTERNAL LINKS (weave at least 3 naturally into body text):
+INTERNAL LINKS (weave ALL of these naturally into body text — at least 3 total, including the
+two mandatory Sentinel/Operator docs links):
 ${links}
 
 CTA: End with a 2-3 sentence casual CTA paragraph (no heading) pointing a developer to

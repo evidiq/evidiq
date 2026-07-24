@@ -1,0 +1,63 @@
+<svg width="1200" height="750" viewBox="0 0 1200 750" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">EVIDIQ Atlas dataset research</title>
+  <desc id="desc">Abstract data table, analytical chart, and verified report digest.</desc>
+  <defs>
+    <linearGradient id="bg" x1="70" y1="30" x2="1100" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#120B1E"/>
+      <stop offset="0.55" stop-color="#211036"/>
+      <stop offset="1" stop-color="#0B2631"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="280" y1="565" x2="920" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A78BFA"/>
+      <stop offset="0.55" stop-color="#67E8F9"/>
+      <stop offset="1" stop-color="#34D399"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" stroke="#C4B5FD" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="750" rx="32" fill="url(#bg)"/>
+  <rect width="1200" height="750" rx="32" fill="url(#grid)"/>
+  <circle cx="1010" cy="110" r="210" fill="#22D3EE" fill-opacity="0.08"/>
+  <circle cx="160" cy="680" r="250" fill="#8B5CF6" fill-opacity="0.09"/>
+
+  <g opacity="0.9">
+    <rect x="92" y="128" width="420" height="454" rx="22" fill="#150F22" stroke="#8B5CF6" stroke-opacity="0.5"/>
+    <rect x="92" y="128" width="420" height="62" rx="22" fill="#2B1745"/>
+    <circle cx="128" cy="159" r="7" fill="#A78BFA"/>
+    <circle cx="152" cy="159" r="7" fill="#67E8F9"/>
+    <circle cx="176" cy="159" r="7" fill="#34D399"/>
+    <path d="M122 224H480M122 282H480M122 340H480M122 398H480M122 456H480M122 514H480" stroke="#C4B5FD" stroke-opacity="0.18"/>
+    <path d="M226 204V552M360 204V552" stroke="#C4B5FD" stroke-opacity="0.14"/>
+    <g fill="#E9D5FF" fill-opacity="0.75">
+      <rect x="122" y="240" width="69" height="10" rx="5"/><rect x="250" y="240" width="74" height="10" rx="5"/><rect x="388" y="240" width="58" height="10" rx="5"/>
+      <rect x="122" y="298" width="52" height="10" rx="5"/><rect x="250" y="298" width="92" height="10" rx="5"/><rect x="388" y="298" width="68" height="10" rx="5"/>
+      <rect x="122" y="356" width="82" height="10" rx="5"/><rect x="250" y="356" width="57" height="10" rx="5"/><rect x="388" y="356" width="80" height="10" rx="5"/>
+      <rect x="122" y="414" width="60" height="10" rx="5"/><rect x="250" y="414" width="85" height="10" rx="5"/><rect x="388" y="414" width="48" height="10" rx="5"/>
+    </g>
+  </g>
+
+  <g>
+    <rect x="562" y="128" width="546" height="328" rx="22" fill="#101A27" stroke="#22D3EE" stroke-opacity="0.45"/>
+    <path d="M614 392H1060M614 330H1060M614 268H1060M614 206H1060" stroke="#67E8F9" stroke-opacity="0.12"/>
+    <path d="M614 392V182" stroke="#67E8F9" stroke-opacity="0.22"/>
+    <path d="M614 376L684 348L754 356L824 278L894 296L964 224L1034 196" stroke="url(#accent)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+    <g fill="#0F172A" stroke="#67E8F9" stroke-width="4">
+      <circle cx="614" cy="376" r="8"/><circle cx="684" cy="348" r="8"/><circle cx="754" cy="356" r="8"/><circle cx="824" cy="278" r="8"/><circle cx="894" cy="296" r="8"/><circle cx="964" cy="224" r="8"/><circle cx="1034" cy="196" r="8"/>
+    </g>
+  </g>
+
+  <g>
+    <rect x="562" y="486" width="546" height="96" rx="18" fill="#10251F" stroke="#34D399" stroke-opacity="0.45"/>
+    <path d="M602 534L619 551L651 514" stroke="#34D399" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="686" y="526" fill="#A7F3D0" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="17" font-weight="700">CANONICAL REPORT VERIFIED</text>
+    <text x="686" y="555" fill="#6EE7B7" fill-opacity="0.7" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14">sha256: 9f4a…d12c · artifact atlas_report_…</text>
+  </g>
+
+  <text x="92" y="662" fill="white" font-family="Inter, ui-sans-serif, system-ui" font-size="43" font-weight="800" letter-spacing="3">EVIDIQ ATLAS</text>
+  <text x="92" y="704" fill="#C4B5FD" font-family="Inter, ui-sans-serif, system-ui" font-size="19" font-weight="600" letter-spacing="2">DATASET RESEARCH · ANALYSIS · VISUALIZATION</text>
+</svg>
