@@ -255,7 +255,9 @@ export default function AtlasDocsPage() {
             {paidTools.map(([name, price]) => (
               <tr key={name} className="border-b border-violet-100"><td className="py-2 pr-4 font-mono">{name}</td><td className="py-2 pr-4">{String(Math.round(Number(price) * 1_000_000))}</td><td className="py-2 pr-4">{price}</td><td className="py-2">x402</td></tr>
             ))}
-            <tr><td className="py-2 pr-4 font-mono">5 preflight tools</td><td className="py-2 pr-4">0</td><td className="py-2 pr-4">Free</td><td className="py-2">Always ungated</td></tr>
+            {freeTools.map(([name]) => (
+              <tr key={name} className="border-b border-violet-100"><td className="py-2 pr-4 font-mono">{name}</td><td className="py-2 pr-4">0</td><td className="py-2 pr-4">Free</td><td className="py-2">Always ungated</td></tr>
+            ))}
           </tbody>
         </table>
       </div>
