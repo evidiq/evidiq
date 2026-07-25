@@ -64,7 +64,7 @@ unauthenticated requests receive an HTTP 402 challenge; sign it and retry.
 ## EVIDIQ MCP Suite
 
 This repository is the public hub for the EVIDIQ product family. The Core MCP
-runs from this repository; Notary, Operator, and Sentinel are independently
+runs from this repository; Notary, Operator, Sentinel, and Atlas are independently
 deployed specialist services. Their source remains in their own repositories,
 while this directory is the single place to discover every EVIDIQ MCP.
 
@@ -74,6 +74,7 @@ while this directory is the single place to discover every EVIDIQ MCP.
 | [**EVIDIQ Notary**](https://github.com/evidiq/evidiq-notary-mcp)<br/>[Docs](https://evidiq.dev/docs/notary) | Create cryptographic, signed, 0G-anchored receipts for AI outputs. | [`mcp.evidiq.dev/notary/mcp`](https://mcp.evidiq.dev/notary/mcp) | 2 paid tools — `0.001` / `0.005 USDT0`; 4 verification tools are free. |
 | [**EVIDIQ Operator**](https://github.com/evidiq/evidiq-operator)<br/>[Docs](https://evidiq.dev/docs/operator) | Give autonomous agents isolated browser and computer-use execution. | [`mcp.evidiq.dev/operator/mcp`](https://mcp.evidiq.dev/operator/mcp) | 7 browser tools — `0.02 USDT0` each; 4 discovery tools are free. |
 | [**EVIDIQ Sentinel**](https://github.com/evidiq/evidiq-sentinel-mcp)<br/>[Docs](https://evidiq.dev/docs/sentinel) | Security-preflight MCP endpoints, manifests, Agent Skills, and bundles before connection or payment. | [`mcp.evidiq.dev/sentinel/mcp`](https://mcp.evidiq.dev/sentinel/mcp) | 4 scan tools — `0.02 USDT0` each; 4 preflight/verification tools are free. MCP is live; OKX.AI Agent #7584 is under review. |
+| [**EVIDIQ Atlas**](https://github.com/evidiq/evidiq-atlas-mcp)<br/>[Docs](https://evidiq.dev/docs/atlas) | Profile, query, visualize, compare, and research bounded datasets with reproducible reports. | [`mcp.evidiq.dev/atlas/mcp`](https://mcp.evidiq.dev/atlas/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. MCP is live; OKX.AI Agent #9023 is under review. |
 
 All paid tools use x402 v2 with USDT0 on X Layer. Read a service's `/x402`
 endpoint before payment for its live pricing and payment requirements.
