@@ -227,6 +227,62 @@ export const SEED_TOPICS: TopicDef[] = [
       { heading: "Six Tools, Four Free — the Notary MCP Surface", brief: "List the six tools (notarize_inference, notarize_batch, verify_attestation, get_receipt, notary_stats, notary_pubkey), note which are free, and explain how x402 gates only the two paid tools." },
     ],
   },
+  {
+    id: "evidiq-sentinel-mcp-security-scanner",
+    keyword: "MCP security scanner",
+    title: "EVIDIQ Sentinel: An MCP Security Scanner for AI Agents",
+    angle:
+      "Introduce EVIDIQ Sentinel as the preflight security scanner for MCP servers, manifests, and Agent Skills — what it inspects, what it flags, and why an agent should scan before it connects or pays.",
+    category: "EVIDIQ Sentinel",
+    outline: [
+      { heading: "What Is an MCP Security Scanner?", brief: "Featured-snippet definition naming EVIDIQ Sentinel: a preflight scanner that inspects an MCP server / manifest / Agent Skill for prompt-injection, tool-poisoning, and phishing patterns before an agent connects. Distinguish it from a runtime firewall." },
+      { heading: "The Threats Hiding in a Tool Description", brief: "Concrete attack classes Sentinel looks for — injected instructions in tool descriptions, poisoned parameters, data-exfiltration prompts, look-alike/phishing endpoints. Show a short example of a malicious tool description and what the scan flags." },
+      { heading: "Four Scans, One Signed Report", brief: "Walk the four paid tools (scan_mcp_endpoint, scan_mcp_manifest, scan_agent_skill, scan_bundle) and the free helpers (sentinel_capabilities, validate_scan_target, estimate_cost, verify_scan_report). Each scan returns a 0-100 security score anchored on 0G and EIP-191 signed." },
+      { heading: "Scan Before You Connect, Not After", brief: "Argue the preflight model: an agent that connects first and asks questions later has already exposed its context. Pair Sentinel with EVIDIQ's verify_agent for identity — one checks WHO, the other checks WHAT you are about to wire in." },
+    ],
+  },
+  {
+    id: "evidiq-sentinel-tool-poisoning",
+    keyword: "MCP tool poisoning",
+    title: "MCP Tool Poisoning and How EVIDIQ Sentinel Catches It",
+    angle:
+      "Deep-dive on tool poisoning and prompt injection through MCP tool metadata — the specific failure mode — and how Sentinel's static scan detects it before an agent loads the tool.",
+    category: "EVIDIQ Sentinel",
+    outline: [
+      { heading: "What Is MCP Tool Poisoning?", brief: "Featured-snippet definition: hidden instructions embedded in an MCP tool's name/description/parameters that hijack the calling agent when the tool list is loaded into context. Name EVIDIQ Sentinel as the scanner that detects it." },
+      { heading: "Why the Tool List Is an Attack Surface", brief: "Explain that an agent ingests every tool description into its prompt — so a malicious server can inject instructions the agent treats as trusted. Concrete example of a poisoned description and the exfiltration it attempts." },
+      { heading: "What Sentinel's Static Scan Actually Inspects", brief: "The signals: instruction-like phrasing in descriptions, hidden unicode, mismatched parameter intent, embedded external URLs, phishing look-alikes. What raises the score vs. what trips a critical finding." },
+      { heading: "A Security Score You Can Re-Verify", brief: "Sentinel's report is deterministic, 0G-anchored, and EIP-191 signed — anyone can re-fetch the evidence and recover the signer. Tie back to how EVIDIQ never asks you to just trust the verdict." },
+    ],
+  },
+  {
+    id: "evidiq-atlas-dataset-analysis-mcp",
+    keyword: "AI dataset analysis MCP",
+    title: "EVIDIQ Atlas: Pay-Per-Call Dataset Analysis for AI Agents",
+    angle:
+      "Introduce EVIDIQ Atlas as the dataset-analysis MCP — profile, query, visualize, compare, and research datasets on demand, metered per call with x402 — for agents that need to reason over data they do not want to ingest wholesale.",
+    category: "EVIDIQ Atlas",
+    outline: [
+      { heading: "What Is a Dataset-Analysis MCP?", brief: "Featured-snippet definition naming EVIDIQ Atlas: an MCP server that lets an agent profile, query, visualize, compare, and research a dataset via tool calls instead of loading the whole file into its context window." },
+      { heading: "Five Tools, Priced by Depth", brief: "Walk the paid tools and their tiered x402 prices — profile_dataset, query_dataset, visualize_dataset, compare_datasets, research_dataset — plus the free helpers (atlas_capabilities, validate_dataset_source, estimate_cost, verify_atlas_report, get_artifact). Explain why deeper analysis costs more per call." },
+      { heading: "Why an Agent Should Not Swallow a 2GB CSV", brief: "The core argument: dumping a large dataset into context is slow, expensive, and lossy. Atlas returns structured findings and artifacts, so the agent reasons over summaries, not raw rows. Concrete profile_dataset example." },
+      { heading: "Verifiable Analysis, Not a Black Box", brief: "Every Atlas report is deterministic where possible, anchored on 0G Storage, and signed — an agent or its owner can re-verify what was computed. Tie to EVIDIQ's shared evidence model across Sentinel, Notary, and verify_agent." },
+    ],
+  },
+  {
+    id: "evidiq-atlas-query-without-context-dump",
+    keyword: "query datasets from AI agents",
+    title: "Query Datasets From AI Agents Without Blowing the Context Window",
+    angle:
+      "Practical piece for builders: how EVIDIQ Atlas lets an agent query and compare datasets through MCP tool calls, what each call returns, and why metered per-call access beats loading data into the prompt.",
+    category: "EVIDIQ Atlas",
+    outline: [
+      { heading: "Querying Datasets From an AI Agent, Defined", brief: "Featured-snippet: define what it means for an agent to query datasets via an MCP tool (structured request in, structured findings + artifacts out) and name EVIDIQ Atlas as a pay-per-call implementation." },
+      { heading: "The Context-Window Tax Nobody Budgets For", brief: "Concrete cost math: tokens + latency + accuracy loss when raw data is stuffed into the prompt vs. an Atlas query that returns only the answer. An opinionated take on why context-dumping is the wrong default." },
+      { heading: "One Question, One Priced Call", brief: "Walk a real query_dataset -> compare_datasets flow: the JSON-RPC calls, the x402 402 challenge, the artifact returned. Show how estimate_cost (free) lets the agent budget before it spends." },
+      { heading: "Where Atlas Fits Next to Sentinel and Notary", brief: "Position Atlas in the EVIDIQ MCP family — Sentinel scans what you connect to, Notary receipts what a model produced, Atlas analyzes the data in between — all metered via x402 on X Layer." },
+    ],
+  },
 ];
 
 /** Internal links woven into every article. */
