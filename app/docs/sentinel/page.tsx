@@ -77,12 +77,19 @@ export default function SentinelDocsPage() {
         bundle before your agent connects, authorizes, or pays.
       </p>
 
-      <div className="mt-8 flex flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50/70 p-5 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="text-xs font-bold uppercase tracking-wider text-amber-800">OKX.AI listing</p>
-          <p className="mt-1 text-sm text-[#201810]/75">
-            EVIDIQ Sentinel is registered as ASP agent <span className="font-mono font-semibold">#7584</span> and is under review.
-          </p>
+      <div className="mt-8 flex flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50/60 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-300 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+            </span>
+            Under review on OKX.AI
+          </span>
+          <div>
+            <p className="text-sm font-semibold text-[#1a130a]">EVIDIQ Sentinel</p>
+            <p className="font-mono text-xs text-[#201810]/60">Agent #7584 · MCP endpoint live</p>
+          </div>
         </div>
         <a
           href="https://www.okx.ai/agents/7584"
@@ -90,7 +97,7 @@ export default function SentinelDocsPage() {
           rel="noopener noreferrer"
           className="inline-flex shrink-0 items-center justify-center rounded-lg bg-amber-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-amber-700"
         >
-          View OKX.AI listing →
+          Open ↗
         </a>
       </div>
 
@@ -100,8 +107,12 @@ export default function SentinelDocsPage() {
         validation tool before requesting a paid scan.
       </p>
       <Code>claude mcp add --transport http evidiq-sentinel https://mcp.evidiq.dev/sentinel/mcp</Code>
-      <p className="mt-4 text-[#201810]/70">Discover pricing and payment requirements:</p>
-      <Code>curl -s https://mcp.evidiq.dev/sentinel/x402 | python3 -m json.tool</Code>
+      <p className="mt-4 text-[#201810]/70">Or probe the live pricing discovery endpoint:</p>
+      <Code>curl -s https://mcp.evidiq.dev/sentinel/x402</Code>
+      <p className="mt-4 text-[#201810]/70">
+        Prefer a Skill file? Fetch the agent-readable EVIDIQ Sentinel Skill:
+      </p>
+      <Code>curl -s https://mcp.evidiq.dev/sentinel/skill.md</Code>
 
       <H2 id="what-it-scans">What Sentinel scans</H2>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">

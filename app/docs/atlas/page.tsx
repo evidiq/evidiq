@@ -65,12 +65,28 @@ export default function AtlasDocsPage() {
         report that can be verified independently.
       </p>
 
-      <div className="mt-8 rounded-2xl border border-violet-200 bg-violet-50/70 p-5">
-        <p className="text-xs font-bold uppercase tracking-wider text-violet-800">Launch status</p>
-        <p className="mt-1 text-sm text-[#201810]/75">
-          The Atlas MCP server is live at <span className="font-mono">https://mcp.evidiq.dev/atlas</span>.
-          The OKX.AI marketplace listing (Agent #9023) is under review.
-        </p>
+      <div className="mt-8 flex flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50/60 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex items-center gap-3">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-300 opacity-75" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
+            </span>
+            Under review on OKX.AI
+          </span>
+          <div>
+            <p className="text-sm font-semibold text-[#1a130a]">EVIDIQ Atlas</p>
+            <p className="font-mono text-xs text-[#201810]/60">Agent #9023 · MCP endpoint live</p>
+          </div>
+        </div>
+        <a
+          href="https://www.okx.ai/agents/9023"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex shrink-0 items-center justify-center rounded-lg bg-amber-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-amber-700"
+        >
+          Open ↗
+        </a>
       </div>
 
       <H2 id="quickstart">Quickstart</H2>
@@ -79,8 +95,12 @@ export default function AtlasDocsPage() {
         before making a paid call.
       </p>
       <Code>claude mcp add --transport http evidiq-atlas https://mcp.evidiq.dev/atlas/mcp</Code>
+      <p className="mt-4 text-[#201810]/70">Or probe the live pricing discovery endpoint:</p>
+      <Code>curl -s https://mcp.evidiq.dev/atlas/x402</Code>
+      <p className="mt-4 text-[#201810]/70">
+        Prefer a Skill file? Fetch the agent-readable EVIDIQ Atlas Skill:
+      </p>
       <Code>curl -s https://mcp.evidiq.dev/atlas/skill.md</Code>
-      <Code>curl -s https://mcp.evidiq.dev/atlas/x402 | python3 -m json.tool</Code>
 
       <H2 id="use-cases">What Atlas is for</H2>
       <div className="mt-4 grid gap-4 sm:grid-cols-2">

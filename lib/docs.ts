@@ -117,7 +117,7 @@ export const DOCS: DocCard[] = [
     description:
       "Profile, query, visualize, compare, and research CSV, JSON, NDJSON, or Parquet in a bounded in-memory DuckDB runtime. Canonical, optionally signed reports and content-addressed artifacts an agent can verify offline.",
     endpoint: "https://mcp.evidiq.dev/atlas/mcp",
-    badge: "In review",
+    badge: "Under OKX.AI review",
     badgeTone: "review",
     tools: [
       { name: "profile_dataset", paid: true },

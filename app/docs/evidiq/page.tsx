@@ -52,7 +52,9 @@ export default function DocsPage() {
         Connect the EVIDIQ MCP server to any MCP-capable agent (Claude Code, Cursor, custom):
       </p>
       <Code>claude mcp add --transport http evidiq https://evidiq.dev/mcp</Code>
-      <p className="mt-4 text-[#201810]/70">Or drop the open skill straight into your agent:</p>
+      <p className="mt-4 text-[#201810]/70">Or probe the live pricing discovery endpoint:</p>
+      <Code>curl -s https://evidiq.dev/x402</Code>
+      <p className="mt-4 text-[#201810]/70">Prefer a Skill file? Fetch the agent-readable EVIDIQ Skill:</p>
       <Code>curl -s https://evidiq.dev/skill.md</Code>
 
       <H2 id="mcp">MCP server</H2>
