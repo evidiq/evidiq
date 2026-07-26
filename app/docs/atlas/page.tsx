@@ -288,6 +288,39 @@ export default function AtlasDocsPage() {
         hash; retry the same authorization so confirmation can be checked without broadcasting or paying again.
         Ambiguous facilitator settlement returns a service error instead of a new 402 challenge.
       </p>
+      <p className="mt-4 text-[#201810]/70">
+        Verification and settlement run through the{" "}
+        <a
+          href="https://web3.okx.com/onchainos/dev-docs/payments/service-seller-sdk"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-violet-700 hover:underline"
+        >
+          official OKX Onchain OS Payment SDK
+        </a>{" "}
+        (<span className="font-mono">@okxweb3/x402-core</span> and{" "}
+        <span className="font-mono">@okxweb3/x402-evm</span>). The OKX facilitator verifies each
+        authorization and settles it on X Layer before an analysis begins. Each immutable per-tool
+        price reaches the SDK as an explicit USDT0 atomic amount, so neither the fee nor its token can
+        be substituted by currency conversion.
+      </p>
+
+      <div className="mt-6 overflow-hidden rounded-2xl border border-emerald-200 bg-emerald-50/50 p-6">
+        <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Settled on X Layer</p>
+        <p className="mt-2 text-sm text-[#201810]/75">
+          A live <span className="font-mono">profile_dataset</span> call paid{" "}
+          <span className="font-semibold text-[#1a130a]">0.005 USDT0</span> (5000 atomic), settled through
+          the OKX facilitator, and returned a canonical dataset profile.
+        </p>
+        <a
+          href="https://www.oklink.com/xlayer/tx/0x3ea2fa7947eabcfb6527702700b57d6c760cffe6bc356b048528a8468115da6c"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block break-all font-mono text-xs text-emerald-800 hover:underline"
+        >
+          0x3ea2fa7947eabcfb6527702700b57d6c760cffe6bc356b048528a8468115da6c
+        </a>
+      </div>
 
       <H2 id="licensing">Licensing</H2>
       <p className="mt-3 text-[#201810]/70">

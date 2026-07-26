@@ -197,6 +197,40 @@ export default function SentinelDocsPage() {
         the required authorization and retries with <span className="font-mono">PAYMENT-SIGNATURE</span>.
         Free tools never require a payment header.
       </p>
+      <p className="mt-4 text-[#201810]/70">
+        Verification and settlement run through the{" "}
+        <a
+          href="https://web3.okx.com/onchainos/dev-docs/payments/service-seller-sdk"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-violet-700 hover:underline"
+        >
+          official OKX Onchain OS Payment SDK
+        </a>{" "}
+        (<span className="font-mono">@okxweb3/x402-core</span> and{" "}
+        <span className="font-mono">@okxweb3/x402-evm</span>). The OKX facilitator verifies each
+        authorization and settles it on X Layer before any paid scan starts. Prices are sent as
+        explicit USDT0 atomic amounts, so the quoted fee token always matches the token registered
+        for the OKX listing.
+      </p>
+
+      <div className="mt-6 overflow-hidden rounded-2xl border border-emerald-200 bg-emerald-50/50 p-6">
+        <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Settled on X Layer</p>
+        <p className="mt-2 text-sm text-[#201810]/75">
+          A live <span className="font-mono">scan_agent_skill</span> call paid{" "}
+          <span className="font-semibold text-[#1a130a]">0.02 USDT0</span> (20000 atomic), settled through
+          the OKX facilitator, and returned a signed report with verdict{" "}
+          <span className="font-mono">PASS</span> and security score 97.
+        </p>
+        <a
+          href="https://www.oklink.com/xlayer/tx/0x0839c4f2f2dd798e278f3517a88bf2dc7af02150a1c1529b08797db972afb01b"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block break-all font-mono text-xs text-emerald-800 hover:underline"
+        >
+          0x0839c4f2f2dd798e278f3517a88bf2dc7af02150a1c1529b08797db972afb01b
+        </a>
+      </div>
 
       <div className="mt-14 rounded-2xl border border-violet-200 bg-violet-50/60 p-6">
         <p className="text-sm text-[#201810]/75">
