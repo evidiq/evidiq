@@ -65,25 +65,25 @@ export default function VaultDocsPage() {
         and audit continuity across namespaces.
       </p>
 
-      <div className="mt-8 flex flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50/60 p-5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-8 flex flex-col gap-3 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-300 opacity-75" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
             </span>
-            Under review on OKX.AI
+            Endpoint live
           </span>
           <div>
             <p className="text-sm font-semibold text-[#1a130a]">EVIDIQ Vault</p>
-            <p className="font-mono text-xs text-[#201810]/60">MCP endpoint live</p>
+            <p className="font-mono text-xs text-[#201810]/60">Paid calls settled on X Layer · no OKX.AI listing yet</p>
           </div>
         </div>
         <a
           href="https://mcp.evidiq.dev/vault/x402"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex shrink-0 items-center justify-center rounded-lg bg-amber-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-amber-700"
+          className="inline-flex shrink-0 items-center justify-center rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-emerald-700"
         >
           Inspect Endpoint ↗
         </a>
@@ -141,6 +141,74 @@ export default function VaultDocsPage() {
         ))}
       </ul>
 
+      <H2 id="limits">Engine limits</H2>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        {[
+          ["maxPayloadBytes", "65536"],
+          ["maxTagsPerRecord", "16"],
+          ["maxQueryLimit", "500"],
+          ["namespacePattern", "^[a-z0-9][a-z0-9._/-]{2,63}$"],
+        ].map(([name, value]) => (
+          <div key={name} className="rounded-lg border border-slate-200 bg-slate-50/50 p-3">
+            <span className="font-mono text-xs font-bold text-sky-800">{name}</span>
+            <p className="mt-0.5 break-all font-mono text-xs text-[#201810]/70">{value}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-4 text-[#201810]/70">
+        Chain format <span className="font-mono">v1</span>: SHA-256 <span className="font-mono">prevHash</span>{" "}
+        linkage, with an all-zero <span className="font-mono">prevHash</span> at genesis.
+      </p>
+
+      <H2 id="workflow">Recommended workflow</H2>
+      <p className="mt-3 text-[#201810]/70">
+        Settlement happens <span className="font-semibold text-[#1a130a]">before</span> a paid tool runs, so a
+        malformed argument is still a paid call. Preflight for free first.
+      </p>
+      <ol className="mt-3 list-decimal space-y-2 pl-6 text-[#201810]/75">
+        <li>Call <span className="font-mono">vault_capabilities</span> for current limits, secret-scanning rules, and prices.</li>
+        <li>
+          Call <span className="font-mono">validate_record</span> to check the record schema and secret scan without
+          appending or paying. <span className="font-mono">contentDigest</span> must be bare 64-character SHA-256 hex —
+          a <span className="font-mono">0x</span> prefix is rejected.
+        </li>
+        <li>Call <span className="font-mono">estimate_cost</span> for the intended operation.</li>
+        <li>Submit one paid call per request. Vault enforces strict x402 payment authorization.</li>
+        <li>Re-read and verify afterwards for free with <span className="font-mono">get_receipt</span> and <span className="font-mono">verify_chain</span>.</li>
+      </ol>
+
+      <H2 id="records">Records and receipts</H2>
+      <p className="mt-3 text-[#201810]/70">
+        Every paid append returns the stored record, its content-addressed ID, and an integrity envelope carrying a
+        SHA-256 digest and an EIP-191 signature.
+      </p>
+      <Code>{`{
+  "engine": "EVIDIQ-Vault/1.0",
+  "chainFormatVersion": "v1",
+  "data": {
+    "record": {
+      "seq": 1,
+      "namespace": "evidiq-sdk-proof",
+      "actor": "0xd6B658dC6e53444bF9Cba598aFdd21Ede0A62Fb9",
+      "authority": "operator",
+      "action": "verify",
+      "contentDigest": "18b7a227d4c939603fb44112e78be92e434e46cd6abf0ecd92e56e45746cd28d",
+      "prevHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "recordHash": "e81012620100231edcc2488d0571dc0586322e1fc0f95be0cc795b8b5e8aa5ac"
+    }
+  },
+  "integrity": { "algorithm": "SHA-256", "digest": "..." }
+}`}</Code>
+      <p className="mt-4 text-[#201810]/70">
+        <span className="font-mono">verify_chain</span> recomputes each{" "}
+        <span className="font-mono">recordHash</span> and checks the{" "}
+        <span className="font-mono">prevHash</span> linkage, so a reordered or edited log is detectable without
+        trusting Vault. <span className="font-mono">enforce_retention</span> keeps{" "}
+        <span className="font-mono">contentDigest</span> and <span className="font-mono">recordHash</span> when it
+        redacts a payload, which is why continuity still verifies as{" "}
+        <span className="font-mono">INTACT</span> after redaction.
+      </p>
+
       <H2 id="payments">x402 pricing</H2>
       <div className="mt-4 overflow-x-auto">
         <table className="w-full border-collapse text-sm">
@@ -174,14 +242,71 @@ export default function VaultDocsPage() {
       </div>
       <p className="mt-4 text-[#201810]/70">
         Payments use x402 v2 <span className="font-mono">exact</span> scheme with USDT0 (6 decimals) on X Layer
-        (<span className="font-mono">eip155:196</span>).
+        (<span className="font-mono">eip155:196</span>). The public discovery endpoint lists all ten tools.
       </p>
+      <p className="mt-4 text-[#201810]/70">
+        Verification and settlement run through the{" "}
+        <a
+          href="https://web3.okx.com/onchainos/dev-docs/payments/service-seller-sdk"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-sky-700 hover:underline"
+        >
+          official OKX Onchain OS Payment SDK
+        </a>{" "}
+        (<span className="font-mono">@okxweb3/x402-core</span> and{" "}
+        <span className="font-mono">@okxweb3/x402-evm</span>). The OKX facilitator verifies each authorization and
+        settles it on X Layer before any record is written. Each price reaches the SDK as an explicit USD₮0 atomic
+        asset amount rather than a USD string, so neither the fee nor its token can be substituted by conversion.
+      </p>
+
+      <div className="mt-6 overflow-hidden rounded-2xl border border-emerald-200 bg-emerald-50/50 p-6">
+        <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Settled on X Layer</p>
+        <p className="mt-2 text-sm text-[#201810]/75">
+          A live <span className="font-mono">append_record</span> call paid{" "}
+          <span className="font-semibold text-[#1a130a]">0.005 USDT0</span> (5000 atomic) and stored{" "}
+          <span className="font-mono">seq 1</span> with an all-zero genesis{" "}
+          <span className="font-mono">prevHash</span>. An <span className="font-mono">audit_report</span> call paid{" "}
+          <span className="font-semibold text-[#1a130a]">0.02 USDT0</span> (20000 atomic) and returned verdict{" "}
+          <span className="font-mono">INTACT</span> with no policy violations. Both receipts are{" "}
+          <span className="font-mono">status 0x1</span>, and both were broadcast by an OKX facilitator relayer rather
+          than a Vault-held key — the on-chain evidence that settlement ran through the official SDK. The appended
+          record was then re-read with the free <span className="font-mono">get_receipt</span>, so the paid write is
+          durable.
+        </p>
+        <a
+          href="https://www.oklink.com/xlayer/tx/0x7e96398e1f2bae0637af884b55b35cbc82099b8241858a1fdde3ab67c94db4b6"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block break-all font-mono text-xs text-emerald-800 hover:underline"
+        >
+          0x7e96398e1f2bae0637af884b55b35cbc82099b8241858a1fdde3ab67c94db4b6
+        </a>
+        <a
+          href="https://www.oklink.com/xlayer/tx/0x2b67c2109fc799b9d167aa6ebd710b478a56c7ad9f026e07069febcd525bbb6e"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 block break-all font-mono text-xs text-emerald-800 hover:underline"
+        >
+          0x2b67c2109fc799b9d167aa6ebd710b478a56c7ad9f026e07069febcd525bbb6e
+        </a>
+      </div>
 
       <H2 id="licensing">Licensing</H2>
       <p className="mt-3 text-[#201810]/70">
         EVIDIQ owns and licenses its original Vault code under MIT. Third-party dependencies maintain their own open-source licenses
         preserved in <span className="font-mono">THIRD_PARTY_NOTICES.md</span>.
       </p>
+
+      <div className="mt-14 rounded-2xl border border-sky-200 bg-sky-50/60 p-6">
+        <p className="text-sm text-[#201810]/75">
+          Vault produces <span className="font-semibold text-[#1a130a]">tamper-evident evidence of agent behaviour</span>,
+          not a judgement about it. Route dependency provenance to{" "}
+          <Link href="/docs/lineage" className="font-semibold text-sky-700 hover:underline">EVIDIQ Lineage</Link>{" "}
+          and endpoint or Agent Skill security scanning to{" "}
+          <Link href="/docs/sentinel" className="font-semibold text-sky-700 hover:underline">EVIDIQ Sentinel</Link>.
+        </p>
+      </div>
 
       <p className="mt-10 text-sm">
         <Link href="/docs" className="font-semibold text-sky-700 hover:underline">← Back to docs</Link>

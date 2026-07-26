@@ -18,7 +18,8 @@ export type DocCard = {
   tools: { name: string; paid: boolean }[];
   href: string;
   image: string;
-  okxUrl: string;
+  /** Omitted until the service actually has an OKX.AI agent id. */
+  okxUrl?: string;
 };
 
 export const DOCS: DocCard[] = [
@@ -167,8 +168,10 @@ export const DOCS: DocCard[] = [
     description:
       "Append-only, hash-chained memory and audit logging for autonomous AI agents. SHA-256 prevHash linkage, 0G Merkle segment sealing, retention payload redaction, and secret detection. Five paid tools, five free.",
     endpoint: "https://mcp.evidiq.dev/vault/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    // Live and paid-proven on X Layer, but never submitted to OKX.AI — so it is
+    // neither listed nor under review, and it has no agent id yet.
+    badge: "MCP live · listing pending",
+    badgeTone: "soon",
     tools: [
       { name: "append_record", paid: true },
       { name: "query_records", paid: true },
@@ -183,7 +186,6 @@ export const DOCS: DocCard[] = [
     ],
     href: "/docs/vault",
     image: "/docs/vault-hero.svg",
-    okxUrl: "https://www.okx.ai/agents/vault",
   },
 ];
 
