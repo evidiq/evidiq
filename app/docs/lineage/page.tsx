@@ -65,27 +65,27 @@ export default function LineageDocsPage() {
         and a canonical EIP-191 signed report.
       </p>
 
-      <div className="mt-8 flex flex-col gap-3 rounded-2xl border border-sky-200 bg-sky-50/60 p-5 sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-8 flex flex-col gap-3 rounded-2xl border border-amber-200 bg-amber-50/60 p-5 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-600 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
+          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-600 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
             <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-300 opacity-75" />
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-300 opacity-75" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
             </span>
-            Deployment Ready
+            Under review on OKX.AI
           </span>
           <div>
             <p className="text-sm font-semibold text-[#1a130a]">EVIDIQ Lineage</p>
-            <p className="font-mono text-xs text-[#201810]/60">Service Port 3005 · MCP endpoint live</p>
+            <p className="font-mono text-xs text-[#201810]/60">Agent #9575 · MCP endpoint live</p>
           </div>
         </div>
         <a
-          href="https://mcp.evidiq.dev/lineage/health"
+          href="https://www.okx.ai/agents/9575"
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex shrink-0 items-center justify-center rounded-lg bg-sky-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-sky-700"
+          className="inline-flex shrink-0 items-center justify-center rounded-lg bg-amber-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-amber-700"
         >
-          Check Status ↗
+          Open ↗
         </a>
       </div>
 
@@ -262,12 +262,31 @@ export default function LineageDocsPage() {
         and settles it on X Layer before any scan begins.
       </p>
 
-      <div className="mt-6 overflow-hidden rounded-2xl border border-sky-200 bg-sky-50/50 p-6">
-        <p className="text-xs font-bold uppercase tracking-wider text-sky-800">Deployed &amp; Live on VPS</p>
+      <div className="mt-6 overflow-hidden rounded-2xl border border-emerald-200 bg-emerald-50/50 p-6">
+        <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Settled on X Layer</p>
         <p className="mt-2 text-sm text-[#201810]/75">
-          EVIDIQ Lineage service is live at <span className="font-mono font-semibold text-[#1a130a]">https://mcp.evidiq.dev/lineage/mcp</span>.
-          All 10 MCP tools are verified and ready for agent integration.
+          A live <span className="font-mono">verify_package_claim</span> call paid{" "}
+          <span className="font-semibold text-[#1a130a]">0.005 USDT0</span> (5000 atomic) and returned a real
+          registry answer. A <span className="font-mono">scan_dependencies</span> call paid{" "}
+          <span className="font-semibold text-[#1a130a]">0.02 USDT0</span> (20000 atomic) and returned score 60
+          with verdict <span className="font-mono">REVIEW</span>. Both settled through the OKX facilitator.
         </p>
+        <a
+          href="https://www.oklink.com/xlayer/tx/0xfd9a7480710d7278a7b965d47a6568a59b9651aa5826f5f16e80df448c2ea2af"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block break-all font-mono text-xs text-emerald-800 hover:underline"
+        >
+          0xfd9a7480710d7278a7b965d47a6568a59b9651aa5826f5f16e80df448c2ea2af
+        </a>
+        <a
+          href="https://www.oklink.com/xlayer/tx/0xcf5360d545bc941153e04d6079365248507a81e617f809f650840c7c48b23423"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-2 block break-all font-mono text-xs text-emerald-800 hover:underline"
+        >
+          0xcf5360d545bc941153e04d6079365248507a81e617f809f650840c7c48b23423
+        </a>
       </div>
 
       <H2 id="licensing">Licensing</H2>

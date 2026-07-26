@@ -117,7 +117,7 @@ export const DOCS: DocCard[] = [
     description:
       "Deterministic 14-rule supply-chain risk engine, SBOM (CycloneDX/SPDX), AI-BOM (CycloneDX-AI), license auditing, and live OSV advisory matching. Five paid tools, five free.",
     endpoint: "https://mcp.evidiq.dev/lineage/mcp",
-    badge: "Deployment Ready",
+    badge: "Under OKX.AI review",
     badgeTone: "review",
     tools: [
       { name: "verify_package_claim", paid: true },
@@ -133,7 +133,7 @@ export const DOCS: DocCard[] = [
     ],
     href: "/docs/lineage",
     image: "/docs/lineage-hero.svg",
-    okxUrl: "https://www.okx.ai/agents/lineage",
+    okxUrl: "https://www.okx.ai/agents/9575",
   },
   {
     slug: "atlas",
