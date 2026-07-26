@@ -5,7 +5,39 @@ import Link from "next/link";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { Logo } from "@/components/Logo";
 import { GitHubIcon, TelegramIcon, XIcon } from "@/components/icons";
+import { MCP_COUNT, TOOL_COUNT } from "@/lib/docs";
 import { NAV, SOCIALS } from "@/lib/site";
+
+/**
+ * Live catalog counter. The numbers come from lib/docs.ts, so shipping a new MCP
+ * or tool updates this badge without touching the header.
+ */
+function CatalogBadge({ className = "" }: { className?: string }) {
+  return (
+    <Link
+      href="/docs"
+      aria-label={`${MCP_COUNT} MCP servers and ${TOOL_COUNT} tools — browse the documentation`}
+      className={`group items-center gap-2 rounded-full border border-violet-200/80 bg-gradient-to-r from-violet-50 via-white to-cyan-50 px-3 py-1.5 shadow-[0_1px_8px_rgba(109,76,160,0.10)] transition-all hover:border-violet-300 hover:shadow-[0_2px_14px_rgba(109,76,160,0.18)] ${className}`}
+    >
+      <span className="relative flex h-1.5 w-1.5" aria-hidden="true">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+      </span>
+      <span className="text-[11px] font-bold tracking-tight">
+        <span className="bg-gradient-to-r from-violet-700 to-fuchsia-600 bg-clip-text text-transparent">
+          {MCP_COUNT} MCP servers
+        </span>
+        <span className="mx-1.5 text-[#201810]/25">·</span>
+        <span className="bg-gradient-to-r from-cyan-700 to-emerald-600 bg-clip-text text-transparent">
+          {TOOL_COUNT} tools
+        </span>
+      </span>
+      <span className="text-[10px] text-violet-400 transition-transform group-hover:translate-x-0.5" aria-hidden="true">
+        →
+      </span>
+    </Link>
+  );
+}
 
 function Socials({ className = "" }: { className?: string }) {
   return (
@@ -47,9 +79,12 @@ export default function SiteHeader() {
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <nav className="flex items-center justify-between border-b border-[#e7dcc7]/70 bg-[#f4efe4]/85 px-6 py-3 backdrop-blur-md md:px-10">
-        <Link href="/" aria-label="EVIDIQ home">
-          <Logo height={30} priority />
-        </Link>
+        <div className="flex items-center gap-3">
+          <Link href="/" aria-label="EVIDIQ home">
+            <Logo height={30} priority />
+          </Link>
+          <CatalogBadge className="hidden xl:inline-flex" />
+        </div>
 
         <div className="hidden items-center gap-7 text-sm text-[#201810]/70 lg:flex">
           {NAV.map((l) => (
@@ -87,6 +122,7 @@ export default function SiteHeader() {
 
       {open && (
         <div className="border-b border-[#e7dcc7] bg-[#f4efe4] px-6 py-4 md:hidden">
+          <CatalogBadge className="mb-3 inline-flex" />
           <div className="flex flex-col gap-1">
             {NAV.map((l) => (
               <Link

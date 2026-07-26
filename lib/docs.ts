@@ -163,6 +163,18 @@ export const DOCS: DocCard[] = [
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
+/**
+ * Live catalog counters, derived from DOCS so the header can never drift from
+ * the services and tools actually documented. Adding a service or a tool to
+ * DOCS updates every surface that renders these numbers.
+ */
+export const MCP_COUNT = DOCS.length;
+export const TOOL_COUNT = DOCS.reduce((total, doc) => total + doc.tools.length, 0);
+export const PAID_TOOL_COUNT = DOCS.reduce(
+  (total, doc) => total + doc.tools.filter((tool) => tool.paid).length,
+  0
+);
+
 export function homepageDocs(): DocCard[] {
   const core = DOCS.find((doc) => doc.slug === "evidiq");
   const specialists = DOCS.filter((doc) => doc.slug !== "evidiq");
