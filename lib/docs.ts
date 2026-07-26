@@ -187,6 +187,32 @@ export const DOCS: DocCard[] = [
     href: "/docs/vault",
     image: "/docs/vault-hero.svg",
   },
+  {
+    slug: "redact",
+    name: "EVIDIQ Redact",
+    tagline: "Deterministic PII, credential & key redaction",
+    description:
+      "Checksum-validated detection and removal of sensitive data from text, documents, and datasets before an agent sends them anywhere. Luhn, mod-97, BIP-39 checksum, EIP-55, issuer key shapes. Signed reports, zero retention. Five paid tools, five free.",
+    endpoint: "https://mcp.evidiq.dev/redact/mcp",
+    // Live and paid-proven on X Layer, but never submitted to OKX.AI — so it is
+    // neither listed nor under review, and it has no agent id yet.
+    badge: "MCP live · listing pending",
+    badgeTone: "soon",
+    tools: [
+      { name: "redact_text", paid: true },
+      { name: "scan_document", paid: true },
+      { name: "redact_document", paid: true },
+      { name: "policy_check", paid: true },
+      { name: "deidentify_dataset", paid: true },
+      { name: "redact_capabilities", paid: false },
+      { name: "validate_input", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "verify_redaction_report", paid: false },
+      { name: "get_artifact", paid: false },
+    ],
+    href: "/docs/redact",
+    image: "/docs/redact-hero.svg",
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
