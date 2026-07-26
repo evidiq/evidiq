@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">EVIDIQ Vault governed tamper-evident memory and audit trail</title>
+  <desc id="desc">Append-only, hash-chained memory and audit logging for autonomous AI agents with 0G Merkle segment sealing.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.53" stop-color="#1e1b4b"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="56%">
+      <stop offset="0" stop-color="#a78bfa" stop-opacity=".55"/>
+      <stop offset=".48" stop-color="#4338ca" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="tree" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c4b5fd"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" rx="40" fill="url(#bg)"/>
+  <rect width="1200" height="750" rx="40" fill="url(#glow)"/>
+  <g opacity=".22" stroke="#c4b5fd" fill="none">
+    <path d="M0 148H230L312 230H510"/><path d="M0 534H244L330 448H510"/>
+    <path d="M1200 148H970L888 230H690"/><path d="M1200 534H956L870 448H690"/>
+    <circle cx="230" cy="148" r="8" fill="#c4b5fd"/><circle cx="244" cy="534" r="8" fill="#c4b5fd"/>
+    <circle cx="970" cy="148" r="8" fill="#c4b5fd"/><circle cx="956" cy="534" r="8" fill="#c4b5fd"/>
+  </g>
+
+  <g transform="translate(600 365)">
+    <circle r="234" fill="#7c3aed" opacity=".15" filter="url(#soft)"/>
+    <circle r="198" fill="none" stroke="#a78bfa" stroke-opacity=".32" stroke-width="2" stroke-dasharray="7 14"/>
+    <circle r="162" fill="#0f172a" stroke="#7c3aed" stroke-width="2"/>
+    <!-- Vault Lock / Shield Symbol -->
+    <path d="M-50 -30 L0 -65 L50 -30 L50 35 C50 65 0 95 0 95 C0 95 -50 65 -50 35 Z" fill="none" stroke="url(#tree)" stroke-width="6" stroke-linejoin="round"/>
+    <circle cx="0" cy="0" r="16" fill="#a78bfa"/>
+    <path d="M-6 0 L6 0 L4 30 L-4 30 Z" fill="#a78bfa"/>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, sans-serif" fill="#fff">
+    <text x="76" y="96" font-size="25" font-weight="700" letter-spacing="7" fill="#c4b5fd">EVIDIQ VAULT</text>
+    <text x="76" y="145" font-size="27" fill="#f5f3ff">Governed, tamper-evident memory &amp; audit trail</text>
+  </g>
+
+  <g transform="translate(72 610)">
+    <rect width="276" height="77" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#c4b5fd" stroke-opacity=".38"/>
+    <text x="22" y="30" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#c4b5fd">CHAIN VERDICT</text>
+    <text x="22" y="59" font-family="ui-monospace, monospace" font-size="23" font-weight="700" fill="#faf5ff">INTACT / GAP / BREAK</text>
+  </g>
+
+  <g transform="translate(852 586)">
+    <rect width="276" height="101" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#a78bfa" stroke-opacity=".45"/>
+    <text x="22" y="32" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#a78bfa">SEALING &amp; RETENTION</text>
+    <text x="22" y="62" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#faf5ff">0G Merkle Segments</text>
+    <text x="22" y="86" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#faf5ff">Tombstone Redaction</text>
+  </g>
+</svg>

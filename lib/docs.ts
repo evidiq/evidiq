@@ -160,6 +160,31 @@ export const DOCS: DocCard[] = [
     image: "/docs/atlas-hero.svg",
     okxUrl: "https://www.okx.ai/agents/9023",
   },
+  {
+    slug: "vault",
+    name: "EVIDIQ Vault",
+    tagline: "Governed, tamper-evident memory & audit trail",
+    description:
+      "Append-only, hash-chained memory and audit logging for autonomous AI agents. SHA-256 prevHash linkage, 0G Merkle segment sealing, retention payload redaction, and secret detection. Five paid tools, five free.",
+    endpoint: "https://mcp.evidiq.dev/vault/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "append_record", paid: true },
+      { name: "query_records", paid: true },
+      { name: "seal_segment", paid: true },
+      { name: "audit_report", paid: true },
+      { name: "enforce_retention", paid: true },
+      { name: "vault_capabilities", paid: false },
+      { name: "validate_record", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "verify_chain", paid: false },
+      { name: "get_receipt", paid: false },
+    ],
+    href: "/docs/vault",
+    image: "/docs/vault-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/vault",
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
