@@ -163,6 +163,14 @@ export function withX402Gate(
       // Reply with a spec JSON-RPC parse error immediately.
     }
     if (!parseOk) {
+      // OKX's reachability probe POSTs an empty body and reads any non-402/200
+      // reply as an unreachable endpoint. Answer an unauthenticated probe with
+      // the payment challenge instead. A caller that did send a payment header
+      // still gets a parse error, because charging for an unreadable request
+      // would be wrong.
+      if (!req.headers.get("payment-signature")) {
+        return build402Response(cfg, resourceUrl);
+      }
       return new Response(
         JSON.stringify({
           jsonrpc: "2.0",
