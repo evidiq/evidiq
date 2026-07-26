@@ -260,4 +260,28 @@ function withContext(req: Request): Promise<Response> {
   return runWithBaseUrl(baseUrlFromRequest(req), () => gatedHandler(req));
 }
 
-export { withContext as GET, withContext as POST, withContext as DELETE };
+/**
+ * Explicit HEAD handler: answer with the status a GET would return and no body.
+ *
+ * Without this, a HEAD request reaches the MCP Streamable-HTTP transport, which
+ * cannot serve it, so the connection never completes. A reachability prober —
+ * including the OKX listing review — then reports the endpoint as offline even
+ * though GET and POST both work.
+ */
+async function head(req: Request): Promise<Response> {
+  const probe = new Request(req.url, { method: "GET", headers: req.headers });
+  const response = await withContext(probe);
+  const headers = new Headers(response.headers);
+  // A bodyless response must not advertise a body length or encoding.
+  headers.delete("content-length");
+  headers.delete("content-encoding");
+  headers.delete("transfer-encoding");
+  return new Response(null, { status: response.status, headers });
+}
+
+export {
+  withContext as GET,
+  withContext as POST,
+  withContext as DELETE,
+  head as HEAD,
+};
