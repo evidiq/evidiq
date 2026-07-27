@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">EVIDIQ Rubric deterministic acceptance checks for agent deliverables</title>
+  <desc id="desc">Evaluates a deliverable against an acceptance spec agreed beforehand and returns a deterministic, signed verdict: PASS, REVIEW, BLOCK or REFUSED.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.53" stop-color="#12233f"/>
+      <stop offset="1" stop-color="#4f46e5"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="56%">
+      <stop offset="0" stop-color="#a5b4fc" stop-opacity=".5"/>
+      <stop offset=".48" stop-color="#4338ca" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c7d2fe"/>
+      <stop offset="1" stop-color="#4f46e5"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" rx="40" fill="url(#bg)"/>
+  <rect width="1200" height="750" rx="40" fill="url(#glow)"/>
+
+  <!-- criteria in, one verdict out -->
+  <g opacity=".2" stroke="#c7d2fe" fill="none">
+    <path d="M0 190H210L290 265H480"/><path d="M0 300H230L300 320H480"/>
+    <path d="M0 500H222L300 430H480"/>
+    <path d="M1200 345H980L900 365H720"/>
+    <circle cx="210" cy="190" r="7" fill="#c7d2fe"/><circle cx="230" cy="300" r="7" fill="#c7d2fe"/>
+    <circle cx="222" cy="500" r="7" fill="#c7d2fe"/><circle cx="980" cy="345" r="7" fill="#c7d2fe"/>
+  </g>
+
+  <g transform="translate(600 365)">
+    <circle r="234" fill="#4f46e5" opacity=".15" filter="url(#soft)"/>
+    <circle r="198" fill="none" stroke="#a5b4fc" stroke-opacity=".32" stroke-width="2" stroke-dasharray="7 14"/>
+    <circle r="162" fill="#0f172a" stroke="#4f46e5" stroke-width="2"/>
+    <!-- a checklist measured against a rule -->
+    <rect x="-62" y="-72" width="112" height="150" rx="14" fill="none" stroke="url(#mark)" stroke-width="6"/>
+    <path d="M-40 -38 L-24 -22 L6 -54" fill="none" stroke="#a5b4fc" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-40 6 L-24 22 L6 -10" fill="none" stroke="#a5b4fc" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M-40 50 H24" stroke="#6366f1" stroke-width="7" stroke-linecap="round"/>
+    <path d="M74 -70 V78" stroke="#c7d2fe" stroke-width="5" stroke-linecap="round" opacity=".8"/>
+    <path d="M66 -46 H82 M66 -10 H82 M66 26 H82 M66 62 H82" stroke="#c7d2fe" stroke-width="4" stroke-linecap="round" opacity=".8"/>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, sans-serif" fill="#fff">
+    <text x="76" y="96" font-size="25" font-weight="700" letter-spacing="7" fill="#c7d2fe">EVIDIQ RUBRIC</text>
+    <text x="76" y="145" font-size="27" fill="#eef2ff">Does this deliverable meet the contract?</text>
+  </g>
+
+  <g transform="translate(72 610)">
+    <rect width="300" height="77" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#c7d2fe" stroke-opacity=".38"/>
+    <text x="22" y="30" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#c7d2fe">VERDICT</text>
+    <text x="22" y="59" font-family="ui-monospace, monospace" font-size="19" font-weight="700" fill="#eef2ff">PASS / REVIEW / BLOCK</text>
+  </g>
+
+  <g transform="translate(828 586)">
+    <rect width="300" height="101" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#a5b4fc" stroke-opacity=".45"/>
+    <text x="22" y="32" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#a5b4fc">CHECKS</text>
+    <text x="22" y="62" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#eef2ff">Schema · Grounding</text>
+    <text x="22" y="86" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#eef2ff">Criteria · Attestation</text>
+  </g>
+</svg>

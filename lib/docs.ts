@@ -273,6 +273,32 @@ export const DOCS: DocCard[] = [
     okxUrl: "https://www.okx.ai/agents/9727",
     agentId: 9727,
   },
+  {
+    slug: "rubric",
+    name: "EVIDIQ Rubric",
+    tagline: "Does this deliverable meet the contract?",
+    description:
+      "Deterministic acceptance checks for work an agent was paid for: JSON Schema conformance, grounding of quotes and numbers in the supplied sources, and a declarative criteria language. Returns PASS, REVIEW, BLOCK or REFUSED with the per-criterion results, signed and recomputable. Five paid tools, five free.",
+    endpoint: "https://mcp.evidiq.dev/rubric/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "check_schema", paid: true },
+      { name: "verify_grounding", paid: true },
+      { name: "check_acceptance", paid: true },
+      { name: "diff_deliverable", paid: true },
+      { name: "attest_acceptance", paid: true },
+      { name: "rubric_capabilities", paid: false },
+      { name: "validate_spec", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "verify_rubric_report", paid: false },
+      { name: "get_artifact", paid: false },
+    ],
+    href: "/docs/rubric",
+    image: "/docs/rubric-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/9848",
+    agentId: 9848,
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
