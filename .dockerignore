@@ -14,3 +14,12 @@ Akses Gitignore
 .vscode
 .kiro
 *.log
+
+# Media and demo assets are not needed to build or run, and they dominated a 27 MB
+# build context that gets re-sent on every deploy.
+*.mp4
+*.gif
+*.cast
+evidiq-okx-*.png
+assets
+EVIDIQ
