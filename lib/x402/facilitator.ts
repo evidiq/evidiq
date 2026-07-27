@@ -7,6 +7,7 @@ import type {
   VerifyResult,
 } from "./types";
 import { verifyPaymentLocal } from "./verify";
+import { OkxSdkVerifier, getOkxCredentials } from "./okx";
 
 /**
  * Payment verification/settlement abstraction.
@@ -141,6 +142,12 @@ export class FacilitatorClient implements PaymentVerifier {
 }
 
 export function getVerifier(cfg: X402Config): PaymentVerifier {
+  // The official OKX Onchain OS Payment SDK takes precedence whenever its
+  // credentials are configured: verification and settlement then run through
+  // the OKX facilitator rather than a key this service holds.
+  const okx = getOkxCredentials();
+  if (okx) return new OkxSdkVerifier(cfg, okx);
+
   // External facilitator if explicitly configured; otherwise self-settle
   // on-chain when a settlement key is present; otherwise local (zero-value /
   // testnet only — LocalVerifier.settle refuses nonzero mainnet).
