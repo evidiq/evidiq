@@ -45,7 +45,12 @@ export default function DocsPage() {
         transact. Connect it in one line.
       </p>
 
-      <OkxAiLiveBlock url="https://www.okx.ai/agents/5232" agentId={5232} name="EVIDIQ Core" />
+      <OkxAiLiveBlock
+        url="https://www.okx.ai/agents/5232"
+        agentId={5232}
+        name="EVIDIQ Core"
+        endpoint="https://evidiq.dev/mcp"
+      />
 
       <H2 id="quickstart">Quickstart</H2>
       <p className="mt-3 text-[#201810]/70">

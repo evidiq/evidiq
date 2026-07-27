@@ -6,7 +6,7 @@ import { DOCS, type DocCard } from "@/lib/docs";
 export const metadata: Metadata = {
   title: "EVIDIQ Documentation — Core trust and specialist MCP services",
   description:
-    "Documentation for EVIDIQ Core, Notary, Operator, Sentinel, and Atlas: verifiable MCP services for trust, receipts, execution, security, and dataset intelligence.",
+    "Documentation for EVIDIQ Core, Notary, Operator, Sentinel, Atlas, Lineage, Vault, Redact, Warden, and Assay: verifiable MCP services for trust, receipts, execution, security, provenance, audit trails, redaction, code review, and transaction intent.",
   alternates: { canonical: "https://evidiq.dev/docs" },
   openGraph: {
     title: "Build with the EVIDIQ MCP ecosystem",

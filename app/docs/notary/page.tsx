@@ -50,7 +50,12 @@ export default function NotaryDocsPage() {
         verifiable offline by anyone.
       </p>
 
-      <OkxAiLiveBlock url="https://www.okx.ai/agents/6278" agentId={6278} name="EVIDIQ Notary" />
+      <OkxAiLiveBlock
+        url="https://www.okx.ai/agents/6278"
+        agentId={6278}
+        name="EVIDIQ Notary"
+        endpoint="https://mcp.evidiq.dev/notary/mcp"
+      />
 
       <H2 id="quickstart">Quickstart</H2>
       <p className="mt-3 text-[#201810]/70">

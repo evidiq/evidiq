@@ -50,7 +50,12 @@ export default function OperatorDocsPage() {
         multi-step workflows. GPT-5.6-Terra via 0G Compute plans each action from screenshots.
       </p>
 
-      <OkxAiLiveBlock url="https://www.okx.ai/agents/6504" agentId={6504} name="EVIDIQ Operator" />
+      <OkxAiLiveBlock
+        url="https://www.okx.ai/agents/6504"
+        agentId={6504}
+        name="EVIDIQ Operator"
+        endpoint="https://mcp.evidiq.dev/operator/mcp"
+      />
 
       <H2 id="quickstart">Quickstart</H2>
       <p className="mt-3 text-[#201810]/70">

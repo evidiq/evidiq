@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">EVIDIQ Warden deterministic review of agent-written code</title>
+  <desc id="desc">Deterministic review of diffs and files for injection, secrets, unsafe patterns, and complexity, with policy verdicts and a signed attestation.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.53" stop-color="#0c2340"/>
+      <stop offset="1" stop-color="#0284c7"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="56%">
+      <stop offset="0" stop-color="#7dd3fc" stop-opacity=".5"/>
+      <stop offset=".48" stop-color="#0369a1" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#bae6fd"/>
+      <stop offset="1" stop-color="#0284c7"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" rx="40" fill="url(#bg)"/>
+  <rect width="1200" height="750" rx="40" fill="url(#glow)"/>
+
+  <!-- diff hunks entering the review, findings leaving it -->
+  <g opacity=".22" stroke="#bae6fd" fill="none">
+    <path d="M0 168H206L286 248H500"/><path d="M0 512H222L306 432H500"/>
+    <path d="M1200 168H986L906 248H700"/><path d="M1200 512H974L890 432H700"/>
+    <circle cx="206" cy="168" r="8" fill="#bae6fd"/><circle cx="222" cy="512" r="8" fill="#bae6fd"/>
+    <circle cx="986" cy="168" r="8" fill="#bae6fd"/><circle cx="974" cy="512" r="8" fill="#bae6fd"/>
+  </g>
+
+  <g transform="translate(600 365)">
+    <circle r="234" fill="#0284c7" opacity=".15" filter="url(#soft)"/>
+    <circle r="198" fill="none" stroke="#7dd3fc" stroke-opacity=".32" stroke-width="2" stroke-dasharray="7 14"/>
+    <circle r="162" fill="#0f172a" stroke="#0284c7" stroke-width="2"/>
+    <!-- shield holding a code bracket pair: review, not execution -->
+    <path d="M-52 -34 L0 -70 L52 -34 L52 34 C52 66 0 96 0 96 C0 96 -52 66 -52 34 Z" fill="none" stroke="url(#mark)" stroke-width="6" stroke-linejoin="round"/>
+    <path d="M-22 -12 L-40 10 L-22 32" fill="none" stroke="#7dd3fc" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M22 -12 L40 10 L22 32" fill="none" stroke="#7dd3fc" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M6 -18 L-6 40" fill="none" stroke="#bae6fd" stroke-width="6" stroke-linecap="round"/>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, sans-serif" fill="#fff">
+    <text x="76" y="96" font-size="25" font-weight="700" letter-spacing="7" fill="#bae6fd">EVIDIQ WARDEN</text>
+    <text x="76" y="145" font-size="27" fill="#f0f9ff">Review agent-written code before it ships</text>
+  </g>
+
+  <g transform="translate(72 610)">
+    <rect width="276" height="77" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#bae6fd" stroke-opacity=".38"/>
+    <text x="22" y="30" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#bae6fd">POLICY VERDICT</text>
+    <text x="22" y="59" font-family="ui-monospace, monospace" font-size="23" font-weight="700" fill="#f0f9ff">PASS / REVIEW / BLOCK</text>
+  </g>
+
+  <g transform="translate(852 586)">
+    <rect width="276" height="101" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#7dd3fc" stroke-opacity=".45"/>
+    <text x="22" y="32" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#7dd3fc">RULE FAMILIES</text>
+    <text x="22" y="62" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#f0f9ff">Injection · Secrets</text>
+    <text x="22" y="86" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#f0f9ff">Complexity · Hygiene</text>
+  </g>
+</svg>

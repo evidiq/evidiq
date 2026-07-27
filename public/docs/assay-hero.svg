@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">EVIDIQ Assay transaction intent decoding before signing</title>
+  <desc id="desc">Decodes calldata, EIP-712 payloads, and unsigned transactions into plain-language intent, with allowance analysis, pinned-block simulation, and counterparty screening.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.53" stop-color="#2a1436"/>
+      <stop offset="1" stop-color="#c026d3"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="56%">
+      <stop offset="0" stop-color="#f0abfc" stop-opacity=".5"/>
+      <stop offset=".48" stop-color="#a21caf" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mark" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f5d0fe"/>
+      <stop offset="1" stop-color="#c026d3"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" rx="40" fill="url(#bg)"/>
+  <rect width="1200" height="750" rx="40" fill="url(#glow)"/>
+
+  <!-- opaque bytes in, readable intent out -->
+  <g opacity=".2" font-family="ui-monospace, monospace" font-size="19" fill="#f5d0fe">
+    <text x="64" y="250">0x095ea7b3</text>
+    <text x="64" y="286">ffffffff…ffff</text>
+    <text x="64" y="322">multicall(</text>
+    <text x="64" y="358">  execute(</text>
+  </g>
+  <g opacity=".28" stroke="#f0abfc" fill="none">
+    <path d="M300 300H470"/><path d="M730 300H900"/>
+    <circle cx="470" cy="300" r="7" fill="#f0abfc"/><circle cx="730" cy="300" r="7" fill="#f0abfc"/>
+    <path d="M0 560H240L322 480H500"/><path d="M1200 560H960L878 480H700"/>
+  </g>
+
+  <g transform="translate(600 365)">
+    <circle r="234" fill="#c026d3" opacity=".15" filter="url(#soft)"/>
+    <circle r="198" fill="none" stroke="#f0abfc" stroke-opacity=".32" stroke-width="2" stroke-dasharray="7 14"/>
+    <circle r="162" fill="#0f172a" stroke="#c026d3" stroke-width="2"/>
+    <!-- a lens read over calldata: inspect before signing -->
+    <circle cx="-8" cy="-8" r="52" fill="none" stroke="url(#mark)" stroke-width="7"/>
+    <path d="M30 30 L74 74" stroke="url(#mark)" stroke-width="9" stroke-linecap="round"/>
+    <path d="M-30 -14 H14" stroke="#f5d0fe" stroke-width="5" stroke-linecap="round"/>
+    <path d="M-30 2 H4" stroke="#f5d0fe" stroke-width="5" stroke-linecap="round"/>
+    <path d="M-56 74 L-20 74" stroke="#f0abfc" stroke-width="5" stroke-linecap="round" opacity=".7"/>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, sans-serif" fill="#fff">
+    <text x="76" y="96" font-size="25" font-weight="700" letter-spacing="7" fill="#f5d0fe">EVIDIQ ASSAY</text>
+    <text x="76" y="145" font-size="27" fill="#fdf4ff">Read a transaction before you sign it</text>
+  </g>
+
+  <g transform="translate(72 610)">
+    <rect width="300" height="77" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#f5d0fe" stroke-opacity=".38"/>
+    <text x="22" y="30" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#f5d0fe">PAYLOAD KINDS</text>
+    <text x="22" y="59" font-family="ui-monospace, monospace" font-size="20" font-weight="700" fill="#fdf4ff">calldata · 712 · unsigned</text>
+  </g>
+
+  <g transform="translate(828 586)">
+    <rect width="300" height="101" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#f0abfc" stroke-opacity=".45"/>
+    <text x="22" y="32" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#f0abfc">CHECKS</text>
+    <text x="22" y="62" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#fdf4ff">Allowance · Simulation</text>
+    <text x="22" y="86" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#fdf4ff">Counterparty bytecode</text>
+  </g>
+</svg>

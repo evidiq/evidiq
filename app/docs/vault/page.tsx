@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
+import OkxAiLiveBlock from "@/components/OkxAiLiveBlock";
 
 export const metadata: Metadata = {
   title: "EVIDIQ Vault Docs — Governed, tamper-evident memory & audit trail",
@@ -65,29 +66,12 @@ export default function VaultDocsPage() {
         and audit continuity across namespaces.
       </p>
 
-      <div className="mt-8 flex flex-col gap-3 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-5 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-300 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-            </span>
-            Endpoint live
-          </span>
-          <div>
-            <p className="text-sm font-semibold text-[#1a130a]">EVIDIQ Vault</p>
-            <p className="font-mono text-xs text-[#201810]/60">Paid calls settled on X Layer · no OKX.AI listing yet</p>
-          </div>
-        </div>
-        <a
-          href="https://mcp.evidiq.dev/vault/x402"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex shrink-0 items-center justify-center rounded-lg bg-emerald-600 px-3 py-1.5 text-xs font-semibold text-white transition-colors hover:bg-emerald-700"
-        >
-          Inspect Endpoint ↗
-        </a>
-      </div>
+      <OkxAiLiveBlock
+        url="https://www.okx.ai/agents/9622"
+        agentId={9622}
+        name="EVIDIQ Vault"
+        endpoint="https://mcp.evidiq.dev/vault/mcp"
+      />
 
       <H2 id="quickstart">Quickstart</H2>
       <p className="mt-3 text-[#201810]/70">

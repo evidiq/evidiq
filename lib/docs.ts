@@ -20,6 +20,8 @@ export type DocCard = {
   image: string;
   /** Omitted until the service actually has an OKX.AI agent id. */
   okxUrl?: string;
+  /** OKX.AI agent id, so a doc page can render the listing without re-deriving it. */
+  agentId?: number;
 };
 
 export const DOCS: DocCard[] = [
@@ -40,6 +42,7 @@ export const DOCS: DocCard[] = [
     href: "/docs/evidiq",
     image: "/docs/evidiq-hero.png",
     okxUrl: "https://www.okx.ai/agents/5232",
+    agentId: 5232,
   },
   {
     slug: "notary",
@@ -61,6 +64,7 @@ export const DOCS: DocCard[] = [
     href: "/docs/notary",
     image: "/docs/notary-hero.png",
     okxUrl: "https://www.okx.ai/agents/6278",
+    agentId: 6278,
   },
   {
     slug: "operator",
@@ -87,6 +91,7 @@ export const DOCS: DocCard[] = [
     href: "/docs/operator",
     image: "/docs/operator-hero.png",
     okxUrl: "https://www.okx.ai/agents/6504",
+    agentId: 6504,
   },
   {
     slug: "sentinel",
@@ -95,8 +100,8 @@ export const DOCS: DocCard[] = [
     description:
       "Scan MCP endpoints, manifests, Agent Skills, and bundles before you connect, authorize, or pay. Signed reports, deterministic verdicts, 0G Compute, and 0G Storage evidence.",
     endpoint: "https://mcp.evidiq.dev/sentinel/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "scan_mcp_endpoint", paid: true },
       { name: "scan_mcp_manifest", paid: true },
@@ -110,6 +115,7 @@ export const DOCS: DocCard[] = [
     href: "/docs/sentinel",
     image: "/docs/sentinel-hero.svg",
     okxUrl: "https://www.okx.ai/agents/7584",
+    agentId: 7584,
   },
   {
     slug: "lineage",
@@ -118,8 +124,8 @@ export const DOCS: DocCard[] = [
     description:
       "Deterministic 14-rule supply-chain risk engine, SBOM (CycloneDX/SPDX), AI-BOM (CycloneDX-AI), license auditing, and live OSV advisory matching. Five paid tools, five free.",
     endpoint: "https://mcp.evidiq.dev/lineage/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "verify_package_claim", paid: true },
       { name: "audit_licenses", paid: true },
@@ -135,6 +141,7 @@ export const DOCS: DocCard[] = [
     href: "/docs/lineage",
     image: "/docs/lineage-hero.svg",
     okxUrl: "https://www.okx.ai/agents/9575",
+    agentId: 9575,
   },
   {
     slug: "atlas",
@@ -143,8 +150,8 @@ export const DOCS: DocCard[] = [
     description:
       "Profile, query, visualize, compare, and research CSV, JSON, NDJSON, or Parquet in a bounded in-memory DuckDB runtime. Canonical, optionally signed reports and content-addressed artifacts an agent can verify offline.",
     endpoint: "https://mcp.evidiq.dev/atlas/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "profile_dataset", paid: true },
       { name: "query_dataset", paid: true },
@@ -160,6 +167,7 @@ export const DOCS: DocCard[] = [
     href: "/docs/atlas",
     image: "/docs/atlas-hero.svg",
     okxUrl: "https://www.okx.ai/agents/9023",
+    agentId: 9023,
   },
   {
     slug: "vault",
@@ -168,10 +176,8 @@ export const DOCS: DocCard[] = [
     description:
       "Append-only, hash-chained memory and audit logging for autonomous AI agents. SHA-256 prevHash linkage, 0G Merkle segment sealing, retention payload redaction, and secret detection. Five paid tools, five free.",
     endpoint: "https://mcp.evidiq.dev/vault/mcp",
-    // Live and paid-proven on X Layer, but never submitted to OKX.AI — so it is
-    // neither listed nor under review, and it has no agent id yet.
-    badge: "MCP live · listing pending",
-    badgeTone: "soon",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "append_record", paid: true },
       { name: "query_records", paid: true },
@@ -186,6 +192,8 @@ export const DOCS: DocCard[] = [
     ],
     href: "/docs/vault",
     image: "/docs/vault-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/9622",
+    agentId: 9622,
   },
   {
     slug: "redact",
@@ -194,10 +202,8 @@ export const DOCS: DocCard[] = [
     description:
       "Checksum-validated detection and removal of sensitive data from text, documents, and datasets before an agent sends them anywhere. Luhn, mod-97, BIP-39 checksum, EIP-55, issuer key shapes. Signed reports, zero retention. Five paid tools, five free.",
     endpoint: "https://mcp.evidiq.dev/redact/mcp",
-    // Live and paid-proven on X Layer, but never submitted to OKX.AI — so it is
-    // neither listed nor under review, and it has no agent id yet.
-    badge: "MCP live · listing pending",
-    badgeTone: "soon",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
     tools: [
       { name: "redact_text", paid: true },
       { name: "scan_document", paid: true },
@@ -212,6 +218,60 @@ export const DOCS: DocCard[] = [
     ],
     href: "/docs/redact",
     image: "/docs/redact-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/9700",
+    agentId: 9700,
+  },
+  {
+    slug: "warden",
+    name: "EVIDIQ Warden",
+    tagline: "Review agent-written code before it ships",
+    description:
+      "Deterministic review of diffs and files for injection, secrets, unsafe patterns, and complexity, with policy verdicts and a signed attestation. Built for code an agent wrote and nobody read. Five paid tools, five free.",
+    endpoint: "https://mcp.evidiq.dev/warden/mcp",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
+    tools: [
+      { name: "review_diff", paid: true },
+      { name: "review_files", paid: true },
+      { name: "analyze_complexity", paid: true },
+      { name: "check_policy", paid: true },
+      { name: "attest_review", paid: true },
+      { name: "warden_capabilities", paid: false },
+      { name: "validate_source", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "verify_review_report", paid: false },
+      { name: "get_artifact", paid: false },
+    ],
+    href: "/docs/warden",
+    image: "/docs/warden-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/9699",
+    agentId: 9699,
+  },
+  {
+    slug: "assay",
+    name: "EVIDIQ Assay",
+    tagline: "Read a transaction before you sign it",
+    description:
+      "Decode calldata, EIP-712 payloads, and unsigned transactions into plain-language intent, unwrapping multicall and execute wrappers. Allowance analysis, pinned-block simulation, bytecode-level counterparty screening, and signed intent attestation. Five paid tools, five free.",
+    endpoint: "https://mcp.evidiq.dev/assay/mcp",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
+    tools: [
+      { name: "decode_transaction", paid: true },
+      { name: "assess_approval", paid: true },
+      { name: "simulate_transaction", paid: true },
+      { name: "screen_counterparty", paid: true },
+      { name: "attest_intent", paid: true },
+      { name: "assay_capabilities", paid: false },
+      { name: "validate_payload", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "verify_assay_report", paid: false },
+      { name: "get_artifact", paid: false },
+    ],
+    href: "/docs/assay",
+    image: "/docs/assay-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/9727",
+    agentId: 9727,
   },
 ];
 
