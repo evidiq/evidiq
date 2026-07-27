@@ -62,3 +62,6 @@ yarn-error.log*
 # never committed — see EVIDIQ-RUNBOOK.md §20)
 /content/blog
 /public/blog
+
+# Internal build plan — not part of the published service.
+PLAN.md

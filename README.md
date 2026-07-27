@@ -18,13 +18,7 @@
 </p>
 
 <p align="center">
-  <a href="https://glama.ai/mcp/servers/evidiq/mcp"><img src="https://glama.ai/mcp/servers/evidiq/mcp/badges/score.svg" alt="Glama score" /></a>
-  <a href="https://evidiq.dev/mcp"><img src="https://img.shields.io/badge/MCP%20Server-Verified-6E56CF?style=flat-square" alt="MCP Server" /></a>
-  <a href="https://0g.ai"><img src="https://img.shields.io/badge/0G-TEE%20%2B%20Storage-00C2A8?style=flat-square" alt="0G TEE + Storage" /></a>
-  <a href="https://www.oklink.com/xlayer"><img src="https://img.shields.io/badge/X%20Layer-Live-3CCF4E?style=flat-square" alt="X Layer" /></a>
-  <a href="https://evidiq.dev/x402"><img src="https://img.shields.io/badge/x402-pay--per--call-2563EB?style=flat-square" alt="x402" /></a>
-  <a href="https://okx.ai"><img src="https://img.shields.io/badge/OKX.AI-ASP-121212?style=flat-square&logo=okx&logoColor=white" alt="OKX.AI ASP" /></a>
-  <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-3DA639?style=flat-square" alt="License: MIT" /></a>
+  <a href="https://glama.ai/mcp/servers/evidiq/mcp"><img src="https://glama.ai/mcp/servers/evidiq/mcp/badges/score.svg" alt="Glama score" /></a> <a href="https://evidiq.dev/mcp"><img src="https://img.shields.io/badge/MCP%20Server-Verified-6E56CF?style=flat-square" alt="MCP Server" /></a> <a href="https://0g.ai"><img src="https://img.shields.io/badge/0G-TEE%20%2B%20Storage-00C2A8?style=flat-square" alt="0G TEE + Storage" /></a> <a href="https://www.oklink.com/xlayer"><img src="https://img.shields.io/badge/X%20Layer-Live-3CCF4E?style=flat-square" alt="X Layer" /></a> <a href="https://evidiq.dev/x402"><img src="https://img.shields.io/badge/x402-pay--per--call-2563EB?style=flat-square" alt="x402" /></a> <a href="https://www.okx.ai/agents/5232"><img src="https://img.shields.io/badge/OKX.AI-Agent%20%235232%20Listed-121212?style=flat-square&logo=okx&logoColor=white" alt="OKX.AI Agent 5232 listed" /></a> <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-3DA639?style=flat-square" alt="License: MIT" /></a>
 </p>
 
 ---
@@ -73,14 +67,51 @@ while this directory is the single place to discover every EVIDIQ MCP.
 | [**EVIDIQ Core**](https://evidiq.dev/docs/evidiq) | Verify an agent's capability, identity, risk, and reputation before value moves. | [`evidiq.dev/mcp`](https://evidiq.dev/mcp) | `verify_agent` — `0.05 USDT0`; `how_to_install` and `get_evidiq_skill` are free. |
 | [**EVIDIQ Notary**](https://github.com/evidiq/evidiq-notary-mcp)<br/>[Docs](https://evidiq.dev/docs/notary) | Create cryptographic, signed, 0G-anchored receipts for AI outputs. | [`mcp.evidiq.dev/notary/mcp`](https://mcp.evidiq.dev/notary/mcp) | 2 paid tools — `0.001` / `0.005 USDT0`; 4 verification tools are free. |
 | [**EVIDIQ Operator**](https://github.com/evidiq/evidiq-operator)<br/>[Docs](https://evidiq.dev/docs/operator) | Give autonomous agents isolated browser and computer-use execution. | [`mcp.evidiq.dev/operator/mcp`](https://mcp.evidiq.dev/operator/mcp) | 7 browser tools — `0.02 USDT0` each; 4 discovery tools are free. |
-| [**EVIDIQ Sentinel**](https://github.com/evidiq/evidiq-sentinel-mcp)<br/>[Docs](https://evidiq.dev/docs/sentinel) | Security-preflight MCP endpoints, manifests, Agent Skills, and bundles before connection or payment. | [`mcp.evidiq.dev/sentinel/mcp`](https://mcp.evidiq.dev/sentinel/mcp) | 4 scan tools — `0.02 USDT0` each; 4 preflight/verification tools are free. MCP is live; OKX.AI Agent #7584 is under review. |
-| [**EVIDIQ Atlas**](https://github.com/evidiq/evidiq-atlas-mcp)<br/>[Docs](https://evidiq.dev/docs/atlas) | Profile, query, visualize, compare, and research bounded datasets with reproducible reports. | [`mcp.evidiq.dev/atlas/mcp`](https://mcp.evidiq.dev/atlas/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. MCP is live; OKX.AI Agent #9023 is under review. |
-| [**EVIDIQ Lineage**](https://github.com/evidiq/evidiq-lineage-mcp)<br/>[Docs](https://evidiq.dev/docs/lineage) | Verify that a dependency is real, safe, and license-clean before an agent installs it; emit signed SBOM and AI-BOM inventories. | [`mcp.evidiq.dev/lineage/mcp`](https://mcp.evidiq.dev/lineage/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. MCP is live; OKX.AI Agent #9575 is under review. |
-| [**EVIDIQ Vault**](https://github.com/evidiq/evidiq-vault-mcp)<br/>[Docs](https://evidiq.dev/docs/vault) | Record what an agent did in append-only, hash-chained memory; audit continuity, seal Merkle segments to 0G, and enforce retention. | [`mcp.evidiq.dev/vault/mcp`](https://mcp.evidiq.dev/vault/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. MCP is live and paid calls are proven on X Layer; OKX.AI Agent #9622 is under review. |
-| [**EVIDIQ Redact**](https://github.com/evidiq/evidiq-redact-mcp)<br/>[Docs](https://evidiq.dev/docs/redact) | Detect and remove PII, credentials, and keys from text, documents, and datasets before an agent sends them anywhere — checksum-validated, with a signed report and zero retention. | [`mcp.evidiq.dev/redact/mcp`](https://mcp.evidiq.dev/redact/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. MCP is live and paid calls are proven on X Layer; no OKX.AI listing submitted yet. |
+| [**EVIDIQ Sentinel**](https://github.com/evidiq/evidiq-sentinel-mcp)<br/>[Docs](https://evidiq.dev/docs/sentinel) | Security-preflight MCP endpoints, manifests, Agent Skills, and bundles before connection or payment. | [`mcp.evidiq.dev/sentinel/mcp`](https://mcp.evidiq.dev/sentinel/mcp) | 4 scan tools — `0.02 USDT0` each; 4 preflight/verification tools are free. Live on OKX.AI as Agent #7584. |
+| [**EVIDIQ Atlas**](https://github.com/evidiq/evidiq-atlas-mcp)<br/>[Docs](https://evidiq.dev/docs/atlas) | Profile, query, visualize, compare, and research bounded datasets with reproducible reports. | [`mcp.evidiq.dev/atlas/mcp`](https://mcp.evidiq.dev/atlas/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9023. |
+| [**EVIDIQ Lineage**](https://github.com/evidiq/evidiq-lineage-mcp)<br/>[Docs](https://evidiq.dev/docs/lineage) | Verify that a dependency is real, safe, and license-clean before an agent installs it; emit signed SBOM and AI-BOM inventories. | [`mcp.evidiq.dev/lineage/mcp`](https://mcp.evidiq.dev/lineage/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9575. |
+| [**EVIDIQ Vault**](https://github.com/evidiq/evidiq-vault-mcp)<br/>[Docs](https://evidiq.dev/docs/vault) | Record what an agent did in append-only, hash-chained memory; audit continuity, seal Merkle segments to 0G, and enforce retention. | [`mcp.evidiq.dev/vault/mcp`](https://mcp.evidiq.dev/vault/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9622, with paid calls proven on X Layer. |
+| [**EVIDIQ Redact**](https://github.com/evidiq/evidiq-redact-mcp)<br/>[Docs](https://evidiq.dev/docs/redact) | Detect and remove PII, credentials, and keys from text, documents, and datasets before an agent sends them anywhere — checksum-validated, with a signed report and zero retention. | [`mcp.evidiq.dev/redact/mcp`](https://mcp.evidiq.dev/redact/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live, with paid calls proven on X Layer; OKX.AI Agent #9700 is under review. |
+| [**EVIDIQ Warden**](https://github.com/evidiq/evidiq-warden-mcp)<br/>[Docs](https://evidiq.dev/docs/warden) | Review code an agent wrote before it ships: injection, secrets, unsafe patterns, complexity, and policy verdicts, with a signed attestation. | [`mcp.evidiq.dev/warden/mcp`](https://mcp.evidiq.dev/warden/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9699. |
+| [**EVIDIQ Assay**](https://github.com/evidiq/evidiq-assay-mcp)<br/>[Docs](https://evidiq.dev/docs/assay) | Read a transaction before signing it: decode calldata and EIP-712 into plain-language intent, unwrap multicall, assess allowances, simulate, and screen the counterparty. | [`mcp.evidiq.dev/assay/mcp`](https://mcp.evidiq.dev/assay/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9727. |
+| [**EVIDIQ Rubric**](https://github.com/evidiq/evidiq-rubric-mcp)<br/>[Docs](https://evidiq.dev/docs/rubric) | Decide whether a deliverable meets the contract it was paid for: schema conformance, grounding in supplied sources, and acceptance criteria, with a signed verdict. | [`mcp.evidiq.dev/rubric/mcp`](https://mcp.evidiq.dev/rubric/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live, with paid calls proven on X Layer; OKX.AI listing pending. |
 
 All paid tools use x402 v2 with USDT0 on X Layer. Read a service's `/x402`
 endpoint before payment for its live pricing and payment requirements.
+
+## Architecture
+
+```
+agent (any MCP client)
+  │  tools/call verify_agent
+  ▼
+Traefik ─ evidiq.dev/mcp ─ Next.js route handler (app/[transport]/route.ts)
+  │
+  ├─ lib/x402/gate.ts ......... payment gate: challenge, decode, verify, settle
+  │     └─ lib/x402/okx.ts .... official OKX SDK → OKX facilitator → X Layer
+  │
+  ├─ lib/verify/ .............. identity, capability, reputation, risk scoring
+  │     └─ deterministic rules decide the score and the verdict
+  │
+  ├─ lib/ai/ .................. GLM-5.2 in a 0G TEE, advisory only, never scoring
+  │
+  └─ lib/og/ .................. report digest anchored to 0G Storage
+        └─ EIP-191 signature over the canonical report
+```
+
+The gate runs before the tool. Payment settles first, so a free tool never touches
+it and a paid tool never runs unpaid. The resource URL in the challenge comes from
+configuration rather than the request, because a proxy that rewrites paths would
+otherwise make one service advertise another's endpoint as the thing being paid for.
+
+Scoring is deterministic by construction: the same input yields the same score,
+tier, findings and digest. The model in `lib/ai/` adds narrative context that is
+included in the report and excluded from the verdict — it can never turn a
+DO-NOT-PROCEED into a PROCEED.
+
+Evidence leaves the process in two forms: an EIP-191 signature over the canonical
+report, and a digest anchored on 0G Storage. Both are verifiable without calling
+EVIDIQ again.
 
 ## How it settles
 
