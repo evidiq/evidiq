@@ -299,6 +299,32 @@ export const DOCS: DocCard[] = [
     okxUrl: "https://www.okx.ai/agents/9848",
     agentId: 9848,
   },
+  {
+    slug: "bastion",
+    name: "EVIDIQ Bastion",
+    tagline: "Is this deployment configuration safe to apply?",
+    description:
+      "Deterministic infrastructure configuration auditor for Dockerfiles, GitHub Actions workflows, Kubernetes manifests, and IaC (Terraform / Compose). Non-root execution, secret protection, supply chain integrity, resource bounds, and signed attestations. Five paid tools, five free.",
+    endpoint: "https://mcp.evidiq.dev/bastion/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "scan_dockerfile", paid: true },
+      { name: "scan_workflow", paid: true },
+      { name: "scan_manifest", paid: true },
+      { name: "scan_iac", paid: true },
+      { name: "attest_deployment", paid: true },
+      { name: "bastion_capabilities", paid: false },
+      { name: "validate_config", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "verify_bastion_report", paid: false },
+      { name: "get_artifact", paid: false },
+    ],
+    href: "/docs/bastion",
+    image: "/docs/bastion-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/9850",
+    agentId: 9850,
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
