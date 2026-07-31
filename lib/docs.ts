@@ -351,6 +351,30 @@ export const DOCS: DocCard[] = [
     okxUrl: "https://www.okx.ai/agents/10367",
     agentId: 10367,
   },
+  {
+    slug: "circuit",
+    name: "EVIDIQ Circuit",
+    tagline: "Verifiable API Proxy, TLS Attestation & Circuit Breaker",
+    description:
+      "Verifiable API proxy, TLS certificate attestation, payload schema drift inspection, circuit breaker state machine enforcement, webhook signature verification, and 0G storage receipt anchoring. Five paid tools, five free.",
+    endpoint: "https://mcp.evidiq.dev/circuit/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "audit_endpoint_compliance", paid: true },
+      { name: "inspect_payload_schema", paid: true },
+      { name: "enforce_circuit_breaker", paid: true },
+      { name: "verify_webhook_signature", paid: true },
+      { name: "attest_exchange_receipt", paid: true },
+      { name: "circuit_capabilities", paid: false },
+      { name: "validate_request_params", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "verify_circuit_report", paid: false },
+      { name: "get_artifact", paid: false },
+    ],
+    href: "/docs/circuit",
+    image: "/docs/circuit-hero.svg",
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
