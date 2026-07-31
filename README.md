@@ -75,6 +75,7 @@ while this directory is the single place to discover every EVIDIQ MCP.
 | [**EVIDIQ Warden**](https://github.com/evidiq/evidiq-warden-mcp)<br/>[Docs](https://evidiq.dev/docs/warden) | Review code an agent wrote before it ships: injection, secrets, unsafe patterns, complexity, and policy verdicts, with a signed attestation. | [`mcp.evidiq.dev/warden/mcp`](https://mcp.evidiq.dev/warden/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9699. |
 | [**EVIDIQ Assay**](https://github.com/evidiq/evidiq-assay-mcp)<br/>[Docs](https://evidiq.dev/docs/assay) | Read a transaction before signing it: decode calldata and EIP-712 into plain-language intent, unwrap multicall, assess allowances, simulate, and screen the counterparty. | [`mcp.evidiq.dev/assay/mcp`](https://mcp.evidiq.dev/assay/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9727. |
 | [**EVIDIQ Rubric**](https://github.com/evidiq/evidiq-rubric-mcp)<br/>[Docs](https://evidiq.dev/docs/rubric) | Decide whether a deliverable meets the contract it was paid for: schema conformance, grounding in supplied sources, and acceptance criteria, with a signed verdict. | [`mcp.evidiq.dev/rubric/mcp`](https://mcp.evidiq.dev/rubric/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live, with paid calls proven on X Layer; OKX.AI Agent #9848 is under review. |
+| [**EVIDIQ Bastion**](https://github.com/evidiq/evidiq-bastion-mcp)<br/>[Docs](https://evidiq.dev/docs/bastion) | Audit deployment configurations (Dockerfiles, CI workflows, Kubernetes manifests, and IaC) for non-root, privilege, secret protection, supply chain integrity, and resource bounds. | [`mcp.evidiq.dev/bastion/mcp`](https://mcp.evidiq.dev/bastion/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live, with paid calls proven on X Layer; OKX.AI Agent #10359 is under review. |
 
 All paid tools use x402 v2 with USDT0 on X Layer. Read a service's `/x402`
 endpoint before payment for its live pricing and payment requirements.
@@ -172,6 +173,7 @@ Payment on one chain, identity and tamper-evident proof on 0G — the whole trus
 - Notary MCP — https://mcp.evidiq.dev/notary/mcp
 - Operator MCP — https://mcp.evidiq.dev/operator/mcp
 - Sentinel MCP — https://mcp.evidiq.dev/sentinel/mcp
+- Bastion MCP — https://mcp.evidiq.dev/bastion/mcp
 
 ## License
 
