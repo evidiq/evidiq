@@ -219,9 +219,9 @@ Enforced Rules: budget.maxDailySpend · budget.velocity · escrow.hash · x402.p
       <div className="mt-6 overflow-hidden rounded-2xl border border-emerald-200 bg-emerald-50/50 p-6">
         <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Settled on X Layer</p>
         <p className="mt-2 text-sm text-[#201810]/75">
-          Live paid calls against the deployed Aegis endpoint completed full x402 v2 settlement on X Layer Mainnet.
-          All paid tools (<span className="font-mono">verify_payment_policy</span>, <span className="font-mono">audit_spending_window</span>, etc.)
-          verify EIP-191 digest signatures and generate cryptographic policy verdict reports.
+          A live <span className="font-mono">verify_payment_policy</span> call paid{" "}
+          <span className="font-semibold text-[#1a130a]">0.005 USDT0</span> and completed full x402 v2 settlement on X Layer Mainnet;
+          the receipt is <span className="font-mono">status 0x1</span>, broadcast by an OKX facilitator relayer.
         </p>
         <a
           href="https://www.oklink.com/xlayer/tx/0x6f74549eecb4627509f6397db02b8397892c9893d869790006b258b6996cca86"
