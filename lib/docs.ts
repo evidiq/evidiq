@@ -322,8 +322,8 @@ export const DOCS: DocCard[] = [
     ],
     href: "/docs/bastion",
     image: "/docs/bastion-hero.svg",
-    okxUrl: "https://www.okx.ai/agents/9850",
-    agentId: 9850,
+    okxUrl: "https://www.okx.ai/agents/10359",
+    agentId: 10359,
   },
 ];
 
