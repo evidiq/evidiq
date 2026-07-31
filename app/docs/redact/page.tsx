@@ -71,7 +71,7 @@ export default function RedactDocsPage() {
         agentId={9700}
         name="EVIDIQ Redact"
         endpoint="https://mcp.evidiq.dev/redact/mcp"
-        status="review"
+        status="live"
       />
 
       <H2 id="quickstart">Quickstart</H2>

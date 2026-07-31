@@ -202,8 +202,8 @@ export const DOCS: DocCard[] = [
     description:
       "Checksum-validated detection and removal of sensitive data from text, documents, and datasets before an agent sends them anywhere. Luhn, mod-97, BIP-39 checksum, EIP-55, issuer key shapes. Signed reports, zero retention. Five paid tools, five free.",
     endpoint: "https://mcp.evidiq.dev/redact/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "redact_text", paid: true },
       { name: "scan_document", paid: true },
