@@ -374,6 +374,8 @@ export const DOCS: DocCard[] = [
     ],
     href: "/docs/circuit",
     image: "/docs/circuit-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/10377",
+    agentId: 10377,
   },
 ];
 

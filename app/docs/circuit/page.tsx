@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
+import OkxAiLiveBlock from "@/components/OkxAiLiveBlock";
 
 export const metadata: Metadata = {
   title: "EVIDIQ Circuit Docs — Verifiable API Proxy, TLS Attestation & Circuit Breaker",
@@ -19,7 +20,7 @@ export const metadata: Metadata = {
 const paidTools = [
   ["audit_endpoint_compliance", "0.005", "Audit TLS certificate validity, expiration, trusted CA, hostname SAN matching, and security headers."],
   ["inspect_payload_schema", "0.01", "Validate API response payload against JSON Schema and detect field data type drift from baseline."],
-  ["enforce_circuit_breaker", "0.02", "Evaluate error rates, latency P95 spikes, and request velocity to return CLOSED/HALF_OPEN/OPEN breaker state."],
+  ["enforce_circuit_breaker", "0.015", "Evaluate error rates, latency P95 spikes, and request velocity to return CLOSED/HALF_OPEN/OPEN breaker state."],
   ["verify_webhook_signature", "0.02", "Cryptographically verify HMAC-SHA256 or EIP-191 signatures on incoming agent webhooks."],
   ["attest_exchange_receipt", "0.03", "Generate EIP-191 signed cryptographic attestation with 0G Merkle storage anchoring."],
 ] as const;
@@ -63,6 +64,14 @@ export default function CircuitDocsPage() {
         Verifiable API proxy, TLS certificate attestation, payload schema drift inspection, circuit breaker state machine enforcement,
         webhook signature verification, and 0G storage receipt anchoring for autonomous AI agents.
       </p>
+
+      <OkxAiLiveBlock
+        url="https://www.okx.ai/agents/10377"
+        agentId={10377}
+        name="EVIDIQ Circuit"
+        endpoint="https://mcp.evidiq.dev/circuit/mcp"
+        status="review"
+      />
 
       <H2 id="quickstart">Quickstart</H2>
       <p className="mt-3 text-[#201810]/70">
