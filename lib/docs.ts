@@ -325,6 +325,32 @@ export const DOCS: DocCard[] = [
     okxUrl: "https://www.okx.ai/agents/10359",
     agentId: 10359,
   },
+  {
+    slug: "aegis",
+    name: "EVIDIQ Aegis",
+    tagline: "Autonomous Financial Policy Engine & Budget Guard",
+    description:
+      "Autonomous financial policy engine, budget velocity caps, escrow release validation, fee surge protection, and signed attestation reports for AI agent transactions. Five paid tools, five free.",
+    endpoint: "https://mcp.evidiq.dev/aegis/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "verify_payment_policy", paid: true },
+      { name: "audit_spending_window", paid: true },
+      { name: "inspect_escrow_release", paid: true },
+      { name: "guard_slippage_inflation", paid: true },
+      { name: "attest_budget_verdict", paid: true },
+      { name: "aegis_capabilities", paid: false },
+      { name: "validate_transfer_params", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "verify_aegis_report", paid: false },
+      { name: "get_artifact", paid: false },
+    ],
+    href: "/docs/aegis",
+    image: "/docs/aegis-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/10367",
+    agentId: 10367,
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */

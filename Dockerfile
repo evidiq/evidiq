@@ -6,13 +6,9 @@ FROM node:22-bookworm-slim AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY package.json package-lock.json ./
-# Cache the npm download store across builds: a dependency change then re-links
-# instead of re-downloading the whole tree.
-RUN --mount=type=cache,target=/root/.npm npm ci
+RUN npm ci
 COPY . .
-# Reuse Next's compiler cache across builds. Without this every deploy recompiled
-# all 22 routes from scratch, which is what made a one-line edit a long wait.
-RUN --mount=type=cache,target=/app/.next/cache npm run build
+RUN npm run build
 
 # ---- Runner: lean production deps + built output ----
 FROM node:22-bookworm-slim AS runner
@@ -24,7 +20,7 @@ ENV HOSTNAME=0.0.0.0
 
 # Only production dependencies (keeps @0gfoundation/0g-ts-sdk, ethers, viem, mcp).
 COPY package.json package-lock.json ./
-RUN --mount=type=cache,target=/root/.npm npm ci --omit=dev
+RUN npm ci --omit=dev
 
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/public ./public
