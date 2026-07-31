@@ -1,7 +1,11 @@
 const { ethers } = require("ethers");
 const crypto = require("crypto");
 
-const PRIVATE_KEY = "REDACTED-LEAKED-KEY-PURGED";
+const PRIVATE_KEY = process.env.X402_SETTLE_KEY;
+if (!PRIVATE_KEY) {
+  console.error("Missing X402_SETTLE_KEY environment variable.");
+  process.exit(1);
+}
 const AEGIS_URL = "https://mcp.evidiq.dev/aegis/mcp";
 
 async function main() {
