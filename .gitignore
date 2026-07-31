@@ -26,6 +26,10 @@ OKX-ASP-REGISTRATION.md
 
 # testing / coverage
 /coverage
+test-*.js
+run-*.js
+*.test.js
+*.test.mjs
 
 # misc / OS / editor
 .DS_Store
