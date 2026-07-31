@@ -200,6 +200,38 @@ Enforced Rules: budget.maxDailySpend · budget.velocity · escrow.hash · x402.p
           </tbody>
         </table>
       </div>
+      <p className="mt-4 text-[#201810]/70">
+        Payments use x402 v2 <span className="font-mono">exact</span> scheme with USDT0 (6 decimals) on X Layer
+        (<span className="font-mono">eip155:196</span>). Verification and settlement run through the{" "}
+        <a
+          href="https://web3.okx.com/onchainos/dev-docs/payments/service-seller-sdk"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-semibold text-sky-700 hover:underline"
+        >
+          official OKX Onchain OS Payment SDK
+        </a>{" "}
+        (<span className="font-mono">@okxweb3/x402-core</span> and{" "}
+        <span className="font-mono">@okxweb3/x402-evm</span>). The OKX facilitator verifies each authorization and
+        settles it on X Layer before any check runs.
+      </p>
+
+      <div className="mt-6 overflow-hidden rounded-2xl border border-emerald-200 bg-emerald-50/50 p-6">
+        <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Settled on X Layer</p>
+        <p className="mt-2 text-sm text-[#201810]/75">
+          Live paid calls against the deployed Aegis endpoint completed full x402 v2 settlement on X Layer Mainnet.
+          All paid tools (<span className="font-mono">verify_payment_policy</span>, <span className="font-mono">audit_spending_window</span>, etc.)
+          verify EIP-191 digest signatures and generate cryptographic policy verdict reports.
+        </p>
+        <a
+          href="https://www.oklink.com/xlayer/tx/0x6f74549eecb4627509f6397db02b8397892c9893d869790006b258b6996cca86"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3 inline-block break-all font-mono text-xs text-emerald-800 hover:underline"
+        >
+          0x6f74549eecb4627509f6397db02b8397892c9893d869790006b258b6996cca86
+        </a>
+      </div>
 
       <H2 id="vps-verification">OpenClaw VPS Verification & Live Status</H2>
       <p className="mt-3 text-[#201810]/70">
