@@ -280,8 +280,8 @@ export const DOCS: DocCard[] = [
     description:
       "Deterministic acceptance checks for work an agent was paid for: JSON Schema conformance, grounding of quotes and numbers in the supplied sources, and a declarative criteria language. Returns PASS, REVIEW, BLOCK or REFUSED with the per-criterion results, signed and recomputable. Five paid tools, five free.",
     endpoint: "https://mcp.evidiq.dev/rubric/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "check_schema", paid: true },
       { name: "verify_grounding", paid: true },
@@ -306,8 +306,8 @@ export const DOCS: DocCard[] = [
     description:
       "Deterministic infrastructure configuration auditor for Dockerfiles, GitHub Actions workflows, Kubernetes manifests, and IaC (Terraform / Compose). Non-root execution, secret protection, supply chain integrity, resource bounds, and signed attestations. Five paid tools, five free.",
     endpoint: "https://mcp.evidiq.dev/bastion/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "scan_dockerfile", paid: true },
       { name: "scan_workflow", paid: true },
@@ -332,8 +332,8 @@ export const DOCS: DocCard[] = [
     description:
       "Autonomous financial policy engine, budget velocity caps, escrow release validation, fee surge protection, and signed attestation reports for AI agent transactions. Five paid tools, five free.",
     endpoint: "https://mcp.evidiq.dev/aegis/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "verify_payment_policy", paid: true },
       { name: "audit_spending_window", paid: true },
@@ -358,8 +358,8 @@ export const DOCS: DocCard[] = [
     description:
       "Verifiable API proxy, TLS certificate attestation, payload schema drift inspection, circuit breaker state machine enforcement, webhook signature verification, and 0G storage receipt anchoring. Five paid tools, five free.",
     endpoint: "https://mcp.evidiq.dev/circuit/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "audit_endpoint_compliance", paid: true },
       { name: "inspect_payload_schema", paid: true },

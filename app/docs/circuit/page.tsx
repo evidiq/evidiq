@@ -70,7 +70,7 @@ export default function CircuitDocsPage() {
         agentId={10377}
         name="EVIDIQ Circuit"
         endpoint="https://mcp.evidiq.dev/circuit/mcp"
-        status="review"
+        status="listed"
       />
 
       <H2 id="quickstart">Quickstart</H2>

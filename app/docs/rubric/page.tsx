@@ -71,7 +71,7 @@ export default function RubricDocsPage() {
         agentId={9848}
         name="EVIDIQ Rubric"
         endpoint="https://mcp.evidiq.dev/rubric/mcp"
-        status="review"
+        status="listed"
       />
 
       <H2 id="quickstart">Quickstart</H2>

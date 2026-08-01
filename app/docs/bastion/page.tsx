@@ -71,7 +71,7 @@ export default function BastionDocsPage() {
         agentId={10359}
         name="EVIDIQ Bastion"
         endpoint="https://mcp.evidiq.dev/bastion/mcp"
-        status="review"
+        status="listed"
       />
 
       <H2 id="quickstart">Quickstart</H2>

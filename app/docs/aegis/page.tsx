@@ -70,7 +70,7 @@ export default function AegisDocsPage() {
         agentId={10367}
         name="EVIDIQ Aegis"
         endpoint="https://mcp.evidiq.dev/aegis/mcp"
-        status="review"
+        status="listed"
       />
 
       <H2 id="quickstart">Quickstart</H2>
