@@ -377,6 +377,32 @@ export const DOCS: DocCard[] = [
     okxUrl: "https://www.okx.ai/agents/10377",
     agentId: 10377,
   },
+  {
+    slug: "bulwark",
+    name: "EVIDIQ Bulwark",
+    tagline: "Prompt Injection & LLM Input Safety Guard",
+    description:
+      "Deterministic prompt injection and LLM input safety guard. Scans for direct injection, indirect injection, jailbreak techniques, data exfiltration payloads, and system-prompt leak probes. EIP-191 signed attestations with 0G storage anchoring. Five paid tools, five free.",
+    endpoint: "https://mcp.evidiq.dev/bulwark/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "scan_prompt_injection", paid: true },
+      { name: "scan_jailbreak_techniques", paid: true },
+      { name: "scan_data_exfiltration", paid: true },
+      { name: "scan_system_leak", paid: true },
+      { name: "attest_prompt_safety", paid: true },
+      { name: "bulwark_capabilities", paid: false },
+      { name: "validate_prompt_input", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "verify_bulwark_report", paid: false },
+      { name: "get_artifact", paid: false },
+    ],
+    href: "/docs/bulwark",
+    image: "/docs/bulwark-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/10385",
+    agentId: 10385,
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
