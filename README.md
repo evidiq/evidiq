@@ -57,11 +57,11 @@ unauthenticated requests receive an HTTP 402 challenge; sign it and retry.
 
 ## EVIDIQ MCP Suite
 
-This repository is the public hub for the EVIDIQ product family: seventeen MCP
-services — sixteen live on OKX.AI, and Cadence, the newest, under review. Core
-is served from this repository; the sixteen specialists are independently
-deployed and keep their source in their own repositories, while this directory
-is the single place to discover every EVIDIQ MCP.
+This repository is the public hub for the EVIDIQ product family: eighteen MCP
+services — sixteen live on OKX.AI, with Cadence and Compass, the newest two, under
+review. Core is served from this repository; the seventeen specialists are
+independently deployed and keep their source in their own repositories, while
+this directory is the single place to discover every EVIDIQ MCP.
 
 | Service | Use it for | Remote MCP endpoint | Access |
 |---------|------------|---------------------|--------|
@@ -82,6 +82,7 @@ is the single place to discover every EVIDIQ MCP.
 | [**EVIDIQ Bulwark**](https://github.com/evidiq/evidiq-bulwark-mcp)<br/>[Docs](https://evidiq.dev/docs/bulwark) | Screen text before it reaches a model: direct and indirect prompt injection, jailbreak techniques, data exfiltration payloads, and system-prompt leak probes. | [`mcp.evidiq.dev/bulwark/mcp`](https://mcp.evidiq.dev/bulwark/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #10385. |
 | [**EVIDIQ Methodology**](https://github.com/evidiq/evidiq-methodology-mcp)<br/>[Docs](https://evidiq.dev/docs/methodology) | Check an MCP service against the practices this fleet learned the hard way: git history secret scan, x402 challenge compliance, OKX listing status, and a production readiness score. | [`mcp.evidiq.dev/methodology/mcp`](https://mcp.evidiq.dev/methodology/mcp) | 10 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #10389. |
 | [**EVIDIQ Cadence**](https://github.com/evidiq/evidiq-cadence-mcp)<br/>[Docs](https://evidiq.dev/docs/cadence) | Give agents a future: schedule one-shot, recurring, retry, expiration, and standing-monitor jobs that fire after the response ends, with EIP-191 receipts and 0G-anchored attestations. | [`mcp.evidiq.dev/cadence/mcp`](https://mcp.evidiq.dev/cadence/mcp) | 10 paid tools — `0.005`–`0.03 USDT0`; 8 discovery/verification tools are free. OKX.AI Agent #10405 is under review. |
+| [**EVIDIQ Compass**](https://github.com/evidiq/evidiq-compass-mcp)<br/>[Docs](https://evidiq.dev/docs/compass) | Tell an agent what its work is worth: where a listed price sits against comparable services, which categories have demand, and a counterparty's public trading record — in a signed 0G-anchored market report. | [`mcp.evidiq.dev/compass/mcp`](https://mcp.evidiq.dev/compass/mcp) | 10 paid tools — `0.005`–`0.03 USDT0`; 8 discovery/verification tools are free. OKX.AI Agent #10407 is under review. |
 
 All paid tools use x402 v2 with USDT0 on X Layer. Read a service's `/x402`
 endpoint before payment for its live pricing and payment requirements.

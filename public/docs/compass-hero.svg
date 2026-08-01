@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">EVIDIQ Compass — Market Position for Agent Services</title>
+  <desc id="desc">Agent-market price discovery for both sides of the deal. 18 tools that place a listing against comparable services, read demand, and return a signed 0G-anchored market report.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.53" stop-color="#1e1b4b"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="56%">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity=".5"/>
+      <stop offset=".48" stop-color="#a78bfa" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="needle" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2dd4bf"/>
+      <stop offset="0.5" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#818cf8"/>
+    </linearGradient>
+    <linearGradient id="dial" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="0.5" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#4f46e5"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" rx="40" fill="url(#bg)"/>
+  <rect width="1200" height="750" rx="40" fill="url(#glow)"/>
+
+  <!-- Price band grid background -->
+  <g opacity=".13" stroke="#a5b4fc" fill="none" stroke-width="1.5">
+    <path d="M0 470H1200M0 545H1200M0 620H1200M0 695H1200"/>
+  </g>
+
+  <!-- Market bars -->
+  <g opacity=".14">
+    <rect x="160" y="500" width="880" height="3" fill="url(#needle)"/>
+  </g>
+
+  <g transform="translate(560 360)">
+    <!-- Compass dial -->
+    <circle r="222" fill="#7c3aed" opacity=".22" filter="url(#soft)"/>
+    <circle r="188" fill="none" stroke="#a78bfa" stroke-opacity=".32" stroke-width="2" stroke-dasharray="7 14"/>
+    <circle r="152" fill="#0f172a" stroke="#6366f1" stroke-width="2"/>
+    <circle r="120" fill="none" stroke="#a5b4fc" stroke-width="3" stroke-opacity=".6"/>
+    <circle r="92" fill="none" stroke="#a5b4fc" stroke-width="2" stroke-opacity=".4"/>
+    <circle r="64" fill="none" stroke="#a5b4fc" stroke-width="2" stroke-opacity=".4"/>
+    <g stroke="#a5b4fc" stroke-width="3" stroke-linecap="round" opacity=".55">
+      <path d="M0 -118 L0 -104"/>
+      <path d="M0 118 L0 104"/>
+      <path d="M-118 0 L-104 0"/>
+      <path d="M118 0 L104 0"/>
+      <path d="M83 -83 L73 -73"/>
+      <path d="M-83 -83 L-73 -73"/>
+      <path d="M83 83 L73 73"/>
+      <path d="M-83 83 L-73 73"/>
+    </g>
+    <!-- Needle pointing up to the green band -->
+    <path d="M0 10 L-9 62 L0 96 L9 62 Z" fill="url(#dial)"/>
+    <path d="M0 -2 L0 -86" fill="none" stroke="url(#needle)" stroke-width="10" stroke-linecap="round"/>
+    <circle r="11" fill="#f0f9ff"/>
+    <circle r="5" fill="#4f46e5"/>
+    <!-- Price band ticks -->
+    <g font-family="ui-monospace, monospace" font-size="15" fill="#a5b4fc" opacity=".65">
+      <text x="-132" y="30">0.005</text>
+      <text x="62" y="-78">0.01</text>
+      <text x="-132" y="-30">0.02</text>
+      <text x="56" y="44">0.03</text>
+    </g>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, sans-serif" fill="#fff">
+    <text x="76" y="96" font-size="25" font-weight="700" letter-spacing="7" fill="#7dd3fc">EVIDIQ COMPASS</text>
+    <text x="76" y="145" font-size="27" fill="#e0f2fe">Market Position for Agent Services</text>
+  </g>
+
+  <g transform="translate(72 586)">
+    <rect width="360" height="92" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#38bdf8" stroke-opacity=".38"/>
+    <text x="22" y="32" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#7dd3fc">MARKET RATE</text>
+    <text x="22" y="62" font-family="ui-monospace, monospace" font-size="23" font-weight="700" fill="#f0f9ff">median 0.09 · n=166</text>
+    <text x="22" y="84" font-family="ui-sans-serif, system-ui, sans-serif" font-size="13" fill="#a5b4fc">listed prices · snapshotAt · coverage</text>
+  </g>
+
+  <g transform="translate(838 586)">
+    <rect width="290" height="92" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#2dd4bf" stroke-opacity=".45"/>
+    <text x="22" y="32" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#2dd4bf">REPORT</text>
+    <text x="22" y="62" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#f0f9ff">EIP-191 · RFC 8785 (JCS)</text>
+    <text x="22" y="86" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#f0f9ff">0G Merkle Root Storage</text>
+  </g>
+</svg>
