@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">EVIDIQ Methodology — MCP Fleet Production Framework &amp; Verification Tools</title>
+  <desc id="desc">Fleet production verification tools for OKX.AI MCP builders. 15 tools that audit, validate, and attest MCP readiness with EIP-191 signed attestations and 0G Storage anchoring.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.53" stop-color="#1e1b4b"/>
+      <stop offset="1" stop-color="#0f766e"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="56%">
+      <stop offset="0" stop-color="#818cf8" stop-opacity=".5"/>
+      <stop offset=".48" stop-color="#2dd4bf" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="check" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#818cf8"/>
+      <stop offset="0.5" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="scan" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2dd4bf"/>
+      <stop offset="0.5" stop-color="#818cf8"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" rx="40" fill="url(#bg)"/>
+  <rect width="1200" height="750" rx="40" fill="url(#glow)"/>
+
+  <!-- Checklist scan lines background -->
+  <g opacity=".15" stroke="#a5b4fc" fill="none" stroke-width="1.5">
+    <path d="M0 130H280M0 210H220M0 290H340M0 570H260M0 650H300"/>
+    <path d="M1200 130H920M1200 210H980M1200 290H860M1200 570H940M1200 650H900"/>
+  </g>
+
+  <!-- Scanning beam -->
+  <g opacity=".12">
+    <rect x="160" y="310" width="880" height="3" fill="url(#scan)"/>
+  </g>
+
+  <g transform="translate(600 365)">
+    <circle r="234" fill="#4f46e5" opacity=".15" filter="url(#soft)"/>
+    <circle r="198" fill="none" stroke="#818cf8" stroke-opacity=".32" stroke-width="2" stroke-dasharray="7 14"/>
+    <circle r="162" fill="#0f172a" stroke="#6366f1" stroke-width="2"/>
+
+    <!-- Checklist + shield icon -->
+    <path d="M-10 -90 L10 -90 L10 -70 L30 -70 L30 40 C30 65 15 80 0 90 C-15 80 -30 65 -30 40 L-30 -70 L-10 -70 Z"
+          fill="url(#check)" opacity=".85" stroke="#a5b4fc" stroke-width="2"/>
+    <!-- Checkmark -->
+    <path d="M-18 5 L-5 20 L20 -12" fill="none" stroke="#f0f9ff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- Checklist items around shield -->
+    <g font-family="ui-monospace, monospace" font-size="16" fill="#a5b4fc" opacity=".6">
+      <text x="-130" y="-50">✓</text>
+      <text x="-130" y="-20">✓</text>
+      <text x="-130" y="10">✓</text>
+      <text x="-130" y="40">✓</text>
+      <text x="110" y="-50">✓</text>
+      <text x="110" y="-20">✓</text>
+      <text x="110" y="10">✓</text>
+      <text x="110" y="40">✓</text>
+    </g>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, sans-serif" fill="#fff">
+    <text x="76" y="96" font-size="25" font-weight="700" letter-spacing="7" fill="#a5b4fc">EVIDIQ METHODOLOGY</text>
+    <text x="76" y="145" font-size="27" fill="#e0e7ff">MCP Fleet Production Framework &amp; Verification Tools</text>
+  </g>
+
+  <g transform="translate(72 610)">
+    <rect width="350" height="77" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#818cf8" stroke-opacity=".38"/>
+    <text x="22" y="30" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#a5b4fc">READY SCORE</text>
+    <text x="22" y="59" font-family="ui-monospace, monospace" font-size="23" font-weight="700" fill="#f0f9ff">100/100 · 16 defects ✓</text>
+  </g>
+
+  <g transform="translate(852 586)">
+    <rect width="276" height="101" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#2dd4bf" stroke-opacity=".45"/>
+    <text x="22" y="32" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#2dd4bf">ATTESTATION</text>
+    <text x="22" y="62" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#f0f9ff">EIP-191 · RFC 8785 (JCS)</text>
+    <text x="22" y="86" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#f0f9ff">0G Merkle Root Storage</text>
+  </g>
+</svg>

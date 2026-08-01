@@ -403,6 +403,37 @@ export const DOCS: DocCard[] = [
     okxUrl: "https://www.okx.ai/agents/10385",
     agentId: 10385,
   },
+  {
+    slug: "methodology",
+    name: "EVIDIQ Methodology",
+    tagline: "MCP Fleet Production Framework & Verification Tools",
+    description:
+      "Fleet production verification tools for OKX.AI MCP builders. 15 tools (5 free, 10 paid) that audit, validate, and attest MCP readiness — git history scan, x402 challenge validator, OKX status, production readiness score, and EIP-191 signed attestation with 0G Storage anchoring. Plus 15 auto-triggering methodology skills.",
+    endpoint: "https://mcp.evidiq.dev/methodology/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "audit_git_history", paid: true },
+      { name: "check_okx_status", paid: true },
+      { name: "validate_x402_compliance", paid: true },
+      { name: "validate_plan_freeze", paid: true },
+      { name: "pre_submit_check", paid: true },
+      { name: "scan_deployment_env", paid: true },
+      { name: "production_readiness_score", paid: true },
+      { name: "verify_onchain_proof", paid: true },
+      { name: "generate_runbook_entry", paid: true },
+      { name: "attest_readiness", paid: true },
+      { name: "methodology_capabilities", paid: false },
+      { name: "validate_plan_sections", paid: false },
+      { name: "diff_capabilities", paid: false },
+      { name: "curl_sweep", paid: false },
+      { name: "verify_determinism", paid: false },
+    ],
+    href: "/docs/methodology",
+    image: "/docs/methodology-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/10389",
+    agentId: 10389,
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
