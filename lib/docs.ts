@@ -384,8 +384,8 @@ export const DOCS: DocCard[] = [
     description:
       "Deterministic prompt injection and LLM input safety guard. Scans for direct injection, indirect injection, jailbreak techniques, data exfiltration payloads, and system-prompt leak probes. EIP-191 signed attestations with 0G storage anchoring. Five paid tools, five free.",
     endpoint: "https://mcp.evidiq.dev/bulwark/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "scan_prompt_injection", paid: true },
       { name: "scan_jailbreak_techniques", paid: true },

@@ -57,16 +57,17 @@ unauthenticated requests receive an HTTP 402 challenge; sign it and retry.
 
 ## EVIDIQ MCP Suite
 
-This repository is the public hub for the EVIDIQ product family. The Core MCP
-runs from this repository; Notary, Operator, Sentinel, and Atlas are independently
-deployed specialist services. Their source remains in their own repositories,
-while this directory is the single place to discover every EVIDIQ MCP.
+This repository is the public hub for the EVIDIQ product family: sixteen MCP
+services, all live on OKX.AI. Core is served from this repository; the fifteen
+specialists are independently deployed and keep their source in their own
+repositories, while this directory is the single place to discover every EVIDIQ
+MCP.
 
 | Service | Use it for | Remote MCP endpoint | Access |
 |---------|------------|---------------------|--------|
-| [**EVIDIQ Core**](https://evidiq.dev/docs/evidiq) | Verify an agent's capability, identity, risk, and reputation before value moves. | [`evidiq.dev/mcp`](https://evidiq.dev/mcp) | `verify_agent` — `0.05 USDT0`; `how_to_install` and `get_evidiq_skill` are free. |
-| [**EVIDIQ Notary**](https://github.com/evidiq/evidiq-notary-mcp)<br/>[Docs](https://evidiq.dev/docs/notary) | Create cryptographic, signed, 0G-anchored receipts for AI outputs. | [`mcp.evidiq.dev/notary/mcp`](https://mcp.evidiq.dev/notary/mcp) | 2 paid tools — `0.001` / `0.005 USDT0`; 4 verification tools are free. |
-| [**EVIDIQ Operator**](https://github.com/evidiq/evidiq-operator)<br/>[Docs](https://evidiq.dev/docs/operator) | Give autonomous agents isolated browser and computer-use execution. | [`mcp.evidiq.dev/operator/mcp`](https://mcp.evidiq.dev/operator/mcp) | 7 browser tools — `0.02 USDT0` each; 4 discovery tools are free. |
+| [**EVIDIQ Core**](https://evidiq.dev/docs/evidiq) | Verify an agent's capability, identity, risk, and reputation before value moves. | [`evidiq.dev/mcp`](https://evidiq.dev/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 discovery/verification tools are free. Live on OKX.AI as Agent #5232. |
+| [**EVIDIQ Notary**](https://github.com/evidiq/evidiq-notary-mcp)<br/>[Docs](https://evidiq.dev/docs/notary) | Create cryptographic, signed, 0G-anchored receipts for AI outputs. | [`mcp.evidiq.dev/notary/mcp`](https://mcp.evidiq.dev/notary/mcp) | 2 paid tools — `0.001` / `0.005 USDT0`; 4 verification tools are free. Live on OKX.AI as Agent #6278. |
+| [**EVIDIQ Operator**](https://github.com/evidiq/evidiq-operator)<br/>[Docs](https://evidiq.dev/docs/operator) | Give autonomous agents isolated browser and computer-use execution. | [`mcp.evidiq.dev/operator/mcp`](https://mcp.evidiq.dev/operator/mcp) | 7 browser tools — `0.02 USDT0` each; 4 discovery tools are free. Live on OKX.AI as Agent #6504. |
 | [**EVIDIQ Sentinel**](https://github.com/evidiq/evidiq-sentinel-mcp)<br/>[Docs](https://evidiq.dev/docs/sentinel) | Security-preflight MCP endpoints, manifests, Agent Skills, and bundles before connection or payment. | [`mcp.evidiq.dev/sentinel/mcp`](https://mcp.evidiq.dev/sentinel/mcp) | 4 scan tools — `0.02 USDT0` each; 4 preflight/verification tools are free. Live on OKX.AI as Agent #7584. |
 | [**EVIDIQ Atlas**](https://github.com/evidiq/evidiq-atlas-mcp)<br/>[Docs](https://evidiq.dev/docs/atlas) | Profile, query, visualize, compare, and research bounded datasets with reproducible reports. | [`mcp.evidiq.dev/atlas/mcp`](https://mcp.evidiq.dev/atlas/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9023. |
 | [**EVIDIQ Lineage**](https://github.com/evidiq/evidiq-lineage-mcp)<br/>[Docs](https://evidiq.dev/docs/lineage) | Verify that a dependency is real, safe, and license-clean before an agent installs it; emit signed SBOM and AI-BOM inventories. | [`mcp.evidiq.dev/lineage/mcp`](https://mcp.evidiq.dev/lineage/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9575. |
@@ -74,8 +75,12 @@ while this directory is the single place to discover every EVIDIQ MCP.
 | [**EVIDIQ Redact**](https://github.com/evidiq/evidiq-redact-mcp)<br/>[Docs](https://evidiq.dev/docs/redact) | Detect and remove PII, credentials, and keys from text, documents, and datasets before an agent sends them anywhere — checksum-validated, with a signed report and zero retention. | [`mcp.evidiq.dev/redact/mcp`](https://mcp.evidiq.dev/redact/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9700. |
 | [**EVIDIQ Warden**](https://github.com/evidiq/evidiq-warden-mcp)<br/>[Docs](https://evidiq.dev/docs/warden) | Review code an agent wrote before it ships: injection, secrets, unsafe patterns, complexity, and policy verdicts, with a signed attestation. | [`mcp.evidiq.dev/warden/mcp`](https://mcp.evidiq.dev/warden/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9699. |
 | [**EVIDIQ Assay**](https://github.com/evidiq/evidiq-assay-mcp)<br/>[Docs](https://evidiq.dev/docs/assay) | Read a transaction before signing it: decode calldata and EIP-712 into plain-language intent, unwrap multicall, assess allowances, simulate, and screen the counterparty. | [`mcp.evidiq.dev/assay/mcp`](https://mcp.evidiq.dev/assay/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9727. |
-| [**EVIDIQ Rubric**](https://github.com/evidiq/evidiq-rubric-mcp)<br/>[Docs](https://evidiq.dev/docs/rubric) | Decide whether a deliverable meets the contract it was paid for: schema conformance, grounding in supplied sources, and acceptance criteria, with a signed verdict. | [`mcp.evidiq.dev/rubric/mcp`](https://mcp.evidiq.dev/rubric/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live, with paid calls proven on X Layer; OKX.AI Agent #9848 is under review. |
-| [**EVIDIQ Bastion**](https://github.com/evidiq/evidiq-bastion-mcp)<br/>[Docs](https://evidiq.dev/docs/bastion) | Audit deployment configurations (Dockerfiles, CI workflows, Kubernetes manifests, and IaC) for non-root, privilege, secret protection, supply chain integrity, and resource bounds. | [`mcp.evidiq.dev/bastion/mcp`](https://mcp.evidiq.dev/bastion/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live, with paid calls proven on X Layer; OKX.AI Agent #10359 is under review. |
+| [**EVIDIQ Rubric**](https://github.com/evidiq/evidiq-rubric-mcp)<br/>[Docs](https://evidiq.dev/docs/rubric) | Decide whether a deliverable meets the contract it was paid for: schema conformance, grounding in supplied sources, and acceptance criteria, with a signed verdict. | [`mcp.evidiq.dev/rubric/mcp`](https://mcp.evidiq.dev/rubric/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #9848, with paid calls proven on X Layer. |
+| [**EVIDIQ Bastion**](https://github.com/evidiq/evidiq-bastion-mcp)<br/>[Docs](https://evidiq.dev/docs/bastion) | Audit deployment configurations (Dockerfiles, CI workflows, Kubernetes manifests, and IaC) for non-root, privilege, secret protection, supply chain integrity, and resource bounds. | [`mcp.evidiq.dev/bastion/mcp`](https://mcp.evidiq.dev/bastion/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #10359, with paid calls proven on X Layer. |
+| [**EVIDIQ Aegis**](https://github.com/evidiq/evidiq-aegis-mcp)<br/>[Docs](https://evidiq.dev/docs/aegis) | Hold an agent's spending to a policy: budget velocity caps, escrow release validation, and fee surge protection before a transfer is signed. | [`mcp.evidiq.dev/aegis/mcp`](https://mcp.evidiq.dev/aegis/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #10367. |
+| [**EVIDIQ Circuit**](https://github.com/evidiq/evidiq-circuit-mcp)<br/>[Docs](https://evidiq.dev/docs/circuit) | Keep an agent's outbound API calls honest: endpoint and TLS compliance, payload schema drift, circuit breaker state, and webhook signature verification. | [`mcp.evidiq.dev/circuit/mcp`](https://mcp.evidiq.dev/circuit/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #10377. |
+| [**EVIDIQ Bulwark**](https://github.com/evidiq/evidiq-bulwark-mcp)<br/>[Docs](https://evidiq.dev/docs/bulwark) | Screen text before it reaches a model: direct and indirect prompt injection, jailbreak techniques, data exfiltration payloads, and system-prompt leak probes. | [`mcp.evidiq.dev/bulwark/mcp`](https://mcp.evidiq.dev/bulwark/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #10385. |
+| [**EVIDIQ Methodology**](https://github.com/evidiq/evidiq-methodology-mcp)<br/>[Docs](https://evidiq.dev/docs/methodology) | Check an MCP service against the practices this fleet learned the hard way: git history secret scan, x402 challenge compliance, OKX listing status, and a production readiness score. | [`mcp.evidiq.dev/methodology/mcp`](https://mcp.evidiq.dev/methodology/mcp) | 10 paid tools — `0.005`–`0.03 USDT0`; 5 preflight/verification tools are free. Live on OKX.AI as Agent #10389. |
 
 All paid tools use x402 v2 with USDT0 on X Layer. Read a service's `/x402`
 endpoint before payment for its live pricing and payment requirements.
@@ -135,9 +140,10 @@ X Layer, and the **verdict** is anchored on 0G. Both from live calls, not mockup
 
 | | |
 |---|---|
-| Amount | `0.05 USDT0` on X Layer (`eip155:196`) |
+| Amount | `0.005 USDT0` on X Layer (`eip155:196`) — `verify_agent` at its current price |
 | Flow | HTTP 402 → EIP-3009 signature → `transferWithAuthorization` (gasless for the payer) |
-| Tx | [`0x6f74549e…96cca86`](https://www.oklink.com/xlayer/tx/0x6f74549eecb4627509f6397db02b8397892c9893d869790006b258b6996cca86) · SUCCESS |
+| Tx | [`0xfd872a79…6f6ab9`](https://www.oklink.com/xlayer/tx/0xfd872a79cbf1e9ae64977e145eeec8f00f9ea100b2b7f27f235809767e6f6ab9) · settled |
+| Earlier | [`0x6f74549e…96cca86`](https://www.oklink.com/xlayer/tx/0x6f74549eecb4627509f6397db02b8397892c9893d869790006b258b6996cca86) · SUCCESS, at the launch price of `0.05 USDT0` |
 
 **2 · Verdict — TEE-verified analysis + 0G Storage anchor**
 
