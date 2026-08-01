@@ -1,5 +1,5 @@
 # syntax=docker/dockerfile:1
-# EVIDIQ — Next.js 15 production image for Coolify/Traefik on hackaton-do.
+# EVIDIQ — Next.js 15 production image (standalone output, ~150MB not 1.9GB).
 
 # ---- Builder: install everything and build ----
 FROM node:22-bookworm-slim AS builder
@@ -10,7 +10,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# ---- Runner: lean production deps + built output ----
+# ---- Runner: standalone server (no full node_modules) ----
 FROM node:22-bookworm-slim AS runner
 WORKDIR /app
 ENV NODE_ENV=production
@@ -18,18 +18,21 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME=0.0.0.0
 
-# Only production dependencies (keeps @0gfoundation/0g-ts-sdk, ethers, viem, mcp).
-COPY package.json package-lock.json ./
-RUN npm ci --omit=dev
-
-COPY --from=builder /app/.next ./.next
+# Standalone server (includes only traced node_modules — minimal).
+COPY --from=builder /app/.next/standalone ./
+# Static assets + public files (not included in standalone).
+COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
-COPY --from=builder /app/next.config.mjs ./next.config.mjs
+# serverExternalPackages are not traced — copy only those two.
+COPY --from=builder /app/node_modules/@0gfoundation ./node_modules/@0gfoundation
+COPY --from=builder /app/node_modules/ethers ./node_modules/ethers
+# Scripts (x402 test, sync mirrors) referenced at runtime.
 COPY --from=builder /app/scripts ./scripts
+# next.config.mjs needed by standalone server.
+COPY --from=builder /app/next.config.mjs ./next.config.mjs
 
 # Auto-blog: bind-mount targets for generated posts/images (see deploy/run.sh).
-# Created here so the mount points exist even before the first `docker run -v`.
 RUN mkdir -p ./content/blog ./public/blog
 
 EXPOSE 3000
-CMD ["npm", "run", "start"]
+CMD ["node", "server.js"]
