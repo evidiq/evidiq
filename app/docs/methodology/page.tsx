@@ -77,7 +77,7 @@ export default function MethodologyDocsPage() {
         agentId={10389}
         name="EVIDIQ Methodology"
         endpoint="https://mcp.evidiq.dev/methodology/mcp"
-        status="review"
+        status="listed"
       />
 
       <H2 id="quickstart">Quickstart</H2>

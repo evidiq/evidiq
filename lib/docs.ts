@@ -410,8 +410,8 @@ export const DOCS: DocCard[] = [
     description:
       "Fleet production verification tools for OKX.AI MCP builders. 15 tools (5 free, 10 paid) that audit, validate, and attest MCP readiness — git history scan, x402 challenge validator, OKX status, production readiness score, and EIP-191 signed attestation with 0G Storage anchoring. Plus 15 auto-triggering methodology skills.",
     endpoint: "https://mcp.evidiq.dev/methodology/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "audit_git_history", paid: true },
       { name: "check_okx_status", paid: true },
