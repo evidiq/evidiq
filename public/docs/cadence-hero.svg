@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="750" viewBox="0 0 1200 750" role="img" aria-labelledby="title desc">
+  <title id="title">EVIDIQ Cadence — The Temporal Layer for Autonomous Agents</title>
+  <desc id="desc">Durable, attested future execution for agents. 18 tools that schedule one-shot, recurring, retry, expiration, and standing-monitor jobs with EIP-191 receipts and 0G-anchored attestations.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.53" stop-color="#1e1b4b"/>
+      <stop offset="1" stop-color="#0e7490"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="45%" r="56%">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity=".5"/>
+      <stop offset=".48" stop-color="#2dd4bf" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="clock" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="0.5" stop-color="#6366f1"/>
+      <stop offset="1" stop-color="#4f46e5"/>
+    </linearGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#2dd4bf"/>
+      <stop offset="0.5" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#818cf8"/>
+    </linearGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="18"/>
+    </filter>
+  </defs>
+
+  <rect width="1200" height="750" rx="40" fill="url(#bg)"/>
+  <rect width="1200" height="750" rx="40" fill="url(#glow)"/>
+
+  <!-- Timeline ticks background -->
+  <g opacity=".15" stroke="#7dd3fc" fill="none" stroke-width="1.5">
+    <path d="M0 130H280M0 210H220M0 290H340M0 570H260M0 650H300"/>
+    <path d="M1200 130H920M1200 210H980M1200 290H860M1200 570H940M1200 650H900"/>
+  </g>
+
+  <!-- Time beam -->
+  <g opacity=".12">
+    <rect x="160" y="310" width="880" height="3" fill="url(#beam)"/>
+  </g>
+
+  <g transform="translate(600 365)">
+    <circle r="234" fill="#0e7490" opacity=".2" filter="url(#soft)"/>
+    <circle r="198" fill="none" stroke="#38bdf8" stroke-opacity=".32" stroke-width="2" stroke-dasharray="7 14"/>
+    <circle r="162" fill="#0f172a" stroke="#6366f1" stroke-width="2"/>
+
+    <!-- Clock face -->
+    <g opacity=".85">
+      <circle r="92" fill="none" stroke="#a5b4fc" stroke-width="3" stroke-opacity=".6"/>
+      <g stroke="#a5b4fc" stroke-width="3" stroke-linecap="round" opacity=".55">
+        <path d="M0 -78 L0 -68"/>
+        <path d="M0 78 L0 68"/>
+        <path d="M-78 0 L-68 0"/>
+        <path d="M78 0 L68 0"/>
+        <path d="M55 -55 L48 -48"/>
+        <path d="M-55 -55 L-48 -48"/>
+        <path d="M55 55 L48 48"/>
+        <path d="M-55 55 L-48 48"/>
+      </g>
+    </g>
+    <!-- Hour + minute hands -->
+    <path d="M0 6 L0 -52" fill="none" stroke="url(#clock)" stroke-width="9" stroke-linecap="round"/>
+    <path d="M0 6 L40 8" fill="none" stroke="#2dd4bf" stroke-width="7" stroke-linecap="round"/>
+    <circle r="9" fill="#f0f9ff"/>
+    <circle r="4" fill="#4f46e5"/>
+
+    <!-- Tick marks around the clock -->
+    <g font-family="ui-monospace, monospace" font-size="16" fill="#a5b4fc" opacity=".6">
+      <text x="-130" y="-50">1</text>
+      <text x="-130" y="-20">6</text>
+      <text x="-130" y="10">12</text>
+      <text x="-130" y="40">24</text>
+      <text x="110" y="-50">h</text>
+      <text x="110" y="-20">m</text>
+      <text x="110" y="10">s</text>
+      <text x="110" y="40">d</text>
+    </g>
+  </g>
+
+  <g font-family="ui-sans-serif, system-ui, sans-serif" fill="#fff">
+    <text x="76" y="96" font-size="25" font-weight="700" letter-spacing="7" fill="#7dd3fc">EVIDIQ CADENCE</text>
+    <text x="76" y="145" font-size="27" fill="#e0f2fe">The Temporal Layer for Autonomous Agents</text>
+  </g>
+
+  <g transform="translate(72 610)">
+    <rect width="350" height="77" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#38bdf8" stroke-opacity=".38"/>
+    <text x="22" y="30" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#7dd3fc">NEXT FIRE</text>
+    <text x="22" y="59" font-family="ui-monospace, monospace" font-size="23" font-weight="700" fill="#f0f9ff">in 5s · j_dde54986…</text>
+  </g>
+
+  <g transform="translate(852 586)">
+    <rect width="276" height="101" rx="16" fill="#ffffff" fill-opacity=".1" stroke="#2dd4bf" stroke-opacity=".45"/>
+    <text x="22" y="32" font-family="ui-sans-serif, system-ui, sans-serif" font-size="14" font-weight="700" letter-spacing="2" fill="#2dd4bf">RECEIPT</text>
+    <text x="22" y="62" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#f0f9ff">EIP-191 · RFC 8785 (JCS)</text>
+    <text x="22" y="86" font-family="ui-sans-serif, system-ui, sans-serif" font-size="19" font-weight="700" fill="#f0f9ff">0G Merkle Root Storage</text>
+  </g>
+</svg>
