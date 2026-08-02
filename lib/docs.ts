@@ -502,6 +502,40 @@ export const DOCS: DocCard[] = [
     okxUrl: "https://www.okx.ai/agents/10407",
     agentId: 10407,
   },
+  {
+    slug: "envelope",
+    name: "EVIDIQ Envelope",
+    tagline: "Inbound Message Authenticity",
+    description:
+      "Cryptographic verification of inbound messages: SPF, DKIM, DMARC and ARC on the raw message, sender-spoofing and lookalike-domain detection, header-chain forensics, and structural risk of attachments and links — with the DNS answers pinned into a signed report. 18 tools (8 free, 10 paid).",
+    endpoint: "https://mcp.evidiq.dev/envelope/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "verify_dkim", paid: true },
+      { name: "check_dmarc_alignment", paid: true },
+      { name: "verify_message_auth", paid: true },
+      { name: "validate_arc_chain", paid: true },
+      { name: "detect_sender_spoofing", paid: true },
+      { name: "audit_header_chain", paid: true },
+      { name: "assess_attachment_surface", paid: true },
+      { name: "assess_link_surface", paid: true },
+      { name: "screen_domain_posture", paid: true },
+      { name: "attest_message_verdict", paid: true },
+      { name: "envelope_capabilities", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "validate_message_input", paid: false },
+      { name: "parse_message_structure", paid: false },
+      { name: "explain_auth_result", paid: false },
+      { name: "check_dns_txt", paid: false },
+      { name: "verify_envelope_report", paid: false },
+      { name: "get_artifact", paid: false },
+    ],
+    href: "/docs/envelope",
+    image: "/docs/envelope-hero.svg",
+    // agentId intentionally omitted — OKX.AI registration is handled separately
+    // (PLAN §13 steps 12-13); the docs hub must not invent a listing.
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
