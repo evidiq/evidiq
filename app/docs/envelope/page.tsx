@@ -221,7 +221,7 @@ export default function EnvelopeDocsPage() {
       <div className="mt-6 overflow-hidden rounded-2xl border border-violet-200 bg-violet-50/40 p-6">
         <p className="text-xs font-bold uppercase tracking-wider text-violet-800">Verification Log</p>
         <p className="mt-2 text-sm text-[#201810]/75">
-          The §6 fixture gate passed 7/7 against mailauth 4.13.3 (three deviations
+          The fixture gate passed 7/7 against mailauth 4.13.3 (three deviations
           reported and operator-approved: body-hash and missing-key label as neutral
           not-pass; strict identifier alignment computed locally per RFC 7489 because
           mailauth&apos;s strict mode compares registrable domains). All 18 tools exercised
