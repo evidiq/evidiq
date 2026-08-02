@@ -441,8 +441,8 @@ export const DOCS: DocCard[] = [
     description:
       "Durable, attested future execution for agents: schedule one-shot, recurring, retry, expiration, and standing-monitor jobs that fire after the response ends — deadlines, retries, and watches delivered back over poll or webhook, with an EIP-191 receipt for every firing and 0G-anchored attestations. 18 tools (8 free, 10 paid).",
     endpoint: "https://mcp.evidiq.dev/cadence/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "schedule_job", paid: true },
       { name: "schedule_recurring", paid: true },
@@ -475,8 +475,8 @@ export const DOCS: DocCard[] = [
     description:
       "Agent-market price discovery for both sides of the deal: what a service should cost, where a listing sits in its category, where demand is thin, and a signed 0G-anchored report a seller can cite in a negotiation. 18 tools (8 free, 10 paid).",
     endpoint: "https://mcp.evidiq.dev/compass/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "counterparty_history", paid: true },
       { name: "market_rate", paid: true },

@@ -86,7 +86,7 @@ export default function CompassDocsPage() {
         agentId={10407}
         name="EVIDIQ Compass"
         endpoint="https://mcp.evidiq.dev/compass/mcp"
-        status="review"
+        status="listed"
       />
 
       <H2 id="quickstart">Quickstart</H2>

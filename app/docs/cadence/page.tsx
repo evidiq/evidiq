@@ -86,7 +86,7 @@ export default function CadenceDocsPage() {
         agentId={10405}
         name="EVIDIQ Cadence"
         endpoint="https://mcp.evidiq.dev/cadence/mcp"
-        status="review"
+        status="listed"
       />
 
       <H2 id="quickstart">Quickstart</H2>
