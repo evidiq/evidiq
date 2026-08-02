@@ -533,8 +533,8 @@ export const DOCS: DocCard[] = [
     ],
     href: "/docs/envelope",
     image: "/docs/envelope-hero.svg",
-    // agentId intentionally omitted — OKX.AI registration is handled separately
-    // (PLAN §13 steps 12-13); the docs hub must not invent a listing.
+    okxUrl: "https://www.okx.ai/agents/10435",
+    agentId: 10435,
   },
 ];
 

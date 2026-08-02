@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
+import OkxAiLiveBlock from "@/components/OkxAiLiveBlock";
 
 export const metadata: Metadata = {
   title: "EVIDIQ Envelope Docs — Inbound Message Authenticity",
@@ -81,25 +82,13 @@ export default function EnvelopeDocsPage() {
         DNS answers pinned into a signed report. 18 tools (8 free, 10 paid).
       </p>
 
-      <div className="mt-8 rounded-2xl border p-5 border-amber-200 bg-amber-50/50">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-            </span>
-            Under OKX.AI review
-          </span>
-          <p className="text-sm font-semibold text-[#1a130a]">EVIDIQ Envelope</p>
-        </div>
-        <div className="mt-4 space-y-4 border-t border-black/5 pt-4">
-          <p className="text-sm text-[#201810]/75">
-            The endpoint below is already live; the OKX.AI listing (Agent ID) is being
-            registered separately and will appear here once it exists.
-          </p>
-          <p className="font-mono text-xs text-[#201810]/60">https://mcp.evidiq.dev/envelope/mcp</p>
-        </div>
-      </div>
+      <OkxAiLiveBlock
+        url="https://www.okx.ai/agents/10435"
+        agentId={10435}
+        name="EVIDIQ Envelope"
+        endpoint="https://mcp.evidiq.dev/envelope/mcp"
+        status="review"
+      />
 
       <H2 id="quickstart">Quickstart</H2>
       <p className="mt-3 text-[#201810]/70">
