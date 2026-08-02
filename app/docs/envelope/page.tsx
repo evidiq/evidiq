@@ -238,19 +238,29 @@ export default function EnvelopeDocsPage() {
         </p>
         <pre className="mt-3 overflow-x-auto rounded-lg bg-[#0f172a] p-4 font-mono text-xs leading-relaxed text-emerald-300">
 {`Free Tools (HTTP 200)
-  envelope_capabilities        → 200 ✓
-  validate_message_input       → 200 ✓
+  envelope_capabilities        → 200 ✓ (18 tools, 8 claim limits)
+  estimate_cost                → 200 ✓ (verify_message_auth = 0.01 USDT0)
+  validate_message_input       → 200 ✓ (parseable, which paid checks can run)
+  parse_message_structure      → 200 ✓ (9 headers, 1 Received hop, structure only)
+  explain_auth_result          → 200 ✓ (code explained + what it does not prove)
   check_dns_txt                → 200 ✓ (SPF -all · DMARC reject · selector)
+  verify_envelope_report       → 200 ✓ (signatureValid: true, fleet signer)
+  get_artifact                 → 200 ✓ (artifact with anchorRoot + anchorTx)
 
 Paid Tools (HTTP 200 — bypass mode, Phase 1)
-  verify_dkim                  → 200 ✓ (per-signature, not-pass with reason)
+  verify_dkim                  → 200 ✓ (0/1 signatures, not-pass with reason)
+  check_dmarc_alignment        → 200 ✓ (dmarc-not-aligned, adkim=s aspf=s)
   verify_message_auth          → 200 ✓ (not-authenticated; DKIM/SPF/DMARC)
+  validate_arc_chain           → 200 ✓ (no-arc-chain — normal for direct mail)
+  detect_sender_spoofing       → 200 ✓ (no-indicators, matches expected sender)
+  audit_header_chain           → 200 ✓ (1 hop, internally consistent)
   assess_attachment_surface    → 200 ✓ (risky: .pdf.exe double extension)
-  screen_domain_posture        → 200 ✓ (SPF valid -all · DMARC reject)
-  attest_message_verdict       → 200 ✓ (0G anchored, root + tx)
+  assess_link_surface          → 200 ✓ (structural only, never fetched)
+  screen_domain_posture        → 200 ✓ (SPF valid -all · DMARC reject · 6 selectors)
+  attest_message_verdict       → 200 ✓ (EIP-191 signed, 0G anchored)
 
 Phase 2 gate (bypass removed) — measured from outside:
-  empty POST → 402 · no content-type → 415 · HEAD → 402 no hang
+  empty POST → 402 · no content-type → 415 · HEAD → 402 (72ms, no hang)
   10 paid bare {} → 402 · 8 free bare {} → 200
   paid call settled on X Layer: 0xb8e6ede…15e51a0 (verify_dkim, 0.005 USDT0)`}
         </pre>
