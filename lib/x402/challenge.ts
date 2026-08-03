@@ -22,7 +22,7 @@ function b64(value: unknown): string {
 }
 
 const RESOURCE_DESCRIPTION =
-  "EVIDIQ — x402-gated trust check (verify_agent): capability verification, risk scoring, on-chain reputation and a signed attestation anchored on 0G. The skill and install tools remain free.";
+  "EVIDIQ Core — trust checks for agent transactions: capability verification, endpoint probing, ERC-8004 identity resolution, risk scoring, and signed attestations anchored on 0G. Ten MCP tools at https://evidiq.dev/mcp: five free (capabilities, onboarding, skill, cost estimate, offline report check) and five metered with x402 from 0.005 USDT0 for verify_agent to 0.03 for attest_trust_report and batch_verify. The amount below is the entry price; call estimate_cost, or read the 402 challenge, for the exact price of a specific tool.";
 
 /** Top-level resource descriptor (object form, per the OKX A2MCP spec). */
 function buildResource(resourceUrl: string): X402Resource {

@@ -16,8 +16,13 @@ import { z } from "zod";
  * - preview/dev: X Layer testnet (eip155:1952), test token, price 0.
  * - production:  X Layer mainnet (eip155:196), USDT0 — the OKX A2MCP settlement
  *   token, 0x779ded0c9e1022225f8e0630b35a9b54be713736, EIP-712 domain
- *   { name: "USD₮0", version: "1" }; $0.05 = price "50000"
+ *   { name: "USD₮0", version: "1" }; $0.005 = price "5000"
  *   (6 decimals). Settlement is self-served on-chain when X402_SETTLE_KEY is set.
+ *
+ * X402_PRICE is what /x402 advertises for the resource. It must match the entry price
+ * the gate actually charges on evidiq.dev/mcp — `verify_agent` at 5000. It read 50000
+ * for a while, advertising ten times the real price to any agent that trusted the
+ * discovery document (§64).
  */
 
 /** USDT0 on X Layer mainnet — the OKX A2MCP settlement token (6 decimals).
@@ -59,7 +64,7 @@ const envSchema = z.object({
   X402_PRICE: z
     .string()
     .regex(/^\d+$/, "X402_PRICE must be atomic units (decimal integer)")
-    .default("50000"),
+    .default("5000"),
   X402_FACILITATOR_URL: z.url().default("https://web3.okx.com"),
   X402_RPC: z.url().default(XLAYER_RPC),
   X402_SETTLE_KEY: z
