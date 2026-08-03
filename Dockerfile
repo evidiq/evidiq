@@ -6,9 +6,14 @@ FROM node:22-bookworm-slim AS builder
 WORKDIR /app
 ENV NEXT_TELEMETRY_DISABLED=1
 COPY package.json package-lock.json ./
-RUN npm ci
+# Cache the npm download store, so a lockfile change re-resolves without re-downloading.
+RUN --mount=type=cache,target=/root/.npm npm ci
 COPY . .
-RUN npm run build
+# Cache Next's incremental build cache across image builds. Without this the container
+# build starts from zero every time — which is why a deploy took minutes while the same
+# build locally, with .next/cache present, finishes in seconds. .dockerignore excludes
+# .next, so this mount is the only way that cache survives.
+RUN --mount=type=cache,target=/app/.next/cache npm run build
 
 # ---- Runner: standalone server (no full node_modules) ----
 FROM node:22-bookworm-slim AS runner
