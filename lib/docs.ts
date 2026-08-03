@@ -509,8 +509,8 @@ export const DOCS: DocCard[] = [
     description:
       "Cryptographic verification of inbound messages: SPF, DKIM, DMARC and ARC on the raw message, sender-spoofing and lookalike-domain detection, header-chain forensics, and structural risk of attachments and links — with the DNS answers pinned into a signed report. 18 tools (8 free, 10 paid).",
     endpoint: "https://mcp.evidiq.dev/envelope/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "verify_dkim", paid: true },
       { name: "check_dmarc_alignment", paid: true },

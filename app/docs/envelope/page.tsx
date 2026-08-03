@@ -87,7 +87,7 @@ export default function EnvelopeDocsPage() {
         agentId={10435}
         name="EVIDIQ Envelope"
         endpoint="https://mcp.evidiq.dev/envelope/mcp"
-        status="review"
+        status="listed"
       />
 
       <H2 id="quickstart">Quickstart</H2>
