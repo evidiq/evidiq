@@ -1,0 +1,19 @@
+[Unit]
+Description=EVIDIQ Auto-blog Generator (runs via timer)
+After=network.target
+
+# Runs INSIDE the site container, so it only works on the host where `evidiq` is
+# running. It writes to /app/content/blog and /app/public/blog, which run.sh bind-mounts
+# from /root/evidiq-blog-content and /root/evidiq-blog-public on the host.
+#
+# Two consequences when the site moves host:
+#   1. Those two host directories are the blog. They are not in the image and not in the
+#      repo - migrate them, or the new host serves an empty blog while the old host keeps
+#      the posts.
+#   2. This timer belongs on whichever host runs the container. Left behind, every run
+#      fails with "No such container"; moved without the data, it starts a fresh history.
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/docker exec evidiq /usr/local/bin/node /app/scripts/blog-cron.mjs
+User=root

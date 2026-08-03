@@ -29,7 +29,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "How much does it cost?",
-    a: "The skill and onboarding tools are free. The verify_agent trust check is metered with x402 (pay-per-call). Unpaid calls receive an HTTP 402 challenge; sign it and retry to run the check.",
+    a: "Core exposes ten tools: five free and five metered with x402 (pay-per-call), from 0.005 USDT0 for verify_agent up to 0.03 for attest_trust_report and batch_verify. The free tools include the skill, onboarding, and estimate_cost, which quotes any paid tool before you commit. Unpaid calls to a metered tool receive an HTTP 402 challenge; sign it and retry to run the check.",
   },
   {
     q: "Which frameworks and chains does it work with?",

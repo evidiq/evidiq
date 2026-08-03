@@ -65,9 +65,37 @@ export default function DocsPage() {
       <H2 id="mcp">MCP server</H2>
       <p className="mt-3 text-[#201810]/70">
         The remote MCP endpoint is <span className="font-mono text-violet-700">https://evidiq.dev/mcp</span>{" "}
-        (Streamable HTTP). It exposes three tools:
+        (Streamable HTTP). It exposes ten tools — five metered with x402, five free:
       </p>
       <ul className="mt-4 space-y-2 text-[#201810]/75">
+        <li>
+          <span className="font-mono font-semibold text-[#1a130a]">verify_agent</span> — the core trust
+          check: probe, identity, score and attestation{" "}
+          <span className="text-[#201810]/50">(0.005 USDT0)</span>
+        </li>
+        <li>
+          <span className="font-mono font-semibold text-[#1a130a]">check_endpoint_trust</span> — endpoint
+          probe only: reachability, TLS, x402 paywall, skill.md{" "}
+          <span className="text-[#201810]/50">(0.01 USDT0)</span>
+        </li>
+        <li>
+          <span className="font-mono font-semibold text-[#1a130a]">verify_identity</span> — ERC-8004
+          on-chain identity resolution and owner match{" "}
+          <span className="text-[#201810]/50">(0.015 USDT0)</span>
+        </li>
+        <li>
+          <span className="font-mono font-semibold text-[#1a130a]">attest_trust_report</span> — signed
+          report with its 0G Storage root anchored{" "}
+          <span className="text-[#201810]/50">(0.03 USDT0)</span>
+        </li>
+        <li>
+          <span className="font-mono font-semibold text-[#1a130a]">batch_verify</span> — up to five
+          agents in one call <span className="text-[#201810]/50">(0.03 USDT0)</span>
+        </li>
+        <li>
+          <span className="font-mono font-semibold text-[#1a130a]">core_capabilities</span> — tool list,
+          pricing catalog and trust model <span className="text-[#201810]/50">(free)</span>
+        </li>
         <li>
           <span className="font-mono font-semibold text-[#1a130a]">how_to_install</span> — onboarding
           instructions <span className="text-[#201810]/50">(free)</span>
@@ -77,8 +105,13 @@ export default function DocsPage() {
           skill in open-skill format <span className="text-[#201810]/50">(free)</span>
         </li>
         <li>
-          <span className="font-mono font-semibold text-[#1a130a]">verify_agent</span> — the core trust
-          check <span className="text-[#201810]/50">(x402-paid)</span>
+          <span className="font-mono font-semibold text-[#1a130a]">estimate_cost</span> — the exact price
+          of any paid tool, before paying <span className="text-[#201810]/50">(free)</span>
+        </li>
+        <li>
+          <span className="font-mono font-semibold text-[#1a130a]">verify_core_report</span> — recheck a
+          report offline: digest, signature, attestation{" "}
+          <span className="text-[#201810]/50">(free)</span>
         </li>
       </ul>
       <Code>{`{
@@ -87,8 +120,9 @@ export default function DocsPage() {
   }
 }`}</Code>
       <p className="mt-4 text-[#201810]/70">
-        <span className="font-mono">how_to_install</span> and{" "}
-        <span className="font-mono">get_evidiq_skill</span> are free and need no payment. A plain{" "}
+        The five free tools need no payment, and{" "}
+        <span className="font-mono">estimate_cost</span> tells you what a paid one costs before you
+        commit to it. A plain{" "}
         <span className="font-mono">application/json</span> request is accepted (a{" "}
         <span className="font-mono">text/event-stream</span> Accept header is not required), and the
         response comes back as JSON.

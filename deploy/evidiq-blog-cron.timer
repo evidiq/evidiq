@@ -1,0 +1,10 @@
+[Unit]
+Description=Run EVIDIQ blog cron twice daily (00:00 and 12:00 UTC)
+
+[Timer]
+OnCalendar=*-*-* 00:00,12:00
+Persistent=true
+RandomizedDelaySec=15m
+
+[Install]
+WantedBy=timers.target
