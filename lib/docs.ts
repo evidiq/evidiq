@@ -543,6 +543,32 @@ export const DOCS: DocCard[] = [
     okxUrl: "https://www.okx.ai/agents/10435",
     agentId: 10435,
   },
+  {
+    slug: "helm",
+    name: "EVIDIQ Helm",
+    tagline: "Rule-Bound Execution",
+    description:
+      "Rule-bound execution for the OKX.AI Trading Hackathon: a declarative trading mandate enforced by a deterministic engine, every decision EIP-191 signed and 0G-anchored before the fill, records chained by sequence number and predecessor hash. 10 tools (5 free, 5 paid).",
+    endpoint: "https://mcp.evidiq.dev/helm/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "decision_log", paid: true },
+      { name: "signal_digest", paid: true },
+      { name: "risk_report", paid: true },
+      { name: "performance_attestation", paid: true },
+      { name: "mandate_compliance_audit", paid: true },
+      { name: "helm_capabilities", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "get_mandate", paid: false },
+      { name: "chain_status", paid: false },
+      { name: "verify_helm_decision", paid: false },
+    ],
+    href: "/docs/helm",
+    image: "/docs/helm-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/10453",
+    agentId: 10453,
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
