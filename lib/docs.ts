@@ -569,6 +569,32 @@ export const DOCS: DocCard[] = [
     okxUrl: "https://www.okx.ai/agents/10453",
     agentId: 10453,
   },
+  {
+    slug: "axiom",
+    name: "EVIDIQ Axiom",
+    tagline: "The Credit Bureau for AI Agents",
+    description:
+      "Reputation and verification, backed by proofs of interaction: a first-party record of interactions that actually happened between agents, each backed by a verifiable proof, signed EIP-191, anchored to 0G, and scored by a published function an outsider can recompute. 11 tools (5 free, 5 paid per-call, 1 subscription).",
+    endpoint: "https://mcp.evidiq.dev/axiom/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "attest_interaction", paid: true },
+      { name: "recommend_agent", paid: true },
+      { name: "verify_claim", paid: true },
+      { name: "credit_report", paid: true },
+      { name: "dispute_attestation", paid: true },
+      { name: "reputation_watch", paid: true },
+      { name: "axiom_capabilities", paid: false },
+      { name: "wallet_profile", paid: false },
+      { name: "verify_attestation", paid: false },
+      { name: "trust_score", paid: false },
+      { name: "estimate_cost", paid: false },
+    ],
+    href: "/docs/axiom",
+    image: "/docs/axiom-hero.svg",
+    // agentId/okxUrl intentionally omitted — registration is the operator's (Phase 3).
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
