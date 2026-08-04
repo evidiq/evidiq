@@ -6,9 +6,15 @@ import { POSTS, formatDate } from "@/lib/blog";
 import { listPosts } from "@/lib/blog-engine/store";
 
 // Auto-generated posts land on disk after the container is already running
-// (the cron hits /api/blog/generate, not a rebuild), so this page must be
-// rendered on request, not frozen at build time.
-export const dynamic = "force-dynamic";
+// (the cron hits /api/blog/generate, not a rebuild), so this page must not be
+// frozen at build time.
+//
+// It used to say force-dynamic, which made Next send
+// `cache-control: private, no-cache, no-store, max-age=0, must-revalidate`.
+// That header tells every crawler not to store the page, and pages that say
+// "don't store me" get dropped from the index. Revalidation gets the same
+// freshness — the cron writes about one post a day — while staying cacheable.
+export const revalidate = 300;
 
 const siteUrl = "https://evidiq.dev";
 

@@ -9,10 +9,12 @@ import { homepageDocs } from "@/lib/docs";
 // server-side because listPosts() reads the filesystem — it cannot run in
 // the client bundle.
 //
-// force-dynamic for the same reason as /blog: new posts land on disk while
-// the container is already running (the cron hits the API, not a rebuild),
-// so a statically-frozen homepage would never show them.
-export const dynamic = "force-dynamic";
+// Revalidated for the same reason as /blog: new posts land on disk while the
+// container is already running (the cron hits the API, not a rebuild), so a
+// statically-frozen homepage would never show them. This was force-dynamic,
+// which emitted a `no-store` cache-control and told crawlers not to keep the
+// page — see the note in app/blog/page.tsx.
+export const revalidate = 300;
 
 export default function Home() {
   const handWritten: BlogCardData[] = POSTS.map((p) => ({

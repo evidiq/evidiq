@@ -21,10 +21,17 @@ function formatDateISO(iso: string): string {
   return new Date(iso).toISOString();
 }
 
-// New posts land on disk after the container is already running (the cron
-// hits /api/blog/generate, not a rebuild) — so this route must always render
-// on request, never pre-rendered/cached at build time.
-export const dynamic = "force-dynamic";
+// New posts land on disk after the container is already running (the cron hits
+// /api/blog/generate, not a rebuild), so this route is never pre-rendered at
+// build time. It renders on first request and is then cached for five minutes.
+//
+// There is no generateStaticParams on purpose: the slugs live on a bind-mounted
+// volume the build cannot see. `dynamicParams` defaults to true, so an unknown
+// slug still renders instead of 404ing.
+//
+// This was force-dynamic, which sent a `no-store` cache-control on every post —
+// the single reason the posts were not being kept in the index.
+export const revalidate = 300;
 
 export async function generateMetadata({
   params,

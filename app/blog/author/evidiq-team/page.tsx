@@ -7,9 +7,10 @@ import { listPosts } from "@/lib/blog-engine/store";
 import { BLOG_AUTHOR } from "@/lib/blog-engine/author";
 
 // Generated posts land on disk after the container is already running (the
-// cron hits /api/blog/generate, not a rebuild) — this page must render on
-// request, not freeze at build time, same as /blog and /blog/[slug].
-export const dynamic = "force-dynamic";
+// cron hits /api/blog/generate, not a rebuild), so this page is not frozen at
+// build time. Revalidated rather than force-dynamic, which sent a `no-store`
+// cache-control — same as /blog and /blog/[slug].
+export const revalidate = 300;
 
 export const metadata: Metadata = {
   title: `${BLOG_AUTHOR.name} — EVIDIQ Blog`,
