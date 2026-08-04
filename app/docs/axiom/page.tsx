@@ -207,13 +207,18 @@ export default function AxiomDocsPage() {
       </p>
 
       <div className="mt-6 overflow-hidden rounded-2xl border border-emerald-200 bg-emerald-50/50 p-6">
-        <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Registered on X Layer</p>
+        <p className="text-xs font-bold uppercase tracking-wider text-emerald-800">Settled on X Layer</p>
         <p className="mt-2 text-sm text-[#201810]/75">
-          Agent #10514, listing under review — a real paid call has not settled yet, so no
-          settlement transaction is listed:
+          All five paid tools settled through the official OKX facilitator — each call
+          returned a real payload, not a paid challenge (total 0.08 USDT0):
         </p>
         <div className="mt-3 space-y-1 font-mono text-xs text-emerald-800">
           <p><span className="font-semibold">registration:</span> <a href="https://www.oklink.com/xlayer/tx/0x43bbcf392808cfc6e67ccc7754f2f3373e77da7568119f367ce859a9391c65f7" target="_blank" rel="noopener noreferrer" className="hover:underline">0x43bbcf39…1c65f7</a></p>
+          <p><span className="font-semibold">attest_interaction (0.005):</span> <a href="https://www.oklink.com/xlayer/tx/0x8dc12b2f729a6f702e940840fbcf763520aea59a4b56e5ea2363388516b05a40" target="_blank" rel="noopener noreferrer" className="hover:underline">0x8dc12b2f…b05a40</a> <span className="text-emerald-600">· verified, seq 7, 0G anchored</span></p>
+          <p><span className="font-semibold">recommend_agent (0.01):</span> <a href="https://www.oklink.com/xlayer/tx/0xde767a2f01498b6626bbeab781dd3141b760a78ff109cd5acf34bdd30c1e37dc" target="_blank" rel="noopener noreferrer" className="hover:underline">0xde767a2f…e37dc</a> <span className="text-emerald-600">· 1 candidate by attested standing</span></p>
+          <p><span className="font-semibold">verify_claim (0.015):</span> <a href="https://www.oklink.com/xlayer/tx/0x671c7a66436233b0fceb15d620cc509a8cf8da582c3543ff43ea0f03e60b96da" target="_blank" rel="noopener noreferrer" className="hover:underline">0x671c7a66…6b96da</a> <span className="text-emerald-600">· verified, 5 citations</span></p>
+          <p><span className="font-semibold">credit_report (0.02):</span> <a href="https://www.oklink.com/xlayer/tx/0x5d513591c10b9bf2defe7b0d9840f2afabe0e3f804162eff9e96dccc0e508237" target="_blank" rel="noopener noreferrer" className="hover:underline">0x5d513591…508237</a> <span className="text-emerald-600">· solvency 1.51 USDT, 0 honeypot</span></p>
+          <p><span className="font-semibold">dispute_attestation (0.03):</span> <a href="https://www.oklink.com/xlayer/tx/0xed6c6729bfa9f8e97eeb27298e46d29df916346c7b569dc82651a6af009444e7" target="_blank" rel="noopener noreferrer" className="hover:underline">0xed6c6729…444e7</a> <span className="text-emerald-600">· dispute open, seq 6 frozen</span></p>
         </div>
       </div>
 
