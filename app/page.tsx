@@ -1,7 +1,16 @@
+import type { Metadata } from "next";
 import HomeClient, { type BlogCardData, type DocCardData } from "@/components/HomeClient";
 import { POSTS } from "@/lib/blog";
 import { listPosts } from "@/lib/blog-engine/store";
 import { homepageDocs } from "@/lib/docs";
+
+// Every other page declares its own canonical; the homepage had no `metadata` export
+// at all, so Search Console reported "User-declared canonical: None" for `/` and picked
+// one itself. Title and description stay in the root layout — only the canonical is
+// added here, resolved against its `metadataBase`.
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 // Server component: reads generated posts off disk (content/blog/) and the
 // hand-written POSTS list, merges + sorts them, and hands the top ones to

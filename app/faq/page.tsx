@@ -4,6 +4,7 @@ import PageShell from "@/components/PageShell";
 export const metadata: Metadata = {
   title: "FAQ — EVIDIQ",
   description: "Frequently asked questions about EVIDIQ, the trust layer for the AI agent economy.",
+  alternates: { canonical: "/faq" },
 };
 
 const FAQ: { q: string; a: string }[] = [

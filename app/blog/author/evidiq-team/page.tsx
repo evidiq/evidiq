@@ -15,6 +15,7 @@ export const revalidate = 300;
 export const metadata: Metadata = {
   title: `${BLOG_AUTHOR.name} — EVIDIQ Blog`,
   description: BLOG_AUTHOR.bio,
+  alternates: { canonical: "/blog/author/evidiq-team" },
 };
 
 type Card = {
