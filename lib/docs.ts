@@ -593,7 +593,7 @@ export const DOCS: DocCard[] = [
     ],
     href: "/docs/axiom",
     image: "/docs/axiom-hero.svg",
-    // agentId/okxUrl intentionally omitted — registration is the operator's (Phase 3).
+    agentId: 10514,
   },
 ];
 
