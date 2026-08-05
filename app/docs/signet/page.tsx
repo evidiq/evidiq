@@ -77,6 +77,14 @@ export default function SignetDocsPage() {
         root hash even if this service disappears. 10 tools (5 free, 5 paid).
       </p>
 
+      <img
+        src="/docs/signet-banner.png"
+        alt="EVIDIQ Signet — structured design artefacts"
+        width={1672}
+        height={941}
+        className="mt-8 w-full rounded-2xl border border-sky-100"
+      />
+
       <div className="mt-8 rounded-2xl border p-5 border-amber-200 bg-amber-50/50">
         <div className="flex flex-wrap items-center gap-3">
           <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
