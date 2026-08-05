@@ -57,9 +57,9 @@ unauthenticated requests receive an HTTP 402 challenge; sign it and retry.
 
 ## EVIDIQ MCP Suite
 
-This repository is the public hub for the EVIDIQ product family: nineteen MCP
-services — nineteen live on OKX.AI, with Helm, the newest, under review.
-Core is served from this repository; the nineteen specialists
+This repository is the public hub for the EVIDIQ product family: twenty-one MCP
+services — nineteen live on OKX.AI, with Helm, Axiom and Signet, the newest three,
+under review. Core is served from this repository; the twenty-one specialists
 are independently deployed and keep their source in their own repositories, while
 this directory is the single place to discover every EVIDIQ MCP.
 
@@ -84,6 +84,8 @@ this directory is the single place to discover every EVIDIQ MCP.
 | [**EVIDIQ Cadence**](https://github.com/evidiq/evidiq-cadence-mcp)<br/>[Docs](https://evidiq.dev/docs/cadence) | Give agents a future: schedule one-shot, recurring, retry, expiration, and standing-monitor jobs that fire after the response ends, with EIP-191 receipts and 0G-anchored attestations. | [`mcp.evidiq.dev/cadence/mcp`](https://mcp.evidiq.dev/cadence/mcp) | 10 paid tools — `0.005`–`0.03 USDT0`; 8 discovery/verification tools are free. Live on OKX.AI as Agent #10405, with paid calls proven on X Layer. |
 | [**EVIDIQ Helm**](https://github.com/evidiq/evidiq-helm-mcp)<br/>[Docs](https://evidiq.dev/docs/helm) | Prove how it traded: a declarative trading mandate enforced by a deterministic engine, every decision EIP-191 signed and 0G-anchored before the fill, records chained by sequence number and predecessor hash. | [`mcp.evidiq.dev/helm/mcp`](https://mcp.evidiq.dev/helm/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 free tools (get_mandate and verify_helm_decision free forever). OKX.AI Agent #10453 is under review; A2A subscription at 0.3 USDT/month. |
 | [**EVIDIQ Envelope**](https://github.com/evidiq/evidiq-envelope-mcp)<br/>[Docs](https://evidiq.dev/docs/envelope) | Prove who sent it: SPF, DKIM, DMARC and ARC on the raw message, sender-spoofing and lookalike-domain detection, header-chain forensics, and structural risk of attachments and links — with the DNS answers pinned into a signed report. | [`mcp.evidiq.dev/envelope/mcp`](https://mcp.evidiq.dev/envelope/mcp) | 10 paid tools — `0.005`–`0.03 USDT0`; 8 discovery/verification tools are free. Live on OKX.AI as Agent #10435, with paid calls proven on X Layer. |
+| [**EVIDIQ Axiom**](https://github.com/evidiq/evidiq-axiom-mcp)<br/>[Docs](https://evidiq.dev/docs/axiom) | The credit bureau for AI agents: first-party records of interactions that actually happened between agents, each backed by a verifiable proof, signed EIP-191, anchored to 0G, scored by a published function an outsider can recompute. | [`mcp.evidiq.dev/axiom/mcp`](https://mcp.evidiq.dev/axiom/mcp) | 5 paid tools — `0.005`–`0.03 USDT0`; 5 free tools. OKX.AI Agent #10514 is under review. |
+| [**EVIDIQ Signet**](https://github.com/evidiq/evidiq-signet-mcp)<br/>[Docs](https://evidiq.dev/docs/signet) | Structured design artefacts with a provenance seal: logo SVG, colour palette, type system, design tokens — each reproducible from its inputs, sealed with a signed 0G-anchored receipt. No model anywhere; deterministic by construction. | [`mcp.evidiq.dev/signet/mcp`](https://mcp.evidiq.dev/signet/mcp) | 5 paid tools — `0.02`–`0.25 USDT0`; 5 free tools. OKX.AI Agent #10518 is under review. |
 | [**EVIDIQ Compass**](https://github.com/evidiq/evidiq-compass-mcp)<br/>[Docs](https://evidiq.dev/docs/compass) | Tell an agent what its work is worth: where a listed price sits against comparable services, which categories have demand, and a counterparty's public trading record — in a signed 0G-anchored market report. | [`mcp.evidiq.dev/compass/mcp`](https://mcp.evidiq.dev/compass/mcp) | 10 paid tools — `0.005`–`0.03 USDT0`; 8 discovery/verification tools are free. Live on OKX.AI as Agent #10407, with paid calls proven on X Layer. |
 
 All paid tools use x402 v2 with USDT0 on X Layer. Read a service's `/x402`
