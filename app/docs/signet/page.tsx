@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import Link from "next/link";
 import PageShell from "@/components/PageShell";
+import OkxAiLiveBlock from "@/components/OkxAiLiveBlock";
 
 
 export const metadata: Metadata = {
@@ -85,33 +86,13 @@ export default function SignetDocsPage() {
         className="mx-auto mt-8 block w-full rounded-2xl border border-sky-100"
       />
 
-      <div className="mt-8 rounded-2xl border p-5 border-amber-200 bg-amber-50/50">
-        <div className="flex flex-wrap items-center gap-3">
-          <span className="inline-flex items-center gap-1.5 rounded-full bg-amber-500 px-3 py-1 text-xs font-bold uppercase tracking-wider text-white">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white/70 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-white" />
-            </span>
-            Under OKX.AI review
-          </span>
-          <p className="text-sm font-semibold text-[#1a130a]">EVIDIQ Signet</p>
-        </div>
-        <div className="mt-4 space-y-4 border-t border-black/5 pt-4">
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-sm font-semibold text-[#201810]/80">Endpoint</p>
-            <p className="font-mono text-xs text-[#201810]/60">https://mcp.evidiq.dev/signet/mcp</p>
-          </div>
-          <div className="flex items-center justify-between gap-3">
-            <p className="text-sm font-semibold text-[#201810]/80">x402 discovery</p>
-            <p className="font-mono text-xs text-[#201810]/60">https://mcp.evidiq.dev/signet/x402</p>
-          </div>
-          <p className="text-sm text-[#201810]/75">
-            The endpoint is live and paid calls have settled on X Layer; the OKX.AI
-            listing (Agent #10518) is under review and its URL will appear here once it
-            clears.
-          </p>
-        </div>
-      </div>
+      <OkxAiLiveBlock
+        url="https://www.okx.ai/agents/10518"
+        agentId={10518}
+        name="EVIDIQ Signet"
+        endpoint="https://mcp.evidiq.dev/signet/mcp"
+        status="listed"
+      />
 
       <H2 id="quickstart">Quickstart</H2>
       <p className="mt-3 text-[#201810]/70">

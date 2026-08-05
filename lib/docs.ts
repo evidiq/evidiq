@@ -602,8 +602,8 @@ export const DOCS: DocCard[] = [
     description:
       "Brand and design artefacts issued as structured data — logo SVG, colour palette, type system, design tokens — each reproducible from its inputs and sealed with a signed, 0G-anchored receipt. No model anywhere; deterministic by construction. 10 tools (5 free, 5 paid, priced 0.02–0.25 USDT0).",
     endpoint: "https://mcp.evidiq.dev/signet/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "palette_tokens", paid: true },
       { name: "logo_svg", paid: true },
@@ -618,6 +618,7 @@ export const DOCS: DocCard[] = [
     ],
     href: "/docs/signet",
     image: "/docs/signet-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/10518",
     agentId: 10518,
   },
 ];
