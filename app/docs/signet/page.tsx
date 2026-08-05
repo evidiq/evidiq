@@ -82,7 +82,7 @@ export default function SignetDocsPage() {
         alt="EVIDIQ Signet — structured design artefacts"
         width={1672}
         height={941}
-        className="mt-8 w-full rounded-2xl border border-sky-100"
+        className="mx-auto mt-8 block w-full rounded-2xl border border-sky-100"
       />
 
       <div className="mt-8 rounded-2xl border p-5 border-amber-200 bg-amber-50/50">
@@ -97,11 +97,19 @@ export default function SignetDocsPage() {
           <p className="text-sm font-semibold text-[#1a130a]">EVIDIQ Signet</p>
         </div>
         <div className="mt-4 space-y-4 border-t border-black/5 pt-4">
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-sm font-semibold text-[#201810]/80">Endpoint</p>
+            <p className="font-mono text-xs text-[#201810]/60">https://mcp.evidiq.dev/signet/mcp</p>
+          </div>
+          <div className="flex items-center justify-between gap-3">
+            <p className="text-sm font-semibold text-[#201810]/80">x402 discovery</p>
+            <p className="font-mono text-xs text-[#201810]/60">https://mcp.evidiq.dev/signet/x402</p>
+          </div>
           <p className="text-sm text-[#201810]/75">
-            The endpoint below is already live; the OKX.AI listing (Agent ID) is being
-            registered separately and will appear here once it exists.
+            The endpoint is live and paid calls have settled on X Layer; the OKX.AI
+            listing (Agent #10518) is under review and its URL will appear here once it
+            clears.
           </p>
-          <p className="font-mono text-xs text-[#201810]/60">https://mcp.evidiq.dev/signet/mcp</p>
         </div>
       </div>
 
@@ -257,14 +265,14 @@ Phase 2 gate (bypass removed) — measured from outside:
           alt="EVIDIQ Signet generated logo — Northwind Labs (rewritten generator: monogram NL, arc family)"
           width={512}
           height={512}
-          className="mt-4 w-1/3 rounded-lg border border-violet-200"
+          className="mx-auto mt-4 block w-1/3 rounded-lg border border-violet-200"
         />
         <img
           src="/docs/signet-design-review.png"
           alt="EVIDIQ Signet design review of the rewritten generator"
           width={1280}
           height={400}
-          className="mt-4 w-full rounded-lg border border-violet-200"
+          className="mx-auto mt-4 block w-full rounded-lg border border-violet-200"
         />
         <img
           src="/docs/signet-live-test.gif"
