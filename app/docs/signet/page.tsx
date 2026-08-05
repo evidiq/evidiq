@@ -254,10 +254,17 @@ Phase 2 gate (bypass removed) — measured from outside:
         </pre>
         <img
           src="/docs/signet-logo.png"
-          alt="EVIDIQ Signet generated logo — Northwind Labs"
+          alt="EVIDIQ Signet generated logo — Northwind Labs (rewritten generator: monogram NL, arc family)"
           width={512}
           height={512}
           className="mt-4 w-1/3 rounded-lg border border-violet-200"
+        />
+        <img
+          src="/docs/signet-design-review.png"
+          alt="EVIDIQ Signet design review of the rewritten generator"
+          width={1280}
+          height={400}
+          className="mt-4 w-full rounded-lg border border-violet-200"
         />
         <img
           src="/docs/signet-live-test.gif"
