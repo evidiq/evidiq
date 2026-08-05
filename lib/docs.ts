@@ -618,7 +618,7 @@ export const DOCS: DocCard[] = [
     ],
     href: "/docs/signet",
     image: "/docs/signet-hero.svg",
-    // agentId/okxUrl intentionally omitted — registration is the operator's (Phase 3).
+    agentId: 10518,
   },
 ];
 
