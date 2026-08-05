@@ -595,6 +595,31 @@ export const DOCS: DocCard[] = [
     image: "/docs/axiom-hero.svg",
     agentId: 10514,
   },
+  {
+    slug: "signet",
+    name: "EVIDIQ Signet",
+    tagline: "Structured Design Artefacts",
+    description:
+      "Brand and design artefacts issued as structured data — logo SVG, colour palette, type system, design tokens — each reproducible from its inputs and sealed with a signed, 0G-anchored receipt. No model anywhere; deterministic by construction. 10 tools (5 free, 5 paid, priced 0.02–0.25 USDT0).",
+    endpoint: "https://mcp.evidiq.dev/signet/mcp",
+    badge: "Under OKX.AI review",
+    badgeTone: "review",
+    tools: [
+      { name: "palette_tokens", paid: true },
+      { name: "logo_svg", paid: true },
+      { name: "social_kit", paid: true },
+      { name: "kit_revision", paid: true },
+      { name: "brand_kit", paid: true },
+      { name: "signet_capabilities", paid: false },
+      { name: "estimate_cost", paid: false },
+      { name: "preview_tokens", paid: false },
+      { name: "verify_asset", paid: false },
+      { name: "check_font_license", paid: false },
+    ],
+    href: "/docs/signet",
+    image: "/docs/signet-hero.svg",
+    // agentId/okxUrl intentionally omitted — registration is the operator's (Phase 3).
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
