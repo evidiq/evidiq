@@ -81,7 +81,7 @@ export default function HelmDocsPage() {
         agentId={10453}
         name="EVIDIQ Helm"
         endpoint="https://mcp.evidiq.dev/helm/mcp"
-        status="review"
+        status="listed"
       />
 
       <H2 id="quickstart">Quickstart</H2>

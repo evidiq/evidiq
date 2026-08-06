@@ -550,8 +550,8 @@ export const DOCS: DocCard[] = [
     description:
       "Rule-bound execution for the OKX.AI Trading Hackathon: a declarative trading mandate enforced by a deterministic engine, every decision EIP-191 signed and 0G-anchored before the fill, records chained by sequence number and predecessor hash. 10 tools (5 free, 5 paid).",
     endpoint: "https://mcp.evidiq.dev/helm/mcp",
-    badge: "Under OKX.AI review",
-    badgeTone: "review",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
     tools: [
       { name: "decision_log", paid: true },
       { name: "signal_digest", paid: true },
