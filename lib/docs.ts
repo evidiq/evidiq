@@ -621,6 +621,30 @@ export const DOCS: DocCard[] = [
     okxUrl: "https://www.okx.ai/agents/10518",
     agentId: 10518,
   },
+  {
+    slug: "clause",
+    name: "EVIDIQ Clause",
+    tagline: "Decode Documents · Prove Statements",
+    description:
+      "Plain-language decoding of agreements and policy documents — every statement quoted and checked against your document, reasoning inside TEE-attested 0G Compute enclaves, every report EIP-191 signed and 0G-anchored. 8 tools (3 free, 5 paid, priced 0.05–0.25 USDT0).",
+    endpoint: "https://mcp.evidiq.dev/clause/mcp",
+    badge: "Listed on OKX.AI",
+    badgeTone: "live",
+    tools: [
+      { name: "decode_document", paid: true },
+      { name: "risk_flags", paid: true },
+      { name: "obligation_calendar", paid: true },
+      { name: "compare_documents", paid: true },
+      { name: "verdict_report", paid: true },
+      { name: "capabilities", paid: false },
+      { name: "verify_report", paid: false },
+      { name: "quote", paid: false },
+    ],
+    href: "/docs/clause",
+    image: "/docs/clause-hero.svg",
+    okxUrl: "https://www.okx.ai/agents/10584",
+    agentId: 10584,
+  },
 ];
 
 /** Homepage order: the Core trust layer first, followed by specialist services. */
