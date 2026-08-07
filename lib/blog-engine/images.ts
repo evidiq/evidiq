@@ -26,11 +26,10 @@ export async function generateAndSaveBlogImage(opts: {
   prompt: string;
   slug: string;
   filename: string;
-  doApiKey: string;
   hasText?: boolean;
 }): Promise<string | null> {
   try {
-    const result = await generateImage(opts.doApiKey, opts.prompt, {
+    const result = await generateImage(opts.prompt, {
       hasText: opts.hasText ?? false,
       imageSize: "landscape_16_9",
     });
@@ -73,21 +72,18 @@ export async function generateAllBlogImages(opts: {
   slug: string;
   featuredPrompt: string;
   bodyImagePrompts: string[];
-  doApiKey: string;
 }): Promise<BlogImageSet> {
   const [featured, ...body] = await Promise.all([
     generateAndSaveBlogImage({
       prompt: opts.featuredPrompt,
       slug: opts.slug,
       filename: "hero",
-      doApiKey: opts.doApiKey,
     }),
     ...opts.bodyImagePrompts.slice(0, 4).map((prompt, i) =>
       generateAndSaveBlogImage({
         prompt,
         slug: opts.slug,
         filename: `body-${i + 1}`,
-        doApiKey: opts.doApiKey,
       })
     ),
   ]);

@@ -53,7 +53,12 @@ export function normalizeExcerpt(excerpt: string, keyword: string, title: string
 }
 
 export async function runBlogPipeline(): Promise<PipelineResult> {
-  const doApiKey = process.env.BLOG_DO_API_KEY || "";
+  // Images run on the 0G router's z-image-turbo by default (same key as the
+  // writer); DigitalOcean remains the fallback when BLOG_DO_API_KEY is set.
+  const imageProvider = (process.env.BLOG_IMAGE_PROVIDER || "og").toLowerCase();
+  const imagesReady = imageProvider === "do"
+    ? Boolean(process.env.BLOG_DO_API_KEY)
+    : Boolean(process.env.BLOG_LLM_API_KEY);
 
   try {
     const topic = pickNextTopic();
@@ -85,12 +90,11 @@ export async function runBlogPipeline(): Promise<PipelineResult> {
 
     // ── 2. Generate images (best-effort) ────────────────────────────────
     const slug = slugify(article.title);
-    const { featuredImage, bodyImages } = doApiKey
+    const { featuredImage, bodyImages } = imagesReady
       ? await generateAllBlogImages({
           slug,
           featuredPrompt: article.featuredImagePrompt,
           bodyImagePrompts: article.bodyImagePrompts,
-          doApiKey,
         })
       : { featuredImage: null, bodyImages: [] };
 

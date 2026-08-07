@@ -41,7 +41,7 @@ export function pickImageModel(prompt: string, opts?: { model?: string; hasText?
 
 const isAsyncModel = (model: string) => /^fal-ai\//.test(model);
 
-export async function generateImage(
+export async function generateImageDo(
   apiKey: string,
   prompt: string,
   opts: {
@@ -60,6 +60,64 @@ export async function generateImage(
   return isAsyncModel(model)
     ? generateAsync(apiKey, model, prompt.trim(), opts)
     : generateSync(apiKey, model, prompt.trim(), opts);
+}
+
+/**
+ * Dispatcher. Default provider is the 0G router's z-image-turbo — the same
+ * account the article writer uses (BLOG_LLM_API_KEY / BLOG_LLM_BASE_URL) — so
+ * text and images come from one provider. DigitalOcean (BLOG_DO_API_KEY) is
+ * kept as the fallback and can be forced with BLOG_IMAGE_PROVIDER=do.
+ */
+export async function generateImage(
+  prompt: string,
+  opts: {
+    hasText?: boolean;
+    imageSize?: string;
+    signal?: AbortSignal;
+    timeoutMs?: number;
+  } = {}
+): Promise<GenerateImageResult> {
+  if (!prompt || !prompt.trim()) throw new Error("Empty image prompt");
+
+  const provider = (process.env.BLOG_IMAGE_PROVIDER || "og").toLowerCase();
+  const ogKey = process.env.BLOG_LLM_API_KEY || "";
+  const ogBase = process.env.BLOG_LLM_BASE_URL || "https://router-api.0g.ai/v1";
+  const doKey = process.env.BLOG_DO_API_KEY || "";
+
+  const tryOg = async (): Promise<GenerateImageResult> => {
+    const { generateImageOg } = await import("./ogImage");
+    const r = await generateImageOg({
+      apiKey: ogKey,
+      baseUrl: ogBase,
+      prompt: prompt.trim(),
+      signal: opts.signal,
+      timeoutMs: opts.timeoutMs ?? 120_000,
+    });
+    return { b64: r.b64, contentType: r.contentType, model: r.model };
+  };
+  const tryDo = (): Promise<GenerateImageResult> =>
+    generateImageDo(doKey, prompt, { ...opts, imageSize: opts.imageSize ?? "landscape_16_9" });
+
+  const primary = provider === "do" ? tryDo : tryOg;
+  const fallback = provider === "do" ? tryOg : tryDo;
+  const primaryReady = provider === "do" ? Boolean(doKey) : Boolean(ogKey);
+  const fallbackReady = provider === "do" ? Boolean(ogKey) : Boolean(doKey);
+
+  try {
+    if (!primaryReady) throw new Error(`${provider} image key not configured`);
+    return await primary();
+  } catch (primaryErr) {
+    if (fallbackReady) {
+      try {
+        return await fallback();
+      } catch (fallbackErr) {
+        throw new Error(
+          `image generation failed (${provider}: ${(primaryErr as Error).message}; fallback: ${(fallbackErr as Error).message})`
+        );
+      }
+    }
+    throw primaryErr;
+  }
 }
 
 async function generateAsync(
